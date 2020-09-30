@@ -1,0 +1,43 @@
+header{
+    font-family: 'Shojumaru', cursive;
+    width: 660px;
+}   
+h1{
+    font-size: 40px;
+    color:rgb(219,55,55);
+    text-shadow: 3px 3px  rgb(0, 0, 0),
+                 -3px -3px black,
+                  0px 10px rgb(247,215,74),
+                  -5px -5px rgb(247,215,74);
+    margin: 20px 0 0;
+}
+.eslogan{
+    font-size: 20px;
+    margin: 0 0 15px;
+    text-shadow: 2px 2px 5px rgb(247,215,74),
+                -2px -2px 5px rgb(247,215,74);
+    color: #000;  
+}
+h2{
+    font-size: 30px;
+    font-family: 'Shojumaru', cursive;
+    text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);
+}
+h3{
+    margin-right: 20px;
+    font-size: 25px;
+    font-family: 'Shojumaru', cursive;
+    text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);
+}
+
+p{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    color:rgb(37, 3, 3);
+   /* text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);*/
+    font-weight: bold;
+}
