@@ -1,0 +1,122 @@
+.encabezado {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 150px;
+    font-size: 20px;
+    margin: 0 0 15px;
+    text-shadow: 2px 2px 5px rgb(247,215,74),
+                -2px -2px 5px rgb(247,215,74);
+    color: #000;  
+}
+
+h1{
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(219,55,55);
+    text-shadow: 3px 3px  rgb(0, 0, 0),
+                 -3px -3px black,
+                  0px 10px rgb(247,215,74),
+                  -5px -5px rgb(247,215,74);
+    margin: 20px 10px 0;
+}
+h2{
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);
+    margin: 20px 0 0;
+    align-content: center;
+}
+h3 {
+    font-family: 'Press Start 2P', cursive;
+    text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);
+    margin: 20px 0 0;
+    align-content: center;
+
+}
+.navbar-brand {
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(219,55,55);
+    text-shadow: 3px 3px  rgb(0, 0, 0),
+                 -3px -3px black,
+
+}
+.card-title{
+    font-family: 'Press Start 2P', cursive;
+    text-shadow:  2px 2px 5px rgb(247,215,74),
+                 -2px -2px 5px rgb(247,215,74);
+    margin: 20px 0 0;
+    align-content: center;
+
+}
+.img-responsive{
+    height: auto;
+
+}
+.novedades {
+    width: 100%;
+    height: 300px;
+    margin: 100px 27px 100px 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+  
+}
+.col-6 col-sm-4{
+    height: auto;
+}
+/*.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+}*/
+footer{
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(219,55,55);
+    text-shadow: 3px 3px  rgb(0, 0, 0),
+                 -3px -3px black;
+    padding-top: 20px;
+    font-size: 15px;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:50px;
+    width:100%;
+    background:rgb(82, 73, 73);
+}
+.card-img{
+    width: 300px;
+    height: 300px;
+}
+.card{
+    margin: 5PX 5px 10px;
+}
+.eslogan{
+    display: none;
+}
+.info{
+    margin: 50px;
+}
+.pedidos{
+    margin: 40px 40px 80px 40px;
+}
+.datos{
+    margin: 40px 40px 80px 40px;
+}
+@media screen and (min-width: 750px) {
+    .img-responsive{
+        height:250px;
+    
+    }
+    .eslogan{
+        display: block;
+    }
+}
+
+    
