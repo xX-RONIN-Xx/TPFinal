@@ -1,10 +1,50 @@
 {
     "status": "OK",
-    "compras": [
-    {
-    "producto": "Manzana",
-    "precio": "20"
-    }
+    "registry": [
+        {
+            "_id":"p0",
+            "name": "pikachu",
+            "description": "figura de pikachu soseniendo un corazón",
+            "price": 1300,
+            "stock": 20,
+            "categoria": "anime",
+            "imagen": "/images/pikachu.jpg"
+        },
+        {
+            "_id":"p1",
+            "name": "spiderman",
+            "description": "figura de spiderman en pose",
+            "price": 1350,
+            "stock": 20,
+            "categoria": "comic",
+            "imagen": "/images/tp/spider-man.jpg"
+        },
+        {
+            "_id":"p2",
+            "name": "shaka",
+            "description": "figura de shaka en posición de meditación",
+            "price": 3000,
+            "stock": 20,
+            "categoria": "anime",
+            "imagen": "/images/tp/shaka.jpg"
+        },
+        {
+            "_id":"p3",
+            "name": "scorpion",
+            "description": "figura de Scorpion MK",
+            "price": 1800,
+            "stock": 10,
+            "categoria": "gamer",
+            "imagen": "/images/tp/scorpion.jpg"
+        },
+        {
+            "_id":"p4",
+            "name": "sombrero-hp",
+            "description": "sombrero de la pelicula harry Potter",
+            "price": 1800,
+            "stock": 10,
+            "categoria": "peliculas",
+            "imagen": "/images/tp/sombrero-hp.jpg"
+        }
     ]
-   }
-   
+}
