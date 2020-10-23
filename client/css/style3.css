@@ -153,6 +153,17 @@ footer{
 .btn btn-primary dropdown-toggle {
     display: none;
 }
+
+.show-hide{
+    display:block;
+    margin: 3px;
+    padding: 3px;
+}
+
+#nav-completo{
+    display: none;
+}
+
 .info{
     margin: 50px;
 }
@@ -185,6 +196,15 @@ footer{
     .btn btn-primary dropdown-toggle {
         display: block;
     }
+
+    .show-hide{
+        display:none;
+    }
+    
+    #nav-completo{
+        display: block;
+    }
 }
+
 
     
