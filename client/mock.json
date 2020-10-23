@@ -3,48 +3,184 @@
     "registry": [
         {
             "_id":"p0",
-            "name": "pikachu",
-            "description": "figura de pikachu soseniendo un corazón",
+            "name": "Pikachu",
+            "description": "Figura de pikachu soseniendo un corazón",
             "price": 1300,
             "stock": 20,
-            "categoria": "anime",
-            "imagen": "/images/pikachu.jpg"
+            "category": "Anime",
+            "image": "/images/pikachuCorazon.jpg"
         },
         {
             "_id":"p1",
-            "name": "spiderman",
-            "description": "figura de spiderman en pose",
+            "name": "Spiderman",
+            "description": "Figura de spiderman en pose",
             "price": 1350,
             "stock": 20,
-            "categoria": "comic",
-            "imagen": "/images/tp/spider-man.jpg"
+            "category": "Comic",
+            "image": "/images/tp/spider-man.jpg"
         },
         {
             "_id":"p2",
-            "name": "shaka",
-            "description": "figura de shaka en posición de meditación",
+            "name": "Shaka",
+            "description": "Figura de shaka en posición de meditación",
             "price": 3000,
             "stock": 20,
-            "categoria": "anime",
-            "imagen": "/images/tp/shaka.jpg"
+            "category": "Anime",
+            "image": "/images/tp/shaka.jpg"
         },
         {
             "_id":"p3",
-            "name": "scorpion",
-            "description": "figura de Scorpion MK",
+            "name": "Sombrero-hp",
+            "description": "Sombrero de la pelicula harry Potter",
             "price": 1800,
             "stock": 10,
-            "categoria": "gamer",
-            "imagen": "/images/tp/scorpion.jpg"
+            "category": "Peliculas",
+            "image": "/images/tp/sombrero-hp.jpg"
         },
         {
             "_id":"p4",
-            "name": "sombrero-hp",
-            "description": "sombrero de la pelicula harry Potter",
+            "name": "Scorpion",
+            "description": "Figura de Scorpion MK en pose de espectante",
             "price": 1800,
             "stock": 10,
-            "categoria": "peliculas",
-            "imagen": "/images/tp/sombrero-hp.jpg"
+            "category": "Gamer",
+            "image": "/images/tp/scorpion.jpg"
+        },
+    
+        {
+            "_id":"p5",
+            "name": "Corazón llavero",
+            "description": "Llavero con forma de corazón",
+            "price": 1800,
+            "stock": 10,
+            "category": "Gamer",
+            "image": "/images/tp/2.jpg"
+        },
+        {
+            "_id":"p6",
+            "name": "Heisenberg",
+            "description": "Figura decorativa de Breaking Bad",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/heisenberg.jpg"
+        },
+        {
+            "_id":"p7",
+            "name": "toy-story",
+            "description": "Figura de woody",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/toy-story.jpg"
+        },
+        {
+            "_id":"p8",
+            "name": "Sauron",
+            "description": "Lampara Sauron del Señor de los Anillos",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/sauron.jpg"
+        },
+        {
+            "_id":"p9",
+            "name": "Mate Vader",
+            "description": "Mate de darth Vader",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/mates-darth.jpg"
+        },
+        {
+            "_id":"p10",
+            "name": "Apoya libros",
+            "description": "Producto decorativo para sostener libros en estanteria",
+            "price": 1800,
+            "stock": 10,
+            "category": "Gamer",
+            "image": "/images/tp/apoyalibros.jpg"
+        },
+        {
+            "_id":"p11",
+            "name": "Mario Bros",
+            "description": "Macetas con motivos de Mario Bros",
+            "price": 1800,
+            "stock": 10,
+            "category": "Gamer",
+            "image": "/images/tp/mariobros.jpg"
+        },
+        {
+            "_id":"p12",
+            "name": "Ryuk",
+            "description": "Figura de Shinigami Ryuk",
+            "price": 1800,
+            "stock": 10,
+            "category": "Shinigami",
+            "image": "/images/tp/ryuk.jpg"
+        },
+        {
+            "_id":"p13",
+            "name": "Saga",
+            "description": "Figura de Saga de Sagitario CDZ",
+            "price": 1800,
+            "stock": 10,
+            "category": "Anime",
+            "image": "/images/tp/saga.jpg"
+        },
+        {
+            "_id":"p14",
+            "name": "Llavero-Foto",
+            "description": "Laveros personalizados mediante foto",
+            "price": 1800,
+            "stock": 10,
+            "category": "Curiosidades",
+            "image": "/images/tp/llavero-foto.jpg"
+        },
+        {
+            "_id":"p15",
+            "name": "Cat",
+            "description": "Figura de gatito para sostener celulares",
+            "price": 1800,
+            "stock": 10,
+            "category": "curiosidades",
+            "image": "/images/tp/cat.jpg"
+        },
+        {
+            "_id":"p16",
+            "name": "Fenix",
+            "description": "Figura Ikki Fenix CDZ",
+            "price": 1800,
+            "stock": 10,
+            "category": "Anime",
+            "image": "/images/tp/fenix.jpg"
+        },
+        {
+            "_id":"p17",
+            "name": "Diorama Vaf",
+            "description": "Diorama de Volver al Futuro",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/diorama-vaf.jpg"
+        },
+        {
+            "_id":"p18",
+            "name": "Galadriel",
+            "description": "FIgura con base Galadriel Señor de los anillos",
+            "price": 1800,
+            "stock": 10,
+            "category": "Peliculas",
+            "image": "/images/tp/galadriel.jpg"
+        },
+        {
+            "_id":"p19",
+            "name": "Eva 01",
+            "description": "Figura de EVA01 Evangelion",
+            "price": 1800,
+            "stock": 10,
+            "category": "Anime",
+            "image": "/images/tp/eva01.jpg"
         }
     ]
 }

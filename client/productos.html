@@ -31,13 +31,13 @@
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                             href="productos.html">Productos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="productos.html">Todos</a></li>
-                            <li><a href="productos.html">Anime</a></li>
-                            <li><a href="productos.html">Comics</a></li>
-                            <li><a href="productos.html">Peliculas</a></li>
-                            <li><a href="productos.html">Gamer</a></li>
-                            <li><a href="productos.html">Curiosidades</a></li>
-                            <li><a href="productos.html">Insumos</a></li>
+                            <li class="catFilter" id="todos"><a href="productos.html">Todos</a></li>
+                            <li class="catFilter" id="anime"><a href="productos.html">Anime</a></li>
+                            <li class="catFilter"><a href="productos.html">Comics</a></li>
+                            <li class="catFilter"><a href="productos.html">Peliculas</a></li>
+                            <li class="catFilter"><a href="productos.html">Gamer</a></li>
+                            <li class="catFilter"><a href="productos.html">Curiosidades</a></li>
+                            <li class="catFilter"><a href="productos.html">Insumos</a></li>
                         </ul>
                     </li>
                     <li><a href="personalizados.html">Personalizados</a></li>
@@ -50,9 +50,12 @@
             </div>
         </nav>
     </header>
-    <div class="container" id="tablaID">
+    
 
-    </div>
+        <div id="listaHorizontal">
+
+        </div>
+            
 
     <div class="container">
         <h2>Ingreso de Productos</h2>
@@ -61,42 +64,51 @@
             <div class="container">
                 <div class="form-group row">
                     <div class="col-xs-6">
+                        <input class="form-control" id="inputId" type="hidden">
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="hidden">
+                    </div>
+                    <div class="col-xs-6">
                         <label for="inputName">Nombre</label>
                         <input class="form-control" id="inputName" type="text"
                             placeholder="Ingrese el nombre del producto">
                     </div>
                     <div class="col-xs-6">
                         <label for="inputPrecio">Precio</label>
-                        <input class="form-control" id="inputPrecio" type="text">
+                        <input class="form-control" id="inputPrice" type="number">
                     </div>
                     <div class="col-xs-6">
                         <label for="inputStock">Stock</label>
-                        <input class="form-control" id="inputStock" type="text">
+                        <input class="form-control" id="inputStock" type="number">
                     </div>
                     <div class="col-xs-6">
                         <label for="inputCategoria">Categoria</label>
-                        <input class="form-control" id="inputCategoria" type="text">
+                        <input class="form-control" id="inputCategory" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
-               
+
                     <div class="col-xs-6">
                         <label for="inputDescription">Descripción</label>
                         <textarea class="form-control" rows="5" id="inputDescription"></textarea>
                     </div>
-               
-             
+
+
                     <div class="col-xs-6">
                         <label for="inputImagen">Imagen</label>
-                        <input class="form-control" id="inputImagen" type="text"
+                        <input class="form-control" id="inputImage" type="text"
                             placeholder="Colocar el nombre de la imagen y su extensión. Ej: THOR.jpeg">
                     </div>
-            
-            </div>
-            </div>
 
+                </div>
+            </div>
+            <div class="container">
+                <input type="submit" value="Guardar producto" id="btnGuardar" class="btn btn-primary">
+            </div>
         </form>
     </div>
+    <hr>
     <hr>
     <footer class="container-fluid text-center">
         <!--pie-->

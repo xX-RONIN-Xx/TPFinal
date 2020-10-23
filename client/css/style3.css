@@ -54,7 +54,7 @@ h3 {
 
 }
 .img-responsive{
-   /* height: auto;*/
+    height: auto;
 
 }
 .novedades {
@@ -69,6 +69,34 @@ h3 {
 }
 .col-6 col-sm-4{
     height: auto;
+}
+
+#tabla{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+td{
+    height: 800px;
+}
+.spanDescript{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 95%;
+
+}
+
+.btn-warning{
+    border-radius: 5px;
+}
+ul#tabla li{
+    border: orange 3px solid;
+    padding: 50px;
+    margin: 20px;
+    font-weight: bold;
+    text-align: left;
+    max-width: 300px;
 }
 /*.container{
     display: flex;
