@@ -47,94 +47,143 @@
             </div>
         </nav>
     </header>
-            <div class="container">
-                <div class="info">
-                    <h2>Información Importante sobre tu pedido</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore non sint ratione excepturi officia soluta reprehenderit ducimus nisi veniam provident, voluptates dolorum quasi, eum odio sunt suscipit, accusantium modi quisquam.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam repudiandae aliquam odio eaque, accusamus impedit ea omnis eos nulla asperiores ducimus vitae vero exercitationem quaerat natus tenetur magni qui? Amet.
-                    </p>
-                    <div class="lista">
-                        <ul class=instrucciones>
-                            <li>Cras justo odio</li>
-                            <li>Dapibus ac facilisis in</li>
-                            <li>Morbi leo risus</li>
-                            <li>Porta ac consectetur ac</li>
-                            <li>Vestibulum at eros</li>
-                          </ul>
-                    </div>
-                </div>
-                <div>
-                <div>   
-                <form class="pedidos">
-                    <div class="row"><!--fila 1-->
-                        <div class="col-6 col-md-4">
-                            <div class="form-group">
-                                <label for="sel1">Select list:</label>
-                                <select class="form-control" id="sel1">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                        <h4>Elegir algo</h4>
-                        <div class="col-6 col-md-4">
-                            <label class="radio-inline"><input type="radio" name="optradio" checked>Option 1</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
-                            
-                        </div>
-                        <div class="col-6 col-md-4">
-                            
-                        </div>
-                        <div class="col-6 col-md-9">
-                            <div class="form-group">
-                                <label for="comment">Comment:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
-                              </div>
-                            
-                        </div>
-                        <div class="col-6 col-md-4">
-                            
-                        </div>
-                        <div class="col-6 col-md-4">
-                            
-                        </div>
-                        <div class="col-6 col-md-4">
-                            
-                        </div>
-                </form>
-                </div>
-                <div>
-                <form action="/action_page.php" class="datos">
-                    <div class="form-group">
-                        <h2>Ingrese sus datos para poder enviarle a cotización de su pedido</h2>
-                        <label for="name">Nombre y Apellido:</label>
-                        <input type="name" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                      <label for="email">email:</label>
-                      <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="number">N° tel/cel:</label>
-                        <input type="text" class="form-control" id="tel">
-                      </div>
-                    <div class="checkbox">
-                      <label><input type="checkbox"> Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                </div>
+            
+    <div class="container">
 
+        <div class="col-6 col-md-12">
+            <h2>Información Importante sobre tu pedido</h2>
+            <div class="info">
+                <p>
+                    Para que podamos tomar tu pedido personalizado, debes rellenar el siguiente cuestionario. A
+                    continuación
+                    se detalla una lista de instrucciones:
+                </p>
+                <div class="lista">
+                    <ul class=instrucciones>
+                        <li>define las dimenciones del modelo (X, Y, Z).</li>
+                        <li>selecciona uno o mas colores que se utilizarán en la impresión.</li>
+                        <li>Elige el tipo de filamento a utilizar.</li>
+                        <li>Definir altura de capas.</li>
+                        <li>Seleccionar temperatura de impresión.</li>
+                        <li>Determinar el porcentaje de infill.</li>
+                        <li>Por último dejanos tus datos y recibirá la cotización de su pedido.</li>
+                    </ul>
                 </div>
-
             </div>
+        </div>
+
+        <div class="pedidos">
+            <h2>Detalles del pedido</h2>
+            <form >
+                <div class="row">
+                    <!--fila 1-->
+                    <div class="col-6 col-md-8">
+                        <div class="form-group">
+                            <h4>Dimensiones:</h4>
+                            <input type="text" id='dim-x' placeholder="X">
+                            <input type="text" id='dim-y' placeholder="Y">
+                            <input type="text" id='dim-z' placeholder="Z">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="form-group">
+                            <h4>Colores: </h4>
+                            <label><input type="checkbox" name="amarillo" id="amarillo"> amarillo</label>
+                            <label><input type="checkbox" name="azul" id="azul"> azul</label>
+                            <label><input type="checkbox" name="blanco" id="blanco"> blanco</label>
+                            <label><input type="checkbox" name="celeste" id="celeste"> celeste</label>
+                            <label><input type="checkbox" name="marrón" id="marrón"> marrón</label>
+                            <label><input type="checkbox" name="naranja" id="naranja"> naranja</label>
+                            <label><input type="checkbox" name="negro" id="negro"> negro</label>
+                            <label><input type="checkbox" name="rojo" id="rojo"> rojo</label>
+                            <label><input type="checkbox" name="rosa" id="rosa"> rosa</label>
+                            <label><input type="checkbox" name="verde" id="verde"> verde</label>
+                        </div>
+                    </div>
+                
+
+                    <!--fila 2-->
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <h4>Filamento: </h4>
+                            <select class="form-control" id="sel1">
+                                <option>Filamento PLA</option>
+                                <option>Filamento ABS</option>
+                                <option>Filamentos PETG</option>
+                                <option>Filamento flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class='form-group'>
+                            <h4>Altura de capa: </h4>
+                            <label class="radio-inline"><input type="radio" name="optradio" checked> 0.1mm</label>
+                            <label class="radio-inline"><input type="radio" name="optradio"> 0.2mm</label>
+                            <label class="radio-inline"><input type="radio" name="optradio"> 0.3mm</label>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class='form-group'>
+                            <h4>Temperatura: </h4>
+                            <input type="text" id='temperatura' placeholder="Por ej. 205°C">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class='form-group'>
+                            <h4>Porcentaje de infill/relleno: </h4>
+                            <input type="text" id='infill' placeholder="Por ej. 15%">
+                        </div>
+                    </div>
+
+                    <!--fila 3-->
+                    <div class="col-6 col-md-12">
+                        <div class="form-group">
+                            <label for="comment">Comentarios y especficaciones: </label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div>
+            <h2>Ingrese sus datos de contacto</h2>
+            <form action="/action_page.php" class="datos">
+                <div class="col-6 col-md-5">
+                    <div class="form-group">
+                        <input type="name" class="form-control" placeholder="Nombre y Apellido" id="name">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-5">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="email" id="email">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-5">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="N° tel/cel" id="tel">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                    </div>
+                </div>
+                <div class="col-6 col-md-1">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
     <hr>
     <footer class="container-fluid text-center"><!--pie-->
             <p>

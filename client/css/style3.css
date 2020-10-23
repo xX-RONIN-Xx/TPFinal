@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    height: 150px;
+    height: 90px;
     font-size: 20px;
     margin: 0 0 15px;
     text-shadow: 2px 2px 5px rgb(247,215,74),
@@ -34,6 +34,7 @@ h2{
                  -2px -2px 5px rgb(247,215,74);
     margin: 20px 0 0;
     align-content: center;
+    color: black;
 }
 h3 {
     font-family: 'Press Start 2P', cursive;
@@ -44,13 +45,26 @@ h3 {
     font-size: 20px;
     color: rgb(0, 0, 0);
 }
-
-p {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 15px;
+h4 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
     text-shadow:  2px 2px 5px rgb(219,55,55);
     margin: 20px 0 0;
-    color: darkred;  
+    color: white; 
+}
+.instrucciones {
+    color: white;
+}
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    text-shadow:  2px 2px 5px rgb(219,55,55);
+    margin: 20px 0 0;
+    color: white;  
+}
+
+label {
+    color: white;
 }
 
 .navbar-brand {
@@ -64,10 +78,6 @@ p {
                  -2px -2px 5px rgb(247,215,74);
     margin: 20px 0 0;
     align-content: center;
-
-}
-.img-responsive{
-    height: auto;
 
 }
 
@@ -94,7 +104,14 @@ p {
 }
 
 .well {
-    background-image: url(../images/tp/Cap-Round-Shield.jpg);
+    background-image: url(../images/tp/red.jpg.jpg);
+    
+}
+.ofer{
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+    font-size: 15px;
+    
 }
 
 hr {
@@ -112,13 +129,11 @@ hr {
     background-color: grey;
     height: 1px;
 }
-html {
-     background-color: black; 
-}
 
 body {
-     margin:15px; 
-     background-color: lightyellow; 
+     
+     background-image: url(../images/tp/azul1.jpg); 
+     background-position: center;
 }
 
 footer{
@@ -135,6 +150,39 @@ footer{
     height: 100px;
     background-color: rgb(32, 31, 31);
 }
+
+#tabla{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+td{
+    height: 800px;
+}
+.spanDescript{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 95%;
+
+}
+li img{
+    max-height: 425px;
+}
+
+.btn-warning{
+    border-radius: 5px;
+}
+ul#tabla li{
+    border: orange 3px solid;
+    padding: 50px;
+    margin: 20px;
+    font-weight: bold;
+    text-align: left;
+    max-width: 380px;
+    color: white;
+}
+
 .card-img{
     width: 250px;
     height: 350px;
@@ -166,6 +214,37 @@ footer{
 .container text-center {
     display: flex;
     align-content: center;
+}
+
+.col-md-8 p{
+    display: grid;
+    text-align: justify;
+    color: white;
+    font-size: 17px;
+    padding-top: 30px;
+    text-shadow: none;
+} 
+
+.por-que-3d p{
+    display: grid;
+    text-align: justify;
+    color: white;
+    font-size: 17px;
+    padding-top: 20px;
+    text-shadow: none;
+}
+
+.lista {
+    padding-top: 25px;
+}
+.contacto {
+    padding-top: 20px;
+}
+.col-md-12 {
+    padding-top: 30px;
+}
+form {
+    padding-top: 35px;
 }
 @media screen and (min-width: 750px) {
 
