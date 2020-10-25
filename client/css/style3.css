@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    height: 90px;
+    height: 100px;
     font-size: 20px;
     margin: 0 0 15px;
     text-shadow: 2px 2px 5px rgb(247,215,74),
@@ -98,6 +98,24 @@ label {
 .col-6 col-sm-4{
     height: auto;
 }
+
+.col-md-7 p {
+    display: grid;
+    text-align: justify;
+    color: white;
+    font-size: 17px;
+    padding-top: 30px;
+    text-shadow: none;
+    padding-top: 15px;
+}
+
+th {
+    color: white;
+}
+.col-md-5{
+    padding-top: 33px;
+}
+
 .destacadas{
     background-color: rgb(32, 31, 31);
     padding-top: 15px;
@@ -167,7 +185,7 @@ td{
 
 }
 li img{
-    max-height: 425px;
+    max-height: 360px;
 }
 
 .btn-warning{
@@ -182,6 +200,33 @@ ul#tabla li{
     max-width: 380px;
     color: white;
 }
+
+*{box-sizing:border-box;}
+
+		.redes {
+			width:95%;
+			max-width:900px;
+			padding:32px 64px;
+			margin:auto;
+		}
+
+		.social{
+			/*las imágenes usadas tienen width de 48px*/
+			width:48px;
+			position:fixed;
+			top:50px;
+			right:0;
+		}
+
+		/* Extra centrado vertical*/
+
+		.social{
+			/*border:1px solid #000;*/
+			top:50%;
+			height:205px;
+			/*para poner height 192 deberíamos haber indicado en el reset de estilos font-size:0;*/
+			margin-top:-100px;
+		}
 
 .card-img{
     width: 250px;
@@ -246,6 +291,7 @@ ul#tabla li{
 form {
     padding-top: 35px;
 }
+
 @media screen and (min-width: 750px) {
 
     .img-responsive{
