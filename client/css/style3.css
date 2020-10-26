@@ -190,6 +190,10 @@ li img{
 
 .btn-warning{
     border-radius: 5px;
+    color: black;
+}
+#ocultar{
+    display: none;
 }
 ul#tabla li{
     border: orange 3px solid;
