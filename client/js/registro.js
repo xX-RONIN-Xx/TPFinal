@@ -1,4 +1,3 @@
-
 //const { json } = require("express");
 
 let btnAgregar = document.querySelector("#btnAgregar");
@@ -13,13 +12,15 @@ let btnMostrar = document.querySelector("#btnMostrar");
 btnMostrar.addEventListener("click", sumar);
 //console.log(load());*/
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-let productos = [];
+let vehiculos = [];
 
 async function agregar() {
     console.log("Funcion Agregar");
-    let producto = document.querySelector('#inputName').value;
-    let descripcion = document.querySelector('#inputDescription').value;
-    let precio = parseInt(document.querySelector('#inputPrice').value);
+    let marca = document.querySelector('#marca').value;
+    let patente = document.querySelector('#patente').value;
+    let año = parseInt(document.querySelector('#año').value);
+    let precio = parseInt(document.querySelector('#precio').value);
+    let tipo = document.querySelector('#tipo').value;
 
     let renglon = {
         "marca": marca,
@@ -38,31 +39,30 @@ async function agregar() {
 	});
 
     if (respuesta.ok) {
-        productos.push(renglon);
-        mostrarTablaProductos();
+        vehiculos.push(renglon);
+        mostrarTablaVehiculos();
     }else{
         console.log('hubo un error');
     }
     
 }
 
-function mostrarTablaProductos() {
+function mostrarTablaVehiculos() {
     let html = "";
-    for (let i = 0; i < productos.length; i++) {
-        console.log(productos.length)
-    carrito=productos[i];
+    for (let i = 0; i < vehiculos.length; i++) {
+    registro=vehiculos[i];
     html += `
                <tr>
-               <td>${carrito.marca}</td>
-               <td>${carrito.patente}</td>
-               <td>${carrito.año}</td>
-               <td>${carrito.precio}</td>
-               <td>${carrito.tipo}</td>
+                   <td scope="row">${registro.marca}</td>
+                   <td scope="row">${registro.patente}</td>
+                   <td scope="row">${registro.año}</td>
+                   <td scope="row">${registro.precio}</td>
+                   <td scope="row">${registro.tipo}</td>
                 </tr>
            `;
     }
    
-   document.querySelector("#tblProductos").innerHTML = html;
+   document.querySelector("#tblVehiculos").innerHTML = html;
    }
    let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
    let botonesUpd = document.querySelectorAll(".btnUpdProd");
@@ -103,7 +103,7 @@ async function btnUpdClick(){
    mostrarTablaCompras();
 }*/
 
-    async function load() {
+   async function load() {
     let container = document.querySelector("#use-ajax");
     let h1 = document.createElement('h1');
     h1.innerHTML = 'Loading';
@@ -113,8 +113,7 @@ async function btnUpdClick(){
         if (response.ok) {
             let t = await response.json();
             console.log(t);
-            productos = [...productos, ...t];
-            console.log(productos);
+            vehiculos = [...vehiculos, ...t];
         }
         else
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -124,41 +123,7 @@ async function btnUpdClick(){
         container.innerHTML = "<h1>Connection error</h1>";
     };
     h1.parentNode.removeChild(h1);
-    mostrarTablaProductos();
+    mostrarTablaVehiculos();
 }
-    /*async function load() {
-        let container = document.querySelector("#use-ajax");
-        let h1 = document.createElement('h1');
-        h1.innerHTML = 'Loading';
-        container.appendChild(h1);
-        try {
-            let response = llamarBack("GET", '/productos');
-            if (response.ok) {
-                let t = await response.json();
-                console.log(t);
-                compras = [...t];
-            } else
-                container.innerHTML = "<h1>Error - Failed URL!</h1>";
-        } catch (response) {
-            console.log(response);
-            container.innerHTML = "<h1>Connection error</h1>";
-        };
-        h1.parentNode.removeChild(h1);
-        mostrarTablaProductos();
-    }
-    
-    async function llamarBack(verbo, path, body = null) {
-        let request = {
-            method: verbo,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        };
-        if (body) {
-            request.body = JSON.stringify(body);
-        }
-        return response = await fetch(path, request);
-    }*/
-    
+
     load();
-    

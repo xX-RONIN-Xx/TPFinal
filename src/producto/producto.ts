@@ -1,17 +1,35 @@
 export class Producto{
-    private nombreProducto: string;
+    private marca: string;
+    private patente: string;
+    private año: number;
     private precio: number;
+    private tipo:string;
     
-    constructor(nombre:string, precio:number){
-        this.nombreProducto=nombre;
+    constructor(marca:string, patente:string, año:number, precio:number, tipo:string){
+        this.marca=marca;
+        this.patente=patente;
+        this.año=año;
         this.precio=precio;
+        this.tipo=tipo;
     }
 
-    public getNombreProducto(): string {
-        return this.nombreProducto;
+    public getMarca(): string {
+        return this.marca;
     }
-    public setNombreProducto(value: string) {
-        this.nombreProducto = value;
+    public setMarca(value: string) {
+        this.marca = value;
+    }
+    public getPatente(): string {
+        return this.patente;
+    }
+    public setPatente(value: string) {
+        this.patente = value;
+    }
+    public getAño(): number{
+        return this.año;
+    }
+    public setAño(value: number) {
+        this.año = value;
     }
 
     public getPrecio(): number {
@@ -19,6 +37,12 @@ export class Producto{
     }
     public setPrecio(value: number) {
         this.precio = value;
+    }
+    public getTipo(): string {
+        return this.tipo;
+    }
+    public setTipo(value: string) {
+        this.tipo = value;
     }
 
 }
