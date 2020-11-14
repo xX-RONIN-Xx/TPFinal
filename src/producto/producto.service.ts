@@ -13,7 +13,7 @@ export class ProductoService {
     private listaProductos: Producto[];
     private productosFilePath: string = 'resources/productos.csv';
 
-   /* constructor(
+  /*  constructor(
         @InjectRepository(Prod)
         private readonly prodRepository: Repository<Prod>
     ){ }*/

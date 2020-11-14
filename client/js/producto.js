@@ -1,13 +1,89 @@
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
-    //defino la url del mock
-    const url = "http://localhost:3000/mock.json";
+    const url = "http://localhost:3000/productos";
     //funcion para que la tabla de productos se genere dinamicamente
-    let html="";
-    let mostrarTabla = () => {
-        //document.querySelector("#divTabla").innerHTML = "";
-        //llamado a mi json para traer los productos
-        //document.querySelector("#tablaID").innerHTML="";
+
+    async function mostrarTabla() {
+     
+        try {
+            let response = llamarBack("GET", '/productos');
+            console.log(response.ok)
+            console.log(response)
+            if (!response.ok) {
+                let t = await response.json();
+                console.log(t);
+                compras = [...t];
+            } else
+                //container.innerHTML = "<h1>Error - Failed URL!</h1>";
+                console.log('no entro al if')
+        } catch (response) {
+            console.log(response);
+            //container.innerHTML = "<h1>Connection error</h1>";
+     };
+        //catch (response) {
+           // console.log(response);
+            // container.innerHTML = "<h1>Connection error</h1>";
+     };
+   // };
+    mostrarTabla();
+
+    async function llamarBack(verbo, path, body = null) {
+        let request = {
+            method: verbo,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+        if (body) {
+            request.body = JSON.stringify(body);
+        }
+        return await fetch(path, request);
+    }
+});
+    /*fetch(url)
+        .then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            console.log(r);
+            return r.json();
+        })
+        .then(jsonData => {              
+            let tamañoRegistry=jsonData.length-1;
+            console.log(jsonData);
+            let items;
+            html=`<ul id="tabla">`;
+            for(let i=0;i<=tamañoRegistry;i++ ){
+                items=jsonData[i];
+                html+=                    
+                        `<li>
+                            <img src="${items.image}" class="img-responsive" alt="Imagen de ${items.name}"><br>
+                            Nombre:</span> ${items.name}<br>
+                            Descripción: <span class="spanDescript">${items.description}</span><br>
+                            Stock: ${items.stock}<br>
+                            Precio: $${items.price}<br>
+                            Categoria: ${items.category}<br>
+                            <input type=button  id="${items._id}" value="Agregar al carrito" class="btn-warning">
+                        </li>`
+              }
+             html+=`</ul>`
+             document.querySelector("#listaHorizontal").innerHTML=html;
+            })
+            
+        .catch(function (e) {
+            console.log(e);
+        })*/
+    /*        let botones = document.querySelectorAll(".btn-warning");
+                botones.forEach(element => {
+                    element.addEventListener("click", function () {
+                        let idDelBoton = this.id;
+                        console.log(idDelBoton);
+                    })
+                })
+        
+    }
+/* ********************************** 
+
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -21,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 html=`<ul id="tabla">`;
                 for(let i=0;i<=tamañoRegistry;i++ ){
                     items=jsonData.registry[i];
-                    //document.querySelector("#tablaID").innerHTML+=
                     html+=                    
                             `<li>
                                 <img src="${items.image}" class="img-responsive" alt="Imagen de ${items.name}"><br>
@@ -50,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
     }
 
+
     mostrarTabla();
 
 
@@ -63,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
         let image = document.querySelector("#inputImage").value;
-
+        let productos=[];
         let registry = {
             "id": "p7",
             "name": name,
@@ -76,11 +152,14 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(registry);
 
         /* 
-     borrarInputs();*/
+     borrarInputs();
         fetch(url, {
-            "method": "POST",
-            
-            "body": JSON.stringify(registry)
+            method: "POST",
+            mode:'cors',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(registry),
         }).then(r => {
             if (!r.ok) {
                 console.log("Error!")
@@ -88,7 +167,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return r.json()
         })
             .then(data => {
-                console.log(data)
+                console.log(data);
+                productos.push(registry);
+                mostrarTabla();
                 // document.querySelector("#tablaID").innerHTML = "";
             })
             .catch(function (e) {
@@ -100,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //   filtrado   *****************************************************
-
+/*
 let fnFiltrar =(categoria)=>{
     document.querySelector("#listaHorizontal").innerHTML="";
     fetch(url)
@@ -158,4 +239,6 @@ let fnFiltrar =(categoria)=>{
             fnFiltrar(this.id);
         } )
     });
-});
+
+    */
+
