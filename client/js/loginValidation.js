@@ -18,7 +18,20 @@ if (window.sessionStorage.getItem('userLogged')) {
 
 //funcion para cerrar sesión y eliminar datos en session y local storage
 function logout() {
-    window.sessionStorage.removeItem('userLogged');
-    window.sessionStorage.removeItem('user');
+    window.sessionStorage.clear();
     alert('Has cerrado sesión con éxito, hasta luego!')
+}
+
+//si el cliente es admin se le muestra el formulario para agregar stock o productos
+
+if(window.sessionStorage.getItem('admin') === 'true' && window.location.href == 'http://localhost:3000/productos.html'){
+    console.log('halaaaa')
+    let showHidden = document.getElementById('ocultar');
+    showHidden.id = 'show';
+
+    showHidden = document.getElementById('inputId');
+    showHidden.type = 'show';
+
+    showHidden = document.getElementById('inputStack');
+    showHidden.type = 'show';
 }

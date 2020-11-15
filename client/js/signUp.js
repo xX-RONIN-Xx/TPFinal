@@ -1,10 +1,10 @@
 async function validateSignUp(e) {
-
     let usuario = {
         user: document.getElementById('usuario').value,
         pass: document.getElementById('password').value,
         repeatPass: document.getElementById('repeat-password').value,
     };
+    console.log(usuario.admin)
 
     let respuesta = await fetch('/login/comparar', {
         method: 'POST',
