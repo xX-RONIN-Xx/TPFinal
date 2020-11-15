@@ -12,9 +12,9 @@ let carrito = [];
     let renglon = {
         "marca": marca,
         "patente": patente,
-        "año" : año,
+        "año": año,
         "precio": precio,
-        "tipo":tipo
+        "tipo": tipo
     }
     let respuesta = await fetch('http://localhost:3000/carrito',{
         method: 'POST',	
@@ -28,7 +28,7 @@ let carrito = [];
     if (respuesta.ok) {
         productos.push(renglon);
         mostrarTablaProductos();
-    }else{
+    } else {
         console.log('hubo un error');
     }
     
