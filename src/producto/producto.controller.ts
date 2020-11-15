@@ -2,7 +2,7 @@ import { Controller, Param } from '@nestjs/common';
 import { Delete, Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
-import { Producto } from './Producto';
+import { Producto } from './producto';
 import { ProductoService } from './producto.service';
 
 @Controller('productos')

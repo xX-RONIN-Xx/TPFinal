@@ -56,6 +56,7 @@ function sumar() {
 let obj = {
     "functions": { "sumar": sumar }
 }
+sumar();
 
 //#########################################
 
