@@ -95,6 +95,9 @@ label {
 
   
 }
+.tamañoTabla {
+    height: auto;
+}
 .col-6 col-sm-4{
     height: auto;
 }
@@ -174,8 +177,16 @@ footer{
     flex-wrap: wrap;
     list-style: none;
 }
+
 td{
-    height: 800px;
+    color:white;
+    width:100px;
+
+}
+
+.img-tabla{
+    height:140px ;
+    width: 140px;
 }
 .spanDescript{
     display: flex;
@@ -188,10 +199,11 @@ li img{
     max-height: 360px;
 }
 
-.btn-warning{
+.btn-warning,.btn-primary,.btn-danger{
     border-radius: 5px;
     color: black;
 }
+
 #ocultar{
     display: none;
 }
