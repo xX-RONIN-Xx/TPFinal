@@ -1,48 +1,62 @@
 export class Producto{
-    private marca: string;
-    private patente: string;
-    private año: number;
-    private precio: number;
-    private tipo:string;
+    private _id: string;
+    private name: string;
+    private description: string;
+    private price: number;
+    private stock: number;
+    private category:string;
+    private image:string;
     
-    constructor(marca:string, patente:string, año:number, precio:number, tipo:string){
-        this.marca=marca;
-        this.patente=patente;
-        this.año=año;
-        this.precio=precio;
-        this.tipo=tipo;
+    constructor(id:string, name:string, description:string, price:number, stock:number, category:string, image:string){
+        this._id=id;
+        this.name=name;
+        this.description=description;
+        this.price=price;
+        this.stock=stock;
+        this.category=category;
+        this.image=image;
     }
 
-    public getMarca(): string {
-        return this.marca;
+    public getID(): string {
+        return this._id;
     }
-    public setMarca(value: string) {
-        this.marca = value;
+    public setID(value: string) {
+        this._id = value;
     }
-    public getPatente(): string {
-        return this.patente;
+    public getname() {
+        return this.name;
     }
-    public setPatente(value: string) {
-        this.patente = value;
+    public getDescription(): string {
+        return this.description;
     }
-    public getAño(): number{
-        return this.año;
+    public setDescription(value: string) {
+        this.description = value;
     }
-    public setAño(value: number) {
-        this.año = value;
+    public getPrice(): number{
+        return this.price;
+    }
+    public setPrice(value: number) {
+        this.price = value;
     }
 
-    public getPrecio(): number {
-        return this.precio;
+    public getStock(): number {
+        return this.stock;
     }
-    public setPrecio(value: number) {
-        this.precio = value;
+    public setStock(value: number) {
+        this.stock = value;
     }
-    public getTipo(): string {
-        return this.tipo;
+    public getCategory(): string {
+        return this.category;
     }
-    public setTipo(value: string) {
-        this.tipo = value;
+    public setCategory(value: string) {
+        this.category = value;
     }
+    public getImage(): string {
+        return this.image;
+    }
+    public setImage(value: string) {
+        this.image = value;
+    }
+
 
 }

@@ -24,54 +24,52 @@ async function agregar() {
     let renglon = {
         "marca": marca,
         "patente": patente,
-        "año" : año,
+        "año": año,
         "precio": precio,
-        "tipo":tipo
+        "tipo": tipo
     }
-    let respuesta = await fetch('http://localhost:3000/productos',{
-        method: 'POST',	
+    let respuesta = await fetch('http://localhost:3000/productos', {
+        method: 'POST',
         mode: 'cors',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(renglon),
-	});
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(renglon),
+    });
 
     if (respuesta.ok) {
         productos.push(renglon);
         mostrarTablaProductos();
-    }else{
+    } else {
         console.log('hubo un error');
     }
-    
+
 }
 
-function mostrarTablaProductos() {
+function mostrarTablaProductos(productos) {
     let html = "";
     for (let i = 0; i < productos.length; i++) {
-        console.log(productos.length)
-    carrito=productos[i];
-    html += `
-               <tr>
-               <td>${carrito.marca}</td>
-               <td>${carrito.patente}</td>
-               <td>${carrito.año}</td>
-               <td>${carrito.precio}</td>
-               <td>${carrito.tipo}</td>
-                </tr>
-           `;
+        carrito = productos[i];
+        console.log(carrito)
+        html += `<tr>
+                    <td>${carrito.marca}</td>
+                    <td>${carrito.patente}</td>
+                    <td>${carrito.año}</td>
+                    <td>${carrito.precio}</td>
+                    <td>${carrito.tipo}</td>
+                </tr>`;
     }
-   
-   document.querySelector("#tblProductos").innerHTML = html;
-   }
-   let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
-   let botonesUpd = document.querySelectorAll(".btnUpdProd");
-   botonesBorrar.forEach(boton => {
-       boton.addEventListener("click", btnBorrarClick);
-   });
-   botonesUpd.forEach(boton => {
-       boton.addEventListener("click", btnUpdClick);
-   });
+
+    document.querySelector("#tblProductos").innerHTML = html;
+}
+let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
+let botonesUpd = document.querySelectorAll(".btnUpdProd");
+botonesBorrar.forEach(boton => {
+    boton.addEventListener("click", btnBorrarClick);
+});
+botonesUpd.forEach(boton => {
+    boton.addEventListener("click", btnUpdClick);
+});
 
 
 /*async function btnBorrarClick(){
@@ -103,13 +101,14 @@ async function btnUpdClick(){
    mostrarTablaCompras();
 }*/
 
-    async function load() {
+async function load() {
     let container = document.querySelector("#use-ajax");
     let h1 = document.createElement('h1');
     h1.innerHTML = 'Loading';
     container.appendChild(h1);
     try {
         let response = await fetch('http://localhost:3000/productos');
+        console.log(response);
         if (response.ok) {
             let t = await response.json();
             console.log(t);
@@ -124,41 +123,41 @@ async function btnUpdClick(){
         container.innerHTML = "<h1>Connection error</h1>";
     };
     h1.parentNode.removeChild(h1);
+    mostrarTablaProductos(productos);
+}
+/*async function load() {
+    let container = document.querySelector("#use-ajax");
+    let h1 = document.createElement('h1');
+    h1.innerHTML = 'Loading';
+    container.appendChild(h1);
+    try {
+        let response = llamarBack("GET", '/productos');
+        if (response.ok) {
+            let t = await response.json();
+            console.log(t);
+            compras = [...t];
+        } else
+            container.innerHTML = "<h1>Error - Failed URL!</h1>";
+    } catch (response) {
+        console.log(response);
+        container.innerHTML = "<h1>Connection error</h1>";
+    };
+    h1.parentNode.removeChild(h1);
     mostrarTablaProductos();
 }
-    /*async function load() {
-        let container = document.querySelector("#use-ajax");
-        let h1 = document.createElement('h1');
-        h1.innerHTML = 'Loading';
-        container.appendChild(h1);
-        try {
-            let response = llamarBack("GET", '/productos');
-            if (response.ok) {
-                let t = await response.json();
-                console.log(t);
-                compras = [...t];
-            } else
-                container.innerHTML = "<h1>Error - Failed URL!</h1>";
-        } catch (response) {
-            console.log(response);
-            container.innerHTML = "<h1>Connection error</h1>";
-        };
-        h1.parentNode.removeChild(h1);
-        mostrarTablaProductos();
-    }
-    
-    async function llamarBack(verbo, path, body = null) {
-        let request = {
-            method: verbo,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        };
-        if (body) {
-            request.body = JSON.stringify(body);
+ 
+async function llamarBack(verbo, path, body = null) {
+    let request = {
+        method: verbo,
+        headers: {
+            "Content-Type": "application/json"
         }
-        return response = await fetch(path, request);
-    }*/
-    
-    load();
-    
+    };
+    if (body) {
+        request.body = JSON.stringify(body);
+    }
+    return response = await fetch(path, request);
+}*/
+
+load();
+
