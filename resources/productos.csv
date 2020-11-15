@@ -1,10 +1,7 @@
-p1,Spiderman,Figura de spiderman en pose,1350,20,Comic,/images/tp/spider-man.jpg
-p2,Shaka,Figura de shaka en posición de meditación,3000,20,Anime,/images/tp/shaka.jpg
-p3,Sombrero-hp,Sombrero de la pelicula harry Potter,1800,10,Peliculas,/images/tp/sombrero-hp.jpg
-p4,Scorpion,Figura de Scorpion MK en pose de espectante,1800,10,Gamer,/images/tp/scorpion.jpg
-p5,Corazón llavero,Llavero con forma de corazón,1800,10,Gamer,/images/tp/2.jpg
-p6,Heisenberg,Figura decorativa de Breaking Bad,1800,10,Peliculas,/images/tp/heisenberg.jpg
-p7,toy-story,Figura de woody,1800,10,Peliculas,/images/tp/toy-story.jpg
-p8,Sauron,Lampara Sauron del Señor de los Anillos,1800,10,Peliculas,/images/tp/sauron.jpg
-p9,Mate Vader,Mate de darth Vader,1800,10,Peliculas,/images/tp/mates-darth.jpg
-p10,Apoya libros,Producto decorativo para sostener libros en estanteria,1800,10,Gamer,/images/tp/apoyalibros.jpg
+p1,Spiderman,Figura de spiderman en pose,20,1350,Comic,/images/tp/spider-man.jpg
+p3,Sombrero-hp,Sombrero de la pelicula harry Potter,10,1800,Peliculas,/images/tp/sombrero-hp.jpg
+p4,Scorpion,Figura de Scorpion MK en pose de espectante,10,1800,Gamer,/images/tp/scorpion.jpg
+p5,Corazón llavero,Llavero con forma de corazón,10,1800,Gamer,/images/tp/2.jpg
+p7,toy-story,Figura de woody,10,1800,Peliculas,/images/tp/toy-story.jpg
+p8,Sauron,Lampara Sauron del Señor de los Anillos,10,1800,Peliculas,/images/tp/sauron.jpg
+p9,Mate Vader,Mate de darth Vader,10,1800,Peliculas,/images/tp/mates-darth.jpg
