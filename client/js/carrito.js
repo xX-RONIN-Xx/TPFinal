@@ -1,21 +1,9 @@
+//let btnTotal = document.querySelector("#btnTotal");
+//btnTotal.addEventListener("click", sumar);
 
-//const { json } = require("express");
+let carrito = [];
 
-let btnAgregar = document.querySelector("#btnAgregar");
-btnAgregar.addEventListener("click", agregar);
-/*let btnActualizar = document.querySelector("#btnActualizar");
-btnActualizar.addEventListener("click", sumar);
-let btnCargar = document.querySelector("#btnCargar");
-btnCargar.addEventListener("click", sumar);
-let btnBorrar = document.querySelector("#btnBorrar");
-btnBorrar.addEventListener("click", sumar);
-let btnMostrar = document.querySelector("#btnMostrar");
-btnMostrar.addEventListener("click", sumar);
-//console.log(load());*/
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-let productos = [];
-
-async function agregar() {
+/*async function agregar() {
     console.log("Funcion Agregar");
     let producto = document.querySelector('#inputName').value;
     let descripcion = document.querySelector('#inputDescription').value;
@@ -28,14 +16,14 @@ async function agregar() {
         "precio": precio,
         "tipo":tipo
     }
-    let respuesta = await fetch('http://localhost:3000/productos',{
+    let respuesta = await fetch('http://localhost:3000/carrito',{
         method: 'POST',	
         mode: 'cors',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(renglon),
-	});
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(renglon),
+    });
 
     if (respuesta.ok) {
         productos.push(renglon);
@@ -44,77 +32,100 @@ async function agregar() {
         console.log('hubo un error');
     }
     
-}
+}*/
 
 function mostrarTablaProductos() {
     let html = "";
-    for (let i = 0; i < productos.length; i++) {
-        console.log(productos.length)
-    carrito=productos[i];
-    html += `
+    for (let i = 0; i < carrito.length; i++) {
+        console.log(carrito.length)
+        car = carrito[i];
+        html += `
                <tr>
-               <td>${carrito.marca}</td>
-               <td>${carrito.patente}</td>
-               <td>${carrito.año}</td>
-               <td>${carrito.precio}</td>
-               <td>${carrito.tipo}</td>
+               <td><img src="${car.image}" class="img-tabla"></td>
+               <td>${car.name}</td>
+               <td>${car.description}</td>
+               <td>${car.price}</td>
+               <td>${car.category}</td>
+               <td><button type="submit" class="btn-delete-producto" pos="${i}">Borrar</button></td>
+               <td><button class="btnUpdProd" pos="${i}">Editar</button></td>
+               
                 </tr>
            `;
     }
-   
-   document.querySelector("#tblProductos").innerHTML = html;
-   }
-   let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
-   let botonesUpd = document.querySelectorAll(".btnUpdProd");
-   botonesBorrar.forEach(boton => {
-       boton.addEventListener("click", btnBorrarClick);
-   });
-   botonesUpd.forEach(boton => {
-       boton.addEventListener("click", btnUpdClick);
-   });
+
+    document.querySelector("#tblProductos").innerHTML = html;
+    addButtonBehavior(".btn-delete-producto", btnBorrarClick);
+    addButtonBehavior(".btnUpdProd", btnUpdClick);
+    sumar();
+}
+
+function addButtonBehavior(btnClass, fn) {
+    let botones = document.querySelectorAll(btnClass);
+    botones.forEach(boton => {
+        boton.addEventListener("click", fn);
+    });
+}
 
 
-/*async function btnBorrarClick(){
-   let pos = this.getAttribute("pos");
-   let response = await fetch(`/productos/${pos}`,{
-       method: "DELETE",
-       headers:{
-           "Content-Type": "application/json"
-       }
-   });
-   console.log("borrando elemento pos " + pos );
-   load();
+async function btnBorrarClick() {
+    let pos = this.getAttribute("pos");
+    let response = await fetch(`/carrito/${pos}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log("borrando elemento pos " + pos);
+    window.location.href = '../html/carrito.html';
 }
 
 async function btnUpdClick(){
    let pos = this.getAttribute("pos");
    let renglon = {
-       "nombreProducto": document.getElementById(`prod${pos}`).value,
-       "precio": document.getElementById(`prec${pos}`).value
+       "image": document.getElementById(`prod${pos}`).value,
+       "name": document.getElementById(`prod${pos}`).value,
+       "desription": document.getElementById(`prod${pos}`).value,
+       "price": document.getElementById(`prec${pos}`).value,
+       "category": document.getElementById(`prod${pos}`).value
    }
-   let response = await fetch(`/productos/${pos}`,{
-       method: "PUT",
-       headers:{
-           "Content-Type": "application/json"
-       },
-       body: JSON.stringify(renglon)
-   });
-   console.log("Actualizamos elemento pos " + pos );
-   mostrarTablaCompras();
-}*/
+   let response = llamarBack("PUT", `/carrito/${pos}`, renglon);
+   console.log("Actualizamos elemento pos " + pos);
+   load();
+}
 
-    async function load() {
+function sumar() {
+    console.log("Funcion Sumar");
+    let total = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        total += carrito[i].price;
+    }
+    let max = carrito[0].price;
+    for (let car of carrito) {
+        if (max < car.price)
+            max = car.price;
+    }
+    document.querySelector("#total").innerHTML =
+        "<p>Total: $" + total + "</p>" 
+}
+
+let obj = {
+    "functions": { "sumar": sumar }
+}
+
+
+
+async function load() {
     let container = document.querySelector("#use-ajax");
     let h1 = document.createElement('h1');
     h1.innerHTML = 'Loading';
     container.appendChild(h1);
     try {
-        let response = await fetch('http://localhost:3000/productos');
+        let response = await fetch('http://localhost:3000/carrito');
         if (response.ok) {
             let t = await response.json();
             console.log(t);
-            productos = [...productos, ...t];
-            console.log(productos);
+            carrito = [...carrito, ...t];
+            console.log(carrito);
         }
         else
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -126,39 +137,20 @@ async function btnUpdClick(){
     h1.parentNode.removeChild(h1);
     mostrarTablaProductos();
 }
-    /*async function load() {
-        let container = document.querySelector("#use-ajax");
-        let h1 = document.createElement('h1');
-        h1.innerHTML = 'Loading';
-        container.appendChild(h1);
-        try {
-            let response = llamarBack("GET", '/productos');
-            if (response.ok) {
-                let t = await response.json();
-                console.log(t);
-                compras = [...t];
-            } else
-                container.innerHTML = "<h1>Error - Failed URL!</h1>";
-        } catch (response) {
-            console.log(response);
-            container.innerHTML = "<h1>Connection error</h1>";
-        };
-        h1.parentNode.removeChild(h1);
-        mostrarTablaProductos();
-    }
-    
-    async function llamarBack(verbo, path, body = null) {
-        let request = {
-            method: verbo,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        };
-        if (body) {
-            request.body = JSON.stringify(body);
+
+async function llamarBack(verbo, path, body = null) {
+    let request = {
+        method: verbo,
+        headers: {
+            "Content-Type": "application/json"
         }
-        return response = await fetch(path, request);
-    }*/
-    
-    load();
-    
+    };
+    if (body) {
+        request.body = JSON.stringify(body);
+    }
+    return response = await fetch(path, request);
+}
+
+
+load();
+

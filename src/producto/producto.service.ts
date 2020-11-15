@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
-import { Producto } from './Producto';
+import { Producto } from './producto';
 
 
 
@@ -35,10 +35,10 @@ export class ProductoService {
     }
 
     public create(prod: any): string {
-        console.log(prod);
+        //console.log(prod);
         const producto = new Producto(prod.marca,prod.patente,prod.año,prod.precio,prod.tipo);
 
-        if (producto.getMarca() && producto.getPatente() && producto.getAño() && producto.getPrecio() && producto.getTipo()) {
+        if (producto.getMarca() && producto.getPatente() && producto.getAño() && producto.getPrecio() && producto.getTipo) {
             fs.appendFileSync('resources/productos.csv',
             `\n${producto.getMarca()},${producto.getPatente(),producto.getAño()},${producto.getPrecio()},${producto.getTipo()}`);
 

@@ -53,7 +53,7 @@
     </header>
     <body>
         <div class="container">
-            <h3>PRODUCTOS</h3>
+            <h1>Registro de autos y camionetas</h1>
     
             <ul class="list-group" id="listaAgregar">
                 
@@ -108,18 +108,41 @@
     
             </form>
     
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Marca</th>
-                    <th>Patente</th>
-                    <th>Año</th>
-                    <th>Precio</th>
-                    <th>Tipo</th>
-                  </tr>
-                </thead>
-                <tbody id="tblProductos">
-                      
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Tipo</th>
+                      </tr>
+                    </thead>
+                    <tbody class="tamañoTabla" id="tblProductos">
+                      <!--<tr>
+                        <td scope="row">Marca</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Patente</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Año</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Precio</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>-->
                     </tbody>
                   </table>
     
@@ -136,85 +159,6 @@
                   </div>
         </div>
         <div id="use-ajax"></div>
-
-    <!--<div id="divTabla" class="table-responsive">
-        <table class="table">
-            <tbody id="tablaID">
-
-            </tbody>
-        </table>
-    </div>
-    <div id="listaHorizontal">
-
-    </div>
-    
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Marca</th>
-            <th scope="col">Patente</th>
-            <th scope="col">Año</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Tipo</th>
-          </tr>
-        </thead>
-        <tbody id="tblVehiculos">
-          
-        </tbody>
-      </table>
-
-
-    <div class="container" id="ocultar">
-        <h2>Ingreso de Productos</h2>
-        <p>Nuevo producto: </p>
-        <form>
-            <div class="container">
-                <div class="form-group row">
-                    <div class="col-xs-6">
-                        <input class="form-control" id="inputId" type="hidden">
-                    </div>
-                    <div class="col-xs-6">
-                        <input class="form-control" type="hidden">
-                    </div>
-                    <div class="col-xs-6">
-                        <label for="inputName">Nombre</label>
-                        <input class="form-control" id="inputName" type="text"
-                            placeholder="Ingrese el nombre del producto">
-                    </div>
-                    <div class="col-xs-6">
-                        <label for="inputPrecio">Precio</label>
-                        <input class="form-control" id="inputPrice" type="number">
-                    </div>
-                    <div class="col-xs-6">
-                        <label for="inputStock">Stock</label>
-                        <input class="form-control" id="inputStock" type="number">
-                    </div>
-                    <div class="col-xs-6">
-                        <label for="inputCategoria">Categoria</label>
-                        <input class="form-control" id="inputCategory" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-
-                    <div class="col-xs-6">
-                        <label for="inputDescription">Descripción</label>
-                        <textarea class="form-control" rows="5" id="inputDescription"></textarea>
-                    </div>
-
-
-                    <div class="col-xs-6">
-                        <label for="inputImagen">Imagen</label>
-                        <input class="form-control" id="inputImage" type="text"
-                            placeholder="Colocar el nombre de la imagen y su extensión. Ej: THOR.jpeg">
-                    </div>
-
-                </div>
-            </div>
-            <div class="container">
-                <input type="submit" value="Guardar producto" id="btnAgregar" class="btn btn-primary">
-            </div>
-        </form>
-    </div>-->
     <div class="social">
         <a href="#"><img src="images/favicon/icons8-facebook-48.png" alt="facebook"></a>
         <a href="#"><img src="images/favicon/icons8-instagram-48.png" alt="instagram"></a>
