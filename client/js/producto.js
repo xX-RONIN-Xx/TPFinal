@@ -29,8 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 Stock: ${items.stock}<br>
                                 Precio: $${items.price}<br>
                                 Categoria: ${items.category}<br>
-                                <input type=button  id="${items._id}" value="Agregar al carrito" class="btn-warning">
-                                <td><span class="badge badge-danger"><button type=submit class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
+                                <span class="badge badge-danger"><input type=button  id="${ID()}" value="Comprar" class="btn btn-warning"></span>
+                                <td><span class="badge badge-danger"><button class="btn btn-primary btn-delete-producto" pos="${i}" id="${items._id}">Editar</button></span>
+                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
                             </li>`
                 }
                 html += `</ul>`
@@ -39,18 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 botonesBorrar.forEach(e => {
                     e.addEventListener("click", btnBorrarClick);
                 });
+
+                let botones = document.querySelectorAll(".btn-warning");
+                botones.forEach(e => {
+                    e.addEventListener("click", btnComprar); 
+                });
+
             })
 
             .catch(function (e) {
                 console.log(e);
             })
-        let botones = document.querySelectorAll(".btn-warning");
-        botones.forEach(element => {
-            element.addEventListener("click", function () {
-                let idDelBoton = this._id;
-                console.log(idDelBoton);
-            })
-        })
+
 
 
     }
@@ -59,10 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let ID = function () {
         let valor = '_ID' + Math.random().toString(36).substr(2, 9);
-        console.log(valor);
         return valor;
     };
-    ID();
+  
 
     //seccion de inputs
 
@@ -75,7 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Content-Type": "application/json"
             }
         });
-       window.location.href='../productos.html';
+        mostrarTabla();
+        //       window.location.href='../productos.html';
+    }
+
+    //*******editar producto */
+    async function btnComprar(){
+        let idDelBoton = this.id;
+        console.log(idDelBoton);
     }
 
 

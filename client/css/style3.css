@@ -199,10 +199,11 @@ li img{
     max-height: 360px;
 }
 
-.btn-warning{
+.btn-warning,.btn-primary,.btn-danger{
     border-radius: 5px;
     color: black;
 }
+
 #ocultar{
     display: none;
 }

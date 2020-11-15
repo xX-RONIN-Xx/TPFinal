@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { Producto } from './producto';
 
-
-
 @Injectable()
 export class ProductoService {
     private listaProductos: Producto[];
@@ -48,21 +46,19 @@ export class ProductoService {
             return "parametros incorrectos";
         }
     }
-    
+
     public deleteProducto(position: number): boolean {
 
-        console.log(this.listaProductos.length)
-        let removed = this.listaProductos.splice(position,1);
-        let archivos=this.listaProductos;
-       console.log(this.listaProductos.length)
-        let archivo="";
-        for (let index = 0; index < this.listaProductos.length-1; index++) {
-            archivo+= (`${archivos[index].getID()},${archivos[index].getname()},${archivos[index].getDescription()},${archivos[index].getStock()},${archivos[index].getPrice()},${archivos[index].getCategory()},${archivos[index].getImage()}\n`);
+        let removed = this.listaProductos.splice(position, 1);
+        let archivos = this.listaProductos;
+        let archivo = "";
+        for (let index = 0; index < archivos.length; index++) {
+            archivo += (`${archivos[index].getID()},${archivos[index].getname()},${archivos[index].getDescription()},${archivos[index].getStock()},${archivos[index].getPrice()},${archivos[index].getCategory()},${archivos[index].getImage()}\n`);
         }
-    let cadena=archivo.substr(0,archivo.length-1)
+        let cadena = archivo.substr(0, archivo.length - 1)
         fs.writeFileSync('resources/productos.csv', cadena);
         return removed.length == 1;
-        }
+    }
 
 
 }
