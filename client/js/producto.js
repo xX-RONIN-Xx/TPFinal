@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
     //defino la url del mock
     const url = "http://localhost:3000/productos";
+    const urlCarrito = "http://localhost:3000/carrito";
     //funcion para que la tabla de productos se genere dinamicamente
     let html = "";
 
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 Stock: ${items.stock}<br>
                                 Precio: $${items.price}<br>
                                 Categoria: ${items.category}<br>
-                                <span class="badge badge-danger"><input type=button  id="${ID()}" value="Comprar" class="btn btn-warning"></span>
+                                <span class="badge badge-danger"><input type=button  id="${items._id}" value="Comprar" class="btn btn-warning"></span>
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-delete-producto" pos="${i}" id="${items._id}">Editar</button></span>
                                 <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
                             </li>`
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let botones = document.querySelectorAll(".btn-warning");
                 botones.forEach(e => {
-                    e.addEventListener("click", btnComprar); 
+                    e.addEventListener("click", btnComprar);
                 });
 
             })
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let valor = '_ID' + Math.random().toString(36).substr(2, 9);
         return valor;
     };
-  
+
 
     //seccion de inputs
 
@@ -79,11 +80,52 @@ document.addEventListener("DOMContentLoaded", function () {
         //       window.location.href='../productos.html';
     }
 
-    //*******editar producto */
-    async function btnComprar(){
+    //*******comprar producto */
+    async function btnComprar() {
         let idDelBoton = this.id;
         console.log(idDelBoton);
+        let urlId = url + '/' + idDelBoton;
+        let datos;
+        fetch(urlId)
+            .then(r => {
+                if (!r.ok) {
+                     console.log("Error!")
+                     }
+                return r.json()
+            })
+            .then(jsonData => {
+                datos=auxComprar(jsonData);
+
+            })
+            .catch(function (e) {
+                console.log(e);
+            });
+
     }
+
+async function auxComprar(jsonData){
+    console.log(jsonData);
+   fetch(urlCarrito, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData),
+    }).then(r => {
+        if (!r.ok) {
+            console.log("Error!")
+        }
+        return r.json()
+    })
+        .then(data => {
+            console.log(data)
+            // document.querySelector("#tablaID").innerHTML = "";
+        })
+        .catch(function (e) {
+            console.log(e);
+        });
+}
 
 
     let fnAgregar = () => {
@@ -191,3 +233,47 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     });
 });
+
+
+/*
+async function auxComprar(jsonData){
+    
+    let id = jsonData._id;
+    let name = jsonData.name;
+    let description = jsonData.description;
+    let price = jsonData.price;
+    let stock = jsonData.stock;
+    let category = jsonData.category;
+    let image = jsonData.image;
+    let registry = {
+        "_id": id,
+        "name": name,
+        "description": description,
+        "price": price,
+        "stock": stock,
+        "category": category,
+        "image": image
+    }
+
+   fetch(urlCarrito, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registry),
+    }).then(r => {
+        if (!r.ok) {
+            console.log("Error!")
+        }
+        return r.json()
+    })
+        .then(data => {
+            console.log(data)
+            // document.querySelector("#tablaID").innerHTML = "";
+        })
+        .catch(function (e) {
+            console.log(e);
+        });
+}
+*/

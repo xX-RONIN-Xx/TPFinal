@@ -15,7 +15,7 @@ export class ProductoController {
 
     @Get(':index')
     public getProducto(@Param('index') index): Producto {
-        return this.productoService.getProducto(parseInt(index));
+        return this.productoService.getProducto(index);
     }
 
     @Post()

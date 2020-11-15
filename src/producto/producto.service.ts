@@ -24,13 +24,18 @@ export class ProductoService {
         return this.listaProductos;
     }
 
-    public getProducto(index: number): Producto {
+    public getProducto(index: any): Producto {
         this.loadProductos();
-        console.log(this.listaProductos);
+        let array=this.listaProductos;
         // Más adelante agregar manejo de status code
-        if (index < 0 || index >= this.listaProductos.length)
-            return null;
-        return this.listaProductos[index];
+        //if (index < 0 || index >= this.listaProductos.length)
+           // return null;
+           for (let i = 0; i < array.length; i++) {
+               if(array[i].getID()==index){
+                   console.log(array[i])
+                return array[i];
+               }               
+           }        
     }
 
     public create(prod: any): string {
