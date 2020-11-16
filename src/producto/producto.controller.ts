@@ -1,5 +1,5 @@
 import { Controller, Param } from '@nestjs/common';
-import { Delete, Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
+import { Delete, Post, Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import { from } from 'rxjs';
@@ -28,5 +28,14 @@ export class ProductoController {
     @Delete(':index')
     public deleteProducto(@Param('index') index): boolean {
         return this.productoService.deleteProducto(parseInt(index));
+    }
+
+    /*@Put(':index')
+    public updateProducto(@Body() prod: any): boolean {
+        return this.productoService.updateProduct(prod);
+    }*/
+    @Put(':index')
+    public updateProducto(@Body() prod: any,@Param('index') index): boolean {
+        return this.productoService.updateProducto(prod,index);
     }
 }

@@ -4,6 +4,9 @@ import { Producto } from './producto';
 
 @Injectable()
 export class ProductoService {
+    /*updateProducto(arg0: number, prod: any): boolean {
+        throw new Error('Method not implemented.');
+    }*/
     private listaProductos: Producto[];
 
     private loadProductos(): void {
@@ -26,20 +29,20 @@ export class ProductoService {
 
     public getProducto(index: any): Producto {
         this.loadProductos();
-        let array=this.listaProductos;
+        let array = this.listaProductos;
         // Más adelante agregar manejo de status code
         //if (index < 0 || index >= this.listaProductos.length)
-           // return null;
-           for (let i = 0; i < array.length; i++) {
-               if(array[i].getID()==index){
-                   console.log(array[i])
+        // return null;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].getID() == index) {
+                // console.log(array[i])
                 return array[i];
-               }               
-           }        
+            }
+        }
     }
 
     public create(prod: any): string {
-        console.log(prod);
+
         const producto = new Producto(prod._id, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
 
         if (producto.getID() && producto.getname() && producto.getDescription() && producto.getPrice() && producto.getStock() && producto.getCategory() && producto.getImage()) {
@@ -65,5 +68,34 @@ export class ProductoService {
         return removed.length == 1;
     }
 
+    /* public updateProduct(@Param('id') id: string, @Body() prod: any): boolean {
+         const producto = new Producto(prod._id, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
+         let archivos = this.listaProductos;
+ 
+         for (let i = 0; i < archivos.length; i++) {
+             if (archivos[i].getID() == prod._id) {
+                 console.log(archivos[i])
+                 archivos[i] == prod;
+             } fs.writeFileSync('resources/productos.csv', archivos[i]);
+         }
+         return true;
+     }*/
+    public updateProducto(prod: any, position: string): boolean {
+        const producto = new Producto(position, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
+        let archivos = this.listaProductos;
+        let STRarchivo = "";
+        for (let i = 0; i < archivos.length; i++) {
+            if (archivos[i].getID() == prod._id) {
+                archivos[i] = producto;
+            }
+        }
+        for (let index = 0; index < archivos.length; index++) {
+            STRarchivo += (`${archivos[index].getID()},${archivos[index].getname()},${archivos[index].getDescription()},${archivos[index].getPrice()},${archivos[index].getStock()},${archivos[index].getCategory()},${archivos[index].getImage()}\n`);
+        }
+        let cadena = STRarchivo.substr(0, STRarchivo.length - 1)
+        fs.writeFileSync('resources/productos.csv', cadena);
+        return true;
+
+    }
 
 }

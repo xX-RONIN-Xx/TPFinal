@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a href="html/productDetail.html"> <img src="${items.image}" class="img-responsive" alt="Imagen de ${items.name}"></a><br>
                                 Nombre:</span> ${items.name}<br>
                                 Descripción: <span class="spanDescript">${items.description}</span><br>
-                                Stock: ${items.stock}<br>
                                 Precio: $${items.price}<br>
+                                Stock: ${items.stock}<br>
                                 Categoria: ${items.category}<br>
                                 <span class="badge badge-danger"><input type=button  id="${items._id}" value="Comprar" class="btn btn-warning"></span>
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items._id}">Editar</button></span></td>
@@ -221,7 +221,6 @@ async function auxComprar(jsonData){
 /* *********************** */
     function btnEdit(){
         let idBtnedit = this.id;
-        console.log(idBtnedit);
         let urlId = url + '/' + idBtnedit;
         let datos;
         fetch(urlId)
@@ -235,7 +234,7 @@ async function auxComprar(jsonData){
                datos=auxLlenarinputs(jsonData);
                document.querySelector("#inputName").focus();
                document.querySelector("#btnAceptar").addEventListener('click', function () {
-                aceptChanges();
+                aceptChanges(urlId);
             });
             })
             .catch(function (e) {
@@ -252,7 +251,31 @@ function auxLlenarinputs(datos){
     document.querySelector("#inputImage").value=datos.image;
 }
 
-function aceptChanges(){
+async function aceptChanges(urlE){
+    let name = document.querySelector("#inputName").value;
+    let description = document.querySelector("#inputDescription").value;
+    let price = document.querySelector("#inputPrice").value;
+    let stock = document.querySelector("#inputStock").value;
+    let category = document.querySelector("#inputCategory").value;
+    let image = document.querySelector("#inputImage").value;
+    let id = document.querySelector("#inputId").value;
+        let registry = {
+            "_id": id,
+            "name": name,
+            "description": description,
+            "price": price,
+            "stock": stock,
+            "category": category,
+            "image": image
+        }
+    let response = await fetch(urlE, {
+        method: "PUT",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(registry)
+    })
+    mostrarTabla();
 console.log("se guardo")
 }
     //   filtrado   *****************************************************
