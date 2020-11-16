@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 html = `<ul id="tabla">`;
                 for (let i = 0; i <= tamañoRegistry; i++) {
                     items = jsonData[i];
+                    //<a ><img src="${items.image}" class="img-responsive img" id="${items._id}" alt="Imagen de ${items.name}"></a><br>
                     html +=
                         `<li>
-                                <a href="html/productDetail.html"><img src="${items.image}" class="img-responsive" id="${items._id} alt="Imagen de ${items.name}"></a><br>
+                                <a><img src="${items.image}" class="img-responsive img" id="${items._id}" alt="Imagen de ${items.name}"></a><br>
                                 Nombre:</span> ${items.name}<br>
                                 Descripción: <span class="spanDescript">${items.description}</span><br>
                                 Precio: $${items.price}<br>
@@ -52,6 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.addEventListener("click", btnEdit);
                 });
 
+                let imgbtn=document.querySelectorAll(".img");
+                    imgbtn.forEach(e=>{
+                        e.addEventListener("click", verDetalle);
+                    })
             })
 
             .catch(function (e) {
@@ -70,6 +75,47 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
+function verDetalle(){
+    let id=this.id;
+    console.log(id)
+    fetch(url)
+    .then(r => {
+        if (!r.ok) {console.log("Error!")
+        }
+        return r.json()
+    })
+    .then(jsonData => {
+        console.log(id)
+        document.querySelector(".background").innerHTML="";
+
+        let tamJD= jsonData.length - 1;
+        let items;
+        let html="";
+        for (let i = 0; i <= tamJD; i++) {
+            items = jsonData[i];
+            if(items._id==id){
+
+                 html= `<div class="card">
+                            <img src="${items.image}" style="width:100%">
+                            <h1>${items.name}</h1>
+                            <p id="price" class="price">${items.price}</p>
+                            <p id="description">${items.description}</p>
+                            <p id="category">${items.category}</p>
+                            <p id="Comprar"><button class="btn btn-primary">Comprar</button></p>
+                        </div>
+                        <div class="mt-5 w-25 mx-auto">
+                            <a class="btn btn-primary" href="../productos.html" role="button id="btnComprarDet" ">Volver a Productos</a>
+                        </div>`;
+                        document.querySelector(".background").innerHTML=html;
+                        document.querySelector("#btnComprarDet").addEventListener("click",btnComprar());
+            }
+        }
+
+    })
+    .catch(function (e) {
+        console.log(e);
+    })
+}
     //seccion de inputs
 
     //*********borrar producto */
