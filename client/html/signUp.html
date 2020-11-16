@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>Sign Up</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -20,6 +20,7 @@
             <h2 class="eslogan">Un multiverso de posibilidades</h2>
         </div>
     </header>
+
     <div class='background'>
         <div class="container">
             <!-- inicio del contenido pricipal -->
@@ -34,13 +35,19 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="repeat-password">Repeat Password</label>
+                        <input type="password" class="form-control" id="repeat-password" name="repeat-password">
                     </div>
                     <div class="mt-5 w-35 mx-auto">
-                        <button type="submit" class="btn btn-primary" id='login'>Login</button>
-                        <a class="btn btn-primary" href="../html/signUp.html" role="button">Sign Up!</a>
+                        <button type="submit" class="btn btn-primary" id='signUp'>Sign Up!</button>
+                        <a class="btn btn-primary" href="../html/login.html" role="button">Login</a>
                     </div>
                 </form>
             </div>
+
             <div class="mt-5 w-25 mx-auto">
                 <a class="btn btn-primary" href="../index.html" role="button">Volver a Home</a>
             </div>
@@ -54,7 +61,7 @@
             Geek and Freak 3D - Tandil - Argentina
         </p>
     </footer>
-    <script src="../js/login.js"></script>
+    <script src="../js/signUp.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

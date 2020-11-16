@@ -25,17 +25,13 @@ export class ProductoService {
     }
 
     public getProducto(index: any): Producto {
-        this.loadProductos();
+          this.loadProductos();
         let array=this.listaProductos;
-        // Más adelante agregar manejo de status code
-        //if (index < 0 || index >= this.listaProductos.length)
-           // return null;
-           for (let i = 0; i < array.length; i++) {
-               if(array[i].getID()==index){
-                   console.log(array[i])
+        for(let i=0; i<array.length; i++){
+            if(array[i].getID()==index){
                 return array[i];
-               }               
-           }        
+            }
+        }
     }
 
     public create(prod: any): string {

@@ -17,6 +17,14 @@ header {
     background-color: rgb(0, 0, 0);
 }
 
+.background {
+    background-color: rgba(4, 19, 29, 0.5);
+    padding: 30px;
+    margin: auto 20px;
+    width: 96%;
+    border-radius: 4%;
+}
+
 h1{
     font-size: 40px;
     font-family: 'Press Start 2P', cursive;
@@ -78,11 +86,21 @@ label {
                  -2px -2px 5px rgb(247,215,74);
     margin: 20px 0 0;
     align-content: center;
-
 }
 
 .pj{
     padding: 0 0 15px;
+}
+
+.carousel-inner {
+    width: 95%;
+    height: 500px;
+}
+
+.carousel-inner img {
+    margin: 20px auto;
+    max-height: 400px;
+    width: 88%;
 }
 
 .novedades {
@@ -143,9 +161,21 @@ hr {
       
 }
 .text-muted{
-    color: navy;
-    font-size: 15px;
+    color: rgb(247,215,74);
+    font-size: 9px;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
 }
+
+.text-muted:hover{
+    color: rgb(252, 235, 160);
+    text-decoration: underline;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
 .separador {
     background-color: grey;
     height: 1px;
@@ -195,8 +225,16 @@ td{
     width: 95%;
 
 }
+img {
+    border: solid 1px rgba(255, 255, 255, 0.479);
+    border-radius: 1%;
+    -moz-box-shadow: 5px 4px 7px rgb(0, 0, 0,0.7);
+    -webkit-box-shadow: 5px 4px 7px rgb(0, 0, 0,0.7);
+    box-shadow: 5px 4px 7px rgb(0, 0, 0,0.7);
+}
 li img{
-    max-height: 360px;
+    width: 100%;
+    height: auto;
 }
 
 .btn-warning,.btn-primary,.btn-danger{
@@ -208,13 +246,15 @@ li img{
     display: none;
 }
 ul#tabla li{
-    border: orange 3px solid;
-    padding: 50px;
+    border: rgb(194, 194, 194) 5px solid;
+    border-radius: 1%;
+    padding: 20px 30px;
     margin: 20px;
     font-weight: bold;
     text-align: left;
-    max-width: 380px;
+    width: 29%;
     color: white;
+    background-color: rgba(2, 18, 26, 0.699);
 }
 
 *{box-sizing:border-box;}
@@ -223,7 +263,7 @@ ul#tabla li{
 			width:95%;
 			max-width:900px;
 			padding:32px 64px;
-			margin:auto;
+            margin:auto;
 		}
 
 		.social{
@@ -231,7 +271,7 @@ ul#tabla li{
 			width:48px;
 			position:fixed;
 			top:50px;
-			right:0;
+            right:0;
 		}
 
 		/* Extra centrado vertical*/
@@ -244,6 +284,11 @@ ul#tabla li{
 			margin-top:-100px;
 		}
 
+        .social img{
+            border: none;
+            box-shadow: none;
+        }
+        
 .card-img{
     width: 250px;
     height: 350px;
@@ -311,8 +356,8 @@ form {
 @media screen and (min-width: 750px) {
 
     .img-responsive{
-        height:400px;
-    
+        width:90%;
+        max-height: 400px;
     }
 
     .eslogan{

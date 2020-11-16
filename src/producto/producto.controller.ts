@@ -13,6 +13,10 @@ export class ProductoController {
         return this.productoService.getProductos();
     }
 
+    /*@Get(':index')
+    public getProducto(@Param('index') index): Producto {
+        return this.productoService.getProducto(parseInt(index));
+    }*/
     @Get(':index')
     public getProducto(@Param('index') index): Producto {
         return this.productoService.getProducto(index);

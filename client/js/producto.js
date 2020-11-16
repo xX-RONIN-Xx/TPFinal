@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     items = jsonData[i];
                     html +=
                         `<li>
-                                <img src="${items.image}" class="img-responsive" alt="Imagen de ${items.name}"><br>
+                                <a href="html/productDetail.html"><img src="${items.image}" class="img-responsive" id="${items._id} alt="Imagen de ${items.name}"></a><br>
                                 Nombre:</span> ${items.name}<br>
                                 Descripción: <span class="spanDescript">${items.description}</span><br>
                                 Stock: ${items.stock}<br>

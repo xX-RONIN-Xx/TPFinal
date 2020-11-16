@@ -1,5 +1,5 @@
 import { Controller, Param } from '@nestjs/common';
-import { Post, Delete, Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
+import { Post, Delete } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Carrito } from './carrito';
@@ -23,14 +23,9 @@ export class CarritoController {
         return this.carritoService.delete1deCarrito(parseInt(index));
     }
 
-    @Delete(':index')
-    public deleteAll(@Param('index') index): boolean{
-        return this.carritoService.deleteAll(parseInt(index));
-    }
-
-    @Put(':index')
-    public updateCarrito(@Body() car: any, @Param('index') index): boolean{
-        return this.carritoService.updateCarrito(parseInt(index), car);
+    @Delete('vaciar')
+    public deleteAll(){
+        return this.carritoService.deleteAll();
     }
 
 

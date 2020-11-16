@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Personalizados</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css/style3.css">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Personalizados</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="encabezado">
@@ -25,7 +27,8 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="productos.html">Productos <span class="caret"></span></a>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                            href="productos.html">Productos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="catFilter" id="todos"><a href="productos.html">Todos</a></li>
                             <li class="catFilter" id="anime"><a href="productos.html">Anime</a></li>
@@ -39,166 +42,181 @@
                     <li><a href="personalizados.html">Personlizados</a></li>
                     <li><a href="nosotros.html">Nosotros</a></li>
                 </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="html/carrito.html"><span class="glyphicon glyphicon-shopping-cart"></span>Carrito</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="html/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="html/carrito.html"><span class="glyphicon glyphicon-shopping-cart"></span>Carrito</a>
+                    </li>
+                    <li id='signUp-btn'><a href="html/signUp.html"><span class="glyphicon glyphicon-user"></span> Sign
+                            Up</a></li>
+                    <li id='login'><a href="html/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
-            
-    <div class="container">
+    <div class='background'>
+        <div class="container">
 
-        <div class="col-6 col-md-12">
-            <h2>Información Importante sobre tu pedido</h2>
-            <div class="info">
-                <p>
-                    Para que podamos tomar tu pedido personalizado, debes rellenar el siguiente cuestionario. A
-                    continuación
-                    se detalla una lista de instrucciones:
-                </p>
-                <div class="lista">
-                    <ul class=instrucciones>
-                        <li>define las dimenciones del modelo (X, Y, Z).</li>
-                        <li>selecciona uno o mas colores que se utilizarán en la impresión.</li>
-                        <li>Elige el tipo de filamento a utilizar.</li>
-                        <li>Definir altura de capas.</li>
-                        <li>Seleccionar temperatura de impresión.</li>
-                        <li>Determinar el porcentaje de infill.</li>
-                        <li>Por último dejanos tus datos y recibirá la cotización de su pedido.</li>
-                    </ul>
+            <div class="col-6 col-md-12">
+                <h2>Información Importante sobre tu pedido</h2>
+                <div class="info">
+                    <p>
+                        Para que podamos tomar tu pedido personalizado, debes rellenar el siguiente cuestionario. A
+                        continuación
+                        se detalla una lista de instrucciones:
+                    </p>
+                    <div class="lista">
+                        <ul class=instrucciones>
+                            <li>define las dimenciones del modelo (X, Y, Z).</li>
+                            <li>selecciona uno o mas colores que se utilizarán en la impresión.</li>
+                            <li>Elige el tipo de filamento a utilizar.</li>
+                            <li>Definir altura de capas.</li>
+                            <li>Seleccionar temperatura de impresión.</li>
+                            <li>Determinar el porcentaje de infill.</li>
+                            <li>Por último dejanos tus datos y recibirá la cotización de su pedido.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+            <div class="pedidos">
+                <h2>Detalles del pedido</h2>
+                <form>
+                    <div class="row">
+                        <!--fila 1-->
+                        <div class="col-6 col-md-8">
+                            <div class="form-group">
+                                <h4>Dimensiones:</h4>
+                                <input type="text" id='dim-x' placeholder="X">
+                                <input type="text" id='dim-y' placeholder="Y">
+                                <input type="text" id='dim-z' placeholder="Z">
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <div class="form-group">
+                                <h4>Colores: </h4>
+                                <label><input type="checkbox" name="amarillo" id="amarillo"> amarillo</label>
+                                <label><input type="checkbox" name="azul" id="azul"> azul</label>
+                                <label><input type="checkbox" name="blanco" id="blanco"> blanco</label>
+                                <label><input type="checkbox" name="celeste" id="celeste"> celeste</label>
+                                <label><input type="checkbox" name="marrón" id="marrón"> marrón</label>
+                                <label><input type="checkbox" name="naranja" id="naranja"> naranja</label>
+                                <label><input type="checkbox" name="negro" id="negro"> negro</label>
+                                <label><input type="checkbox" name="rojo" id="rojo"> rojo</label>
+                                <label><input type="checkbox" name="rosa" id="rosa"> rosa</label>
+                                <label><input type="checkbox" name="verde" id="verde"> verde</label>
+                            </div>
+                        </div>
+
+
+                        <!--fila 2-->
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
+                                <h4>Filamento: </h4>
+                                <select class="form-control" id="sel1">
+                                    <option>Filamento PLA</option>
+                                    <option>Filamento ABS</option>
+                                    <option>Filamentos PETG</option>
+                                    <option>Filamento flexible</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <div class='form-group'>
+                                <h4>Altura de capa: </h4>
+                                <label class="radio-inline"><input type="radio" name="optradio" checked> 0.1mm</label>
+                                <label class="radio-inline"><input type="radio" name="optradio"> 0.2mm</label>
+                                <label class="radio-inline"><input type="radio" name="optradio"> 0.3mm</label>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <div class='form-group'>
+                                <h4>Temperatura: </h4>
+                                <input type="text" id='temperatura' placeholder="Por ej. 205°C">
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <div class='form-group'>
+                                <h4>Porcentaje de infill/relleno: </h4>
+                                <input type="text" id='infill' placeholder="Por ej. 15%">
+                            </div>
+                        </div>
+
+                        <!--fila 3-->
+                        <div class="col-6 col-md-12">
+                            <div class="form-group">
+                                <label for="comment">Comentarios y especficaciones: </label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div>
+                <h2>Ingrese sus datos de contacto</h2>
+                <form action="/action_page.php" class="datos">
+                    <div class="col-6 col-md-5">
+                        <div class="form-group">
+                            <input type="name" class="form-control" placeholder="Nombre y Apellido" id="name">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-5">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="email" id="email">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-5">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="N° tel/cel" id="tel">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Remember me</label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-1">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
-
-        <div class="pedidos">
-            <h2>Detalles del pedido</h2>
-            <form >
-                <div class="row">
-                    <!--fila 1-->
-                    <div class="col-6 col-md-8">
-                        <div class="form-group">
-                            <h4>Dimensiones:</h4>
-                            <input type="text" id='dim-x' placeholder="X">
-                            <input type="text" id='dim-y' placeholder="Y">
-                            <input type="text" id='dim-z' placeholder="Z">
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-4">
-                        <div class="form-group">
-                            <h4>Colores: </h4>
-                            <label><input type="checkbox" name="amarillo" id="amarillo"> amarillo</label>
-                            <label><input type="checkbox" name="azul" id="azul"> azul</label>
-                            <label><input type="checkbox" name="blanco" id="blanco"> blanco</label>
-                            <label><input type="checkbox" name="celeste" id="celeste"> celeste</label>
-                            <label><input type="checkbox" name="marrón" id="marrón"> marrón</label>
-                            <label><input type="checkbox" name="naranja" id="naranja"> naranja</label>
-                            <label><input type="checkbox" name="negro" id="negro"> negro</label>
-                            <label><input type="checkbox" name="rojo" id="rojo"> rojo</label>
-                            <label><input type="checkbox" name="rosa" id="rosa"> rosa</label>
-                            <label><input type="checkbox" name="verde" id="verde"> verde</label>
-                        </div>
-                    </div>
-                
-
-                    <!--fila 2-->
-                    <div class="col-6 col-md-3">
-                        <div class="form-group">
-                            <h4>Filamento: </h4>
-                            <select class="form-control" id="sel1">
-                                <option>Filamento PLA</option>
-                                <option>Filamento ABS</option>
-                                <option>Filamentos PETG</option>
-                                <option>Filamento flexible</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3">
-                        <div class='form-group'>
-                            <h4>Altura de capa: </h4>
-                            <label class="radio-inline"><input type="radio" name="optradio" checked> 0.1mm</label>
-                            <label class="radio-inline"><input type="radio" name="optradio"> 0.2mm</label>
-                            <label class="radio-inline"><input type="radio" name="optradio"> 0.3mm</label>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3">
-                        <div class='form-group'>
-                            <h4>Temperatura: </h4>
-                            <input type="text" id='temperatura' placeholder="Por ej. 205°C">
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3">
-                        <div class='form-group'>
-                            <h4>Porcentaje de infill/relleno: </h4>
-                            <input type="text" id='infill' placeholder="Por ej. 15%">
-                        </div>
-                    </div>
-
-                    <!--fila 3-->
-                    <div class="col-6 col-md-12">
-                        <div class="form-group">
-                            <label for="comment">Comentarios y especficaciones: </label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
+        <div class="social">
+            <a href="#"><img src="images/favicon/icons8-facebook-48.png" alt="facebook"></a>
+            <a href="#"><img src="images/favicon/icons8-instagram-48.png" alt="instagram"></a>
+            <a href="#"><img src="images/favicon/icons8-twitter-cuadrado-48.png" alt="twitter"></a>
+            <a href="#"><img src="images/favicon/icons8-whatsapp-48.png" alt="whatsapp"></a>
+            <a href="https://www.google.com.ar/maps"><img src="images/favicon/icons8-mapas-de-google-48.png"
+                    alt="maps"></a>
         </div>
-
-        <div>
-            <h2>Ingrese sus datos de contacto</h2>
-            <form action="/action_page.php" class="datos">
-                <div class="col-6 col-md-5">
-                    <div class="form-group">
-                        <input type="name" class="form-control" placeholder="Nombre y Apellido" id="name">
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-5">
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="email" id="email">
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-5">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="N° tel/cel" id="tel">
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
-                    </div>
-                </div>
-                <div class="col-6 col-md-1">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-            </form>
-        </div>
-
+        <hr>
     </div>
-    <div class="social">
-        <a href="#"><img src="images/favicon/icons8-facebook-48.png" alt="facebook"></a>
-        <a href="#"><img src="images/favicon/icons8-instagram-48.png" alt="instagram"></a>
-        <a href="#"><img src="images/favicon/icons8-twitter-cuadrado-48.png" alt="twitter"></a>
-        <a href="#"><img src="images/favicon/icons8-whatsapp-48.png" alt="whatsapp"></a>
-        <a href="https://www.google.com.ar/maps"><img src="images/favicon/icons8-mapas-de-google-48.png" alt="maps"></a>
-    </div>
-    <hr>
-    <footer class="container-fluid text-center"><!--pie-->
-            <p>
-                Geek and Freak 3D  -  Tandil  -  Argentina
-            </p>    
-    </footer> 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>   
+    <footer class="container-fluid text-center">
+        <!--pie-->
+        <p>
+            Geek and Freak 3D - Tandil - Argentina
+        </p>
+
+    </footer>
+    <script src="./js/loginValidation.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
