@@ -52,18 +52,18 @@ export class CarritoService {
         return borrado.length == 1;
     }
 
-    public deleteAll(index: number): boolean {
-        let borrado = this.listaDelCarrito.splice(index); []
-        //this.actualizarArchivo();
-        return borrado.length==1;
+    public deleteAll(){
+        let cantCarrito=this.listaDelCarrito.length;
+        let borrado = this.listaDelCarrito.splice(0,cantCarrito); []
+        this.actualizarArchivo();
     }
 
-    public updateCarrito(pos: number, car: any): boolean {
+   /* public updateCarrito(pos: number, car: any): boolean {
         const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
         this.listaDelCarrito[pos] = carrito;
         this.actualizarArchivo();
         return true;
-    }
+    }*/
     
     //TAREA
     private actualizarArchivo(){
