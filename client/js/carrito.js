@@ -1,44 +1,11 @@
-//let btnTotal = document.querySelector("#btnTotal");
-//btnTotal.addEventListener("click", sumar);
-
 let carrito = [];
-
-/*async function agregar() {
-    console.log("Funcion Agregar");
-    let producto = document.querySelector('#inputName').value;
-    let descripcion = document.querySelector('#inputDescription').value;
-    let precio = parseInt(document.querySelector('#inputPrice').value);
-
-    let renglon = {
-        "marca": marca,
-        "patente": patente,
-        "año": año,
-        "precio": precio,
-        "tipo": tipo
-    }
-    let respuesta = await fetch('http://localhost:3000/carrito',{
-        method: 'POST',	
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(renglon),
-    });
-
-    if (respuesta.ok) {
-        productos.push(renglon);
-        mostrarTablaProductos();
-    } else {
-        console.log('hubo un error');
-    }
-    
-}*/
 
 function mostrarTablaProductos() {
     let html = "";
     for (let i = 0; i < carrito.length; i++) {
         console.log(carrito.length)
         car = carrito[i];
+        if(car.image!=undefined && car.name!=undefined && car.description!=undefined && car.price!=null && car.category!=undefined){
         html += `
                <tr>
                <td><img src="${car.image}" class="img-tabla"></td>
@@ -46,16 +13,15 @@ function mostrarTablaProductos() {
                <td>${car.description}</td>
                <td>${car.price}</td>
                <td>${car.category}</td>
-               <td><button type="submit" class="btn-delete-producto" pos="${i}">Borrar</button></td>
-               <td><button class="btnUpdProd" pos="${i}">Editar</button></td>
+               <td><button type="submit" class="btn btn-danger" pos="${i}">Borrar</button></td>
                
                 </tr>
            `;
+        }
     }
 
     document.querySelector("#tblProductos").innerHTML = html;
-    addButtonBehavior(".btn-delete-producto", btnBorrarClick);
-    addButtonBehavior(".btnUpdProd", btnUpdClick);
+    addButtonBehavior(".btn-danger", btnBorrarClick);
     sumar();
 }
 
@@ -66,6 +32,24 @@ function addButtonBehavior(btnClass, fn) {
     });
 }
 
+//vaciar carrito
+let btnVaciar = document.querySelector("#vaciar");
+btnVaciar.addEventListener("click", vaciar);
+
+let btnComprar=document.querySelector("#comprar");
+btnComprar.addEventListener("click", vaciar);
+
+
+async function vaciar(){
+    let response = await fetch('http://localhost:3000/carrito', {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log("borrando elemento pos ");
+    window.location.href = '../html/carrito.html';
+}
 
 async function btnBorrarClick() {
     let pos = this.getAttribute("pos");
@@ -107,6 +91,7 @@ function sumar() {
     document.querySelector("#total").innerHTML =
         "<p>Total: $" + total + "</p>" 
 }
+
 
 let obj = {
     "functions": { "sumar": sumar }
