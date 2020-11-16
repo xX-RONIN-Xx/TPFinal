@@ -52,7 +52,6 @@ function mostrarTablaProductos() {
                 </tr>
            `;
     }
-
     document.querySelector("#tblProductos").innerHTML = html;
     addButtonBehavior(".btn-delete-producto", btnBorrarClick);
     addButtonBehavior(".btnUpdProd", btnUpdClick);
@@ -76,7 +75,7 @@ async function btnBorrarClick() {
         }
     });
     console.log("borrando elemento pos " + pos);
-    window.location.href = '../html/carrito.html';
+    window.location.href = 'carrito.html';
 }
 
 async function btnUpdClick(){
