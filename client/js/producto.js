@@ -121,7 +121,6 @@ async function auxComprar(jsonData){
 
     if (respuesta.ok) {
         carrito.push(jsonData);
-        mostrarTablaProductos();
         console.log('ok');
     } else {
         console.log('hubo un error');
@@ -234,6 +233,7 @@ async function auxComprar(jsonData){
             })
             .then(jsonData => {
                datos=auxLlenarinputs(jsonData);
+               document.querySelector("#inputName").focus();
                document.querySelector("#btnAceptar").addEventListener('click', function () {
                 aceptChanges();
             });
