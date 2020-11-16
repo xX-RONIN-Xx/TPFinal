@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-p7,toy-story,Figura de woody,1500,18,Peliculas,/images/tp/toy-story.jpg
-p8,Sauron,Lampara Sauron del Señor de los Anillos,2000,10,Peliculas,/images/tp/sauron.jpg
-=======
-p5,Corazón llavero,Llavero con forma de corazón,1800,10,Gamer,/images/tp/2.jpg
-p1,Spiderman,Figura de spiderman en pose,1350,NaN,undefined,/images/tp/spider-man.jpg
-p7,toy-story,Figura de woody,10,NaN,undefined,/images/tp/toy-story.jpg
-p9,Mate Vader,Mate de darth Vader,10,NaN,undefined,/images/tp/mates-darth.jpg
-p7,toy-story,Figura de woody,10,NaN,undefined,/images/tp/toy-story.jpg
-p1,Spiderman,Figura de spiderman en pose,20,NaN,undefined,/images/tp/spider-man.jpg
-p5,Corazón llavero,Llavero con forma de corazón,10,NaN,undefined,/images/tp/2.jpg
-p4,Scorpion,Figura de Scorpion MK en pose de espectante,10,undefined,undefined,/images/tp/scorpion.jpg
->>>>>>> producto
+
+p5,Corazón llavero,Llavero con forma de corazón,1800,undefined,undefined,/images/tp/2.jpg
+p6,Heisenberg,Figura decorativa de Breaking Bad,10,undefined,undefined,/images/tp/heisenberg.jpg
+p1,Spiderman,Figura de spiderman en pose,2,undefined,undefined,/images/tp/spider-man.jpg

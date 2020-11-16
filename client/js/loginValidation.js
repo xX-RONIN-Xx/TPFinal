@@ -24,14 +24,14 @@ function logout() {
 
 //si el cliente es admin se le muestra el formulario para agregar stock o productos
 
-/*if(window.sessionStorage.getItem('admin') === 'true' && window.location.href == 'http://localhost:3000/productos.html'){
+if(window.sessionStorage.getItem('admin') === 'true'/* && window.location.href == 'http://localhost:3000/productos.html'*/){
     console.log('halaaaa')
-    let showHidden = document.getElementById('ocultar');
+    let showHidden = document.querySelectorAll('.ocultar');
     showHidden.id = 'show';
 
-    showHidden = document.getElementById('inputId');
+    /*showHidden = document.getElementById('inputId');
     showHidden.type = 'show';
 
     showHidden = document.getElementById('inputStack');
-    showHidden.type = 'show';
-}*/
+    showHidden.type = 'show';*/
+}

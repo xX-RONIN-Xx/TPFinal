@@ -24,19 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     items = jsonData[i];
                     html +=
                         `<li>
-<<<<<<< HEAD
                                 <a href="html/productDetail.html"><img src="${items.image}" class="img-responsive" id="${items._id} alt="Imagen de ${items.name}"></a><br>
-=======
-                        <a href="html/productDetail.html"> <img src="${items.image}" class="img-responsive" alt="Imagen de ${items.name}"></a><br>
->>>>>>> producto
                                 Nombre:</span> ${items.name}<br>
                                 Descripción: <span class="spanDescript">${items.description}</span><br>
                                 Precio: $${items.price}<br>
                                 Stock: ${items.stock}<br>
                                 Categoria: ${items.category}<br>
                                 <span class="badge badge-danger"><input type=button  id="${items._id}" value="Comprar" class="btn btn-warning"></span>
-                                <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items._id}">Editar</button></span></td>
-                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
+                                <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items._id}">Editar</button></span></td>
+                                <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
                             </li>`
                 }
                 html += `</ul>`
@@ -174,6 +170,14 @@ async function auxComprar(jsonData){
             console.log(e);
         });
 }*/
+let fnBorrarInputs=()=>{
+    document.querySelector("#inputName").value="";
+    document.querySelector("#inputDescription").value="";
+    document.querySelector("#inputPrice").value="";
+    document.querySelector("#inputStock").value="";
+    document.querySelector("#inputCategory").value="";
+    document.querySelector("#inputImage").value="";
+}
 
 
     let fnAgregar = () => {
@@ -216,6 +220,7 @@ async function auxComprar(jsonData){
             .catch(function (e) {
                 console.log(e);
             })
+            fnBorrarInputs();
     }
     fetch(url)
         .then((response) => mostrarTabla());
@@ -279,8 +284,9 @@ async function aceptChanges(urlE){
         },
         body: JSON.stringify(registry)
     })
-    mostrarTabla();
+    //mostrarTabla();
 console.log("se guardo")
+fnBorrarInputs();
 }
     //   filtrado   *****************************************************
 
