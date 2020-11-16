@@ -15,6 +15,7 @@ export class CarritoController {
 
     @Post()
     create(@Body() car: any): string {
+        console.log("carritooo"+ car)
         return this.carritoService.create(car);
     }
 

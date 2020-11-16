@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 p1,Spiderman,Figura de spiderman en pose,1350,10,Comic,/images/tp/spider-man.jpg
 p3,Sombrero-hp,Sombrero de la pelicula harry Potter,1800,18,Peliculas,/images/tp/sombrero-hp.jpg
 p4,Scorpion,Figura de Scorpion MK en pose de espectante,1800,15,Gamer,/images/tp/scorpion.jpg
 p5,Corazón llavero,Llavero con forma de corazón,300,100,Gamer,/images/tp/2.jpg
 p7,toy-story,Figura de woody,1500,18,Peliculas,/images/tp/toy-story.jpg
 p8,Sauron,Lampara Sauron del Señor de los Anillos,2000,10,Peliculas,/images/tp/sauron.jpg
+=======
+p1,Spiderman,Figura de spiderman en pose,2,0,comic,/images/tp/spider-man.jpg
+p3,Sombrero-hp,Sombrero de la pelicula harry Potter,100,1800,peliculas,/images/tp/sombrero-hp.jpg
+p5,Corazón llavero,Llavero con forma de corazón,10,1800,gamer,/images/tp/2.jpg
+p6,Heisenberg,Figura decorativa de Breaking Bad,10,1800,peliculas,/images/tp/heisenberg.jpg
+p7,toy-story,Figura de woody,10,1800,peliculas,/images/tp/toy-story.jpg
+p8,Sauron,Lampara Sauron del Señor de los Anillos,10,1800,peliculas,/images/tp/sauron.jpg
+p9,Mate Vader,Mate de darth Vader,10,1800,peliculas,/images/tp/mates-darth.jpg
+p10,Apoya libros,Producto decorativo para sostener libros en estanteria,10,1800,gamer,/images/tp/apoyalibros.jpg
+>>>>>>> producto

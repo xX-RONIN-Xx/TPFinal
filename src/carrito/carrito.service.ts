@@ -33,18 +33,13 @@ export class CarritoService {
     }
 
     public create(car: any): string {
-        console.log(car);
-        const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
 
-        if (carrito.getId() && carrito.getName() && carrito.getDescrip() && carrito.getPrice() && carrito.getCant() && carrito.getCat() && carrito.getImage()) {
+        const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
             fs.appendFileSync('resources/carrito.csv',
             `\n${carrito.getId()},${carrito.getName()},${carrito.getDescrip()},${carrito.getPrice()},${carrito.getCant()},${carrito.getCat()},${carrito.getImage()}`);
-
-            return "ok";
-        } else {
-            return "parametros incorrectos";
-        }
+            return "Producto agragado exitosamente al carrito";
     }
+    
 
     public delete1deCarrito(index: number): boolean {
         let borrado = this.listaDelCarrito.splice(index,1); []
