@@ -41,7 +41,7 @@ btnComprar.addEventListener("click", vaciar);
 
 
 async function vaciar(){
-    let response = await fetch('http://localhost:3000/carrito', {
+    let response = await fetch('http://localhost:3000/carrito/vaciar', {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
