@@ -41,7 +41,7 @@ btnComprar.addEventListener("click", vaciar);
 
 
 async function vaciar(){
-    let response = await fetch('http://localhost:3000/carrito/vaciar', {
+    let response = await fetch('http://localhost:3000/carrito', {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -61,20 +61,6 @@ async function btnBorrarClick() {
     });
     console.log("borrando elemento pos " + pos);
     window.location.href = '../html/carrito.html';
-}
-
-async function btnUpdClick(){
-   let pos = this.getAttribute("pos");
-   let renglon = {
-       "image": document.getElementById(`prod${pos}`).value,
-       "name": document.getElementById(`prod${pos}`).value,
-       "desription": document.getElementById(`prod${pos}`).value,
-       "price": document.getElementById(`prec${pos}`).value,
-       "category": document.getElementById(`prod${pos}`).value
-   }
-   let response = llamarBack("PUT", `/carrito/${pos}`, renglon);
-   console.log("Actualizamos elemento pos " + pos);
-   load();
 }
 
 function sumar() {

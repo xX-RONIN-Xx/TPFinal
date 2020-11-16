@@ -23,7 +23,7 @@ export class CarritoController {
         return this.carritoService.delete1deCarrito(parseInt(index));
     }
 
-    @Delete('vaciar')
+    @Delete()
     public deleteAll(){
         return this.carritoService.deleteAll();
     }
