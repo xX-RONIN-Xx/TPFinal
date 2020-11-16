@@ -1,4 +1,4 @@
-function processParams(){
+/*function processParams(){
     let paramstr = window.location.search.substr(1);
     console.log(paramstr);
     let paramarr = paramstr.split("&"); // [index=1]
@@ -20,6 +20,7 @@ async function load() {
         let params = processParams(); //{"index": 1}
         console.log(params);
         let response = await fetch(`http://localhost:3000/productos/${params["index"]}`); // llama al endpoint /productos/1
+        console.log(response);
         if (response.ok) {
             let t = await response.json();
             document.querySelector("#img").setAttribute("src",t['image'])
@@ -35,13 +36,15 @@ async function load() {
         container.innerHTML = "<h1>Connection error</h1>";
     };
     h1.parentNode.removeChild(h1);
-}
+}*/
 
-load();
+const url = "http://localhost:3000/productos";
+
+
 function verDetalle() {
-    let idDelBoton = this.id;
-    console.log(idDelBoton);
-    let urlId = url + '/' + idDelBoton;
+    let idImagen = this.id;
+    console.log(idImagen);
+    let urlId = url + '/' + idImagen;
     let datos;
     fetch(urlId)
         .then(r => {
@@ -60,10 +63,10 @@ function verDetalle() {
         });
 }
 
-let carrito = [];
 async function auxComprar(jsonData){
-let respuesta = await fetch(urlCarrito,{
-    method: 'POST',	
+    let container = document.querySelector("#use-ajax");
+let respuesta = await fetch(url,{
+    method: 'GET',	
     mode: 'cors',
     headers: {
         'Content-Type': 'application/json'
@@ -72,30 +75,16 @@ let respuesta = await fetch(urlCarrito,{
 });
 
 if (respuesta.ok) {
-    carrito.push(jsonData);
-    mostrarTablaProductos();
+    let t = await respuesta.json();
+            document.querySelector("#img").setAttribute("src",t['image']);
+            document.querySelector("#name").innerHTML = t['name'];
+            document.querySelector("#price").innerHTML = t['price'];
+            document.querySelector("#description").innerHTML = t['description'];
+            document.querySelector("#category").innerHTML = t['category'];
     console.log('ok');
 } else {
     console.log('hubo un error');
-}
-}
-async function load2() {
-
-try {
-    let response = await fetch(urlCarrito);
-    if (response.ok) {
-        let t = await response.json();
-        console.log(t);
-        carrito = [...carrito, ...t];
-        console.log(carrito);
-    }
-    else
-        container.innerHTML = "<h1>Error - Failed URL!</h1>";
-}
-catch (response) {
-    console.log(response);
-    container.innerHTML = "<h1>Connection error</h1>";
 };
-
-mostrarTablaProductos();
 }
+
+verDetalle();
