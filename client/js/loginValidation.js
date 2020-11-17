@@ -26,8 +26,11 @@ function logout() {
 
 if(window.sessionStorage.getItem('admin') === 'true'/* && window.location.href == 'http://localhost:3000/productos.html'*/){
     console.log('halaaaa')
-    let showHidden = document.querySelectorAll('.ocultar');
-    showHidden.id = 'show';
+    let showHidden = document.querySelectorAll('.ocultar1');
+        showHidden.forEach(element => {
+            element.classList.toggle("ocultar");
+    });
+    
 
     /*showHidden = document.getElementById('inputId');
     showHidden.type = 'show';

@@ -75,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-function verDetalle(){
+function verDetalle(e){
+    e.preventDefault();
     let id=this.id;
     console.log(id)
     fetch(url)
@@ -101,13 +102,13 @@ function verDetalle(){
                             <p id="price" class="price">${items.price}</p>
                             <p id="description">${items.description}</p>
                             <p id="category">${items.category}</p>
-                            <p id="Comprar"><button class="btn btn-primary">Comprar</button></p>
+                            <p id="Comprar"><button id="${items._id}" class="btn btn-primary btnComprarDet" >Comprar</button></p>
                         </div>
                         <div class="mt-5 w-25 mx-auto">
-                            <a class="btn btn-primary" href="../productos.html" role="button id="btnComprarDet" ">Volver a Productos</a>
+                            <a class="btn btn-primary" href="../productos.html" role="button">Volver a Productos</a>
                         </div>`;
                         document.querySelector(".background").innerHTML=html;
-                        document.querySelector("#btnComprarDet").addEventListener("click",btnComprar());
+                        document.querySelector(".btnComprarDet").addEventListener("click",btnComprar);
             }
         }
 
@@ -115,6 +116,8 @@ function verDetalle(){
     .catch(function (e) {
         console.log(e);
     })
+
+    
 }
     //seccion de inputs
 
@@ -405,6 +408,7 @@ fnBorrarInputs();
     document.querySelector("#btnAgregar").addEventListener('click', function () {
         fnAgregar();
     });
+    
     let filterCat = document.querySelectorAll(".catFilter");
     filterCat.forEach(element => {
         element.addEventListener('click', function (e) {

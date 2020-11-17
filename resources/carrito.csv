@@ -1,4 +1,9 @@
-
-p5,Corazón llavero,Llavero con forma de corazón,1800,undefined,undefined,/images/tp/2.jpg
-p6,Heisenberg,Figura decorativa de Breaking Bad,10,undefined,undefined,/images/tp/heisenberg.jpg
-p1,Spiderman,Figura de spiderman en pose,2,undefined,undefined,/images/tp/spider-man.jpg
+,undefined,undefined,NaN,NaN,undefined,undefined
+p5,Corazón llavero,Llavero con forma de corazón,1800,NaN,undefined,/images/tp/2.jpg
+p6,Heisenberg,Figura decorativa de Breaking Bad,10,NaN,undefined,/images/tp/heisenberg.jpg
+p1,Spiderman,Figura de spiderman en pose,2,NaN,undefined,/images/tp/spider-man.jpg
+p8,Sauron,Lampara Sauron del Señor de los Anillos,1000,NaN,undefined,/images/tp/sauron.jpg
+p8,Sauron,Lampara Sauron del Señor de los Anillos,1000,NaN,undefined,/images/tp/sauron.jpg
+p1,Spiderman,Figura de spiderman en pose,1350,NaN,undefined,/images/tp/spider-man.jpg
+p2,Shaka,Figura de shaka en posición de meditación,3000,undefined,undefined,/images/tp/shaka.jpg
+p7,toy-story,Figura de woody,1800,undefined,undefined,/images/tp/toy-story.jpg

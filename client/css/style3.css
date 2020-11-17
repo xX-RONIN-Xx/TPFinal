@@ -242,7 +242,7 @@ li img{
     color: black;
 }
 
-#ocultar{
+.ocultar{
     display: none;
 }
 ul#tabla li{
