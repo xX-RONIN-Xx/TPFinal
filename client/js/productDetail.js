@@ -49,12 +49,12 @@ function verDetalle() {
     fetch(urlId)
         .then(r => {
             if (!r.ok) {
-                 console.log("Error!")
-                 }
+                console.log("Error!")
+            }
             return r.json()
         })
         .then(jsonData => {
-            datos=auxComprar(jsonData);
+            datos = auxComprar(jsonData);
             load();
 
         })
@@ -63,28 +63,29 @@ function verDetalle() {
         });
 }
 
-async function auxComprar(jsonData){
+async function auxComprar(jsonData) {
     let container = document.querySelector("#use-ajax");
-let respuesta = await fetch(url,{
-    method: 'GET',	
-    mode: 'cors',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(jsonData),
-});
+    let respuesta = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData),
+    });
 
-if (respuesta.ok) {
-    let t = await respuesta.json();
-            document.querySelector("#img").setAttribute("src",t['image']);
-            document.querySelector("#name").innerHTML = t['name'];
-            document.querySelector("#price").innerHTML = t['price'];
-            document.querySelector("#description").innerHTML = t['description'];
-            document.querySelector("#category").innerHTML = t['category'];
-    console.log('ok');
-} else {
-    console.log('hubo un error');
-};
+    if (respuesta.ok) {
+        let t = await respuesta.json();
+         document.querySelector("#img").setAttribute("src",t['image']);
+         document.querySelector("#name").innerHTML = t['name'];
+         document.querySelector("#price").innerHTML = t['price'];
+         console.log(document.querySelector("#price").innerHTML = t['price'])
+         document.querySelector("#description").innerHTML = t['description'];
+         document.querySelector("#category").innerHTML = t['category'];
+        console.log('ok');
+    } else {
+        console.log('hubo un error');
+    };
 }
 
 verDetalle();

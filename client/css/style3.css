@@ -1,3 +1,4 @@
+/*        ***************           */
 .encabezado {
     display: flex;
     justify-content:space-around;
@@ -210,8 +211,7 @@ footer{
 
 td{
     color:white;
-    width:100px;
-
+    width:100px; 
 }
 
 .img-tabla{

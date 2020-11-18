@@ -6,17 +6,14 @@ function mostrarTablaProductos() {
         console.log(carrito.length)
         car = carrito[i];
         if(car.image!=undefined && car.name!=undefined && car.description!=undefined && car.price!=null && car.category!=undefined){
-        html += `
-               <tr>
-               <td><img src="${car.image}" class="img-tabla"></td>
-               <td>${car.name}</td>
-               <td>${car.description}</td>
-               <td>${car.price}</td>
-               <td>${car.category}</td>
-               <td><button type="submit" class="btn btn-danger" pos="${i}">Borrar</button></td>
-               
-                </tr>
-           `;
+        html += `<tr>
+                    <td><img src="${car.image}" class="img-tabla"></td>
+                    <td>${car.name}</td>
+                    <td>${car.description}</td>
+                    <td>${car.price}</td>
+                    <td>${car.category}</td>
+                    <td><button type="submit" class="btn btn-danger" pos="${i}">Borrar</button></td>
+                </tr>`;
         }
     }
     document.querySelector("#tblProductos").innerHTML = html;
