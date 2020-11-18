@@ -14,9 +14,9 @@ import { CarritoService } from './carrito/carrito.service';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
-      }),
+    }),
   ],
-  controllers: [AppController,CarritoController,ProductoController,LoginController],
-  providers: [AppService,CarritoService,ProductoService,LoginService],
+  controllers: [AppController, CarritoController, ProductoController, LoginController],
+  providers: [AppService, CarritoService, ProductoService, LoginService],
 })
-export class AppModule {}
+export class AppModule { }

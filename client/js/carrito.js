@@ -5,8 +5,9 @@ function mostrarTablaProductos() {
     for (let i = 0; i < carrito.length; i++) {
         console.log(carrito.length)
         car = carrito[i];
-        if(car.image!=undefined && car.name!=undefined && car.description!=undefined && car.price!=null && car.category!=undefined){
-        html += `<tr>
+        if (car.image != undefined && car.name != undefined && car.description != undefined && car.price != null && car.category != undefined) {
+            html += 
+                `<tr>
                     <td><img src="${car.image}" class="img-tabla"></td>
                     <td>${car.name}</td>
                     <td>${car.description}</td>
@@ -32,11 +33,11 @@ function addButtonBehavior(btnClass, fn) {
 let btnVaciar = document.querySelector("#vaciar");
 btnVaciar.addEventListener("click", vaciar);
 
-let btnComprar=document.querySelector("#comprar");
+let btnComprar = document.querySelector("#comprar");
 btnComprar.addEventListener("click", vaciar);
 
 
-async function vaciar(){
+async function vaciar() {
     let response = await fetch('http://localhost:3000/carrito', {
         method: "DELETE",
         headers: {
@@ -71,7 +72,7 @@ function sumar() {
             max = car.price;
     }
     document.querySelector("#total").innerHTML =
-        "<p>Total: $" + total + "</p>" 
+        "<p>Total: $" + total + "</p>"
 }
 
 
