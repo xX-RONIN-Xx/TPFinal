@@ -28,10 +28,10 @@ export class ProductoService {
     }
 
     public getProducto(index: any): Producto {
-          this.loadProductos();
-        let array=this.listaProductos;
-        for(let i=0; i<array.length; i++){
-            if(array[i].getID()==index){
+        this.loadProductos();
+        let array = this.listaProductos;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].getID() == index) {
                 return array[i];
             }
         }

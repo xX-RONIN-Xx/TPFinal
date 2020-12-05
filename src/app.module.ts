@@ -33,8 +33,9 @@ import { PedidoPersonalizadoModule } from './pedido-personalizado/pedido-persona
     ProductoModule,
     ImagenProductoModule,
     PedidoPersonalizadoModule,
+
   ],
-  controllers: [AppController,CarritoController,ProductoController,LoginController],
-  providers: [AppService,CarritoService,ProductoService,LoginService],
+  controllers: [AppController, CarritoController, ProductoController, LoginController],
+  providers: [AppService, CarritoService, ProductoService, LoginService],
 })
-export class AppModule {}
+export class AppModule { }

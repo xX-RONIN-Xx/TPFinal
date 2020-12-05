@@ -7,11 +7,11 @@ export class User {
         this.pass = pass;
     }
 
-    public getUser(): string{
+    public getUser(): string {
         return this.user;
     }
 
-    public getPass(): string{
+    public getPass(): string {
         return this.pass;
     }
 }

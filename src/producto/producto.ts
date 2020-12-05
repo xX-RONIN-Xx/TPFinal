@@ -1,20 +1,20 @@
-export class Producto{
+export class Producto {
     private _id: string;
     private name: string;
     private description: string;
     private price: number;
     private stock: number;
-    private category:string;
-    private image:string;
-    
-    constructor(id:string, name:string, description:string, price:number, stock:number, category:string, image:string){
-        this._id=id;
-        this.name=name;
-        this.description=description;
-        this.price=price;
-        this.stock=stock;
-        this.category=category;
-        this.image=image;
+    private category: string;
+    private image: string;
+
+    constructor(id: string, name: string, description: string, price: number, stock: number, category: string, image: string) {
+        this._id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.category = category;
+        this.image = image;
     }
 
     public getID(): string {
@@ -32,7 +32,7 @@ export class Producto{
     public setDescription(value: string) {
         this.description = value;
     }
-    public getPrice(): number{
+    public getPrice(): number {
         return this.price;
     }
     public setPrice(value: number) {

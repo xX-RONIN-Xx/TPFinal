@@ -39,7 +39,7 @@ export class ProductoController {
         return this.productoService.updateProduct(prod);
     }*/
     @Put(':index')
-    public updateProducto(@Body() prod: any,@Param('index') index): boolean {
-        return this.productoService.updateProducto(prod,index);
+    public updateProducto(@Body() prod: any, @Param('index') index): boolean {
+        return this.productoService.updateProducto(prod, index);
     }
 }

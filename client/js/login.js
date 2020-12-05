@@ -8,8 +8,6 @@ async function validateLogin(e) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-
-
         },
         body: JSON.stringify(usuario),
     });
@@ -29,10 +27,9 @@ async function validateLogin(e) {
     else {
         alert('El nombre de usuario o la contraseña son incorrectos!');
         window.location.href = 'http://localhost:3000/html/login.html';
-        /*document.getElementById('usuario').focus();
-        document.getElementById('login').setAttribute('data-toggle', 'modal');
-        document.getElementById('login').setAttribute('data-target', '#myModal');*/
     }
 }
-
+document.getElementById('usuario').focus();
+document.getElementById('login').setAttribute('data-toggle', 'modal');
+/*document.getElementById('login').setAttribute('data-target', '#myModal');*/
 document.getElementById('login').addEventListener('click', validateLogin);

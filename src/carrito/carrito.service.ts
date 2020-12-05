@@ -6,8 +6,8 @@ import { Carrito } from './carrito';
 
 @Injectable()
 export class CarritoService {
-   
-    private listaDelCarrito: Carrito [];
+
+    private listaDelCarrito: Carrito[];
     private productosFilePath: string = 'resources/carrito.csv';
 
     private loadCarrito(): void {
@@ -21,8 +21,8 @@ export class CarritoService {
         }
         this.listaDelCarrito = [];
         for (let i = 0; i < elementos.length; i++) {
-            let carrito = new Carrito (elementos[i][0],elementos[i][1],elementos[i][2],parseInt(elementos[i][3]),
-                parseInt(elementos[i][4]),elementos[i][5],elementos[i][6]);
+            let carrito = new Carrito(elementos[i][0], elementos[i][1], elementos[i][2], parseInt(elementos[i][3]),
+                parseInt(elementos[i][4]), elementos[i][5], elementos[i][6]);
             this.listaDelCarrito.push(carrito);
         }
     }
@@ -34,48 +34,48 @@ export class CarritoService {
 
     public create(car: any): string {
 
-        const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
-            fs.appendFileSync('resources/carrito.csv',
+        const carrito = new Carrito(car._id, car.name, car.description, car.price, car.cant, car.cat, car.image);
+        fs.appendFileSync('resources/carrito.csv',
             `\n${carrito.getId()},${carrito.getName()},${carrito.getDescrip()},${carrito.getPrice()},${carrito.getCant()},${carrito.getCat()},${carrito.getImage()}`);
-            return "Producto agragado exitosamente al carrito";
+        return "Producto agragado exitosamente al carrito";
     }
-    
+
 
     public delete1deCarrito(index: number): boolean {
-        let borrado = this.listaDelCarrito.splice(index,1); []
+        let borrado = this.listaDelCarrito.splice(index, 1);[]
         this.actualizarArchivo();
         return borrado.length == 1;
     }
 
-    public deleteAll(){
-        let cantCarrito=this.listaDelCarrito.length;
-        let borrado = this.listaDelCarrito.splice(0,cantCarrito); []
+    public deleteAll() {
+        let cantCarrito = this.listaDelCarrito.length;
+        let borrado = this.listaDelCarrito.splice(0, cantCarrito);[]
         this.actualizarArchivo();
     }
 
-   /* public updateCarrito(pos: number, car: any): boolean {
-        const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
-        this.listaDelCarrito[pos] = carrito;
-        this.actualizarArchivo();
-        return true;
-    }*/
-    
+    /* public updateCarrito(pos: number, car: any): boolean {
+         const carrito = new Carrito(car._id,car.name,car.description,car.price,car.cant,car.cat,car.image);
+         this.listaDelCarrito[pos] = carrito;
+         this.actualizarArchivo();
+         return true;
+     }*/
+
     //TAREA
-    private actualizarArchivo(){
-        if(this.listaDelCarrito.length > 0 ){
-            fs.writeFileSync(this.productosFilePath, 
+    private actualizarArchivo() {
+        if (this.listaDelCarrito.length > 0) {
+            fs.writeFileSync(this.productosFilePath,
                 this.getProductoLine(this.listaDelCarrito[0])
             );
-        }else{
+        } else {
             fs.writeFileSync(this.productosFilePath, '');
         }
-       for (let i=1; i<this.listaDelCarrito.length; i++){
+        for (let i = 1; i < this.listaDelCarrito.length; i++) {
             fs.appendFileSync(this.productosFilePath,
                 `\n${this.getProductoLine(this.listaDelCarrito[i])}`);
         }
     }
 
-    private getProductoLine(carrito: Carrito): string{
+    private getProductoLine(carrito: Carrito): string {
         return `${carrito.getId()},${carrito.getName()},${carrito.getDescrip()},${carrito.getPrice()},${carrito.getCant()},${carrito.getCat()},${carrito.getImage()}`;
     }
 }

@@ -5,20 +5,20 @@ import { LoginService } from './login.service';
 @Controller('login')
 export class LoginController {
 
-    constructor(private loginService:LoginService){}
-    
+    constructor(private loginService: LoginService) { }
+
     @Post('validar')
-    public login(@Body() userInfo:any):boolean{
+    public login(@Body() userInfo: any): boolean {
         return this.loginService.login(userInfo);
     }
 
     @Put('agregar')
-    public agregar(@Body() userInfo: any){
+    public agregar(@Body() userInfo: any) {
         return this.loginService.addUser(userInfo);
     }
 
     @Post('comparar')
-    public comparar(@Body() userInfo: any):boolean{
+    public comparar(@Body() userInfo: any): boolean {
         return this.loginService.compareUser(userInfo);
     }
 }

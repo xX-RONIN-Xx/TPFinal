@@ -15,17 +15,17 @@ export class CarritoController {
 
     @Post()
     create(@Body() car: any): string {
-        console.log("carritooo"+ car)
+        console.log("carritooo" + car)
         return this.carritoService.create(car);
     }
 
     @Delete(':index')
-    public delete1deCarrito(@Param('index') index): boolean{
+    public delete1deCarrito(@Param('index') index): boolean {
         return this.carritoService.delete1deCarrito(parseInt(index));
     }
 
     @Delete()
-    public deleteAll(){
+    public deleteAll() {
         return this.carritoService.deleteAll();
     }
 

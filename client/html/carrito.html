@@ -12,64 +12,71 @@
 </head>
 
 <body>
-    <header>
-        <div class="encabezado">
-            <h1>Geek & Freak 3D</h1>
-            <h2 class="eslogan">Un multiverso de posibilidades</h2>
-        </div>
-    </header>
+  <header>
+    <div class="encabezado">
+      <h1>Geek & Freak 3D</h1>
+      <h2 class="eslogan">Un multiverso de posibilidades</h2>
+    </div>
+  </header>
   <div class='background'>
     <li id='signUp-btn'><a href="html/signUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
     <li id='login'><a href="html/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              <div class="container">
-                <div class="row">
-                    <!-- Carrito -->
-                    <aside class="col-sm-7">
-                        <h2>Carrito</h2>
-                        <!-- Elementos del carrito -->
-                        <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th scope="col"></th>
-                              <th scope="col">Producto</th>
-                              <th scope="col">Descripción</th>
-                              <th scope="col">Precio</th>
-                              <th scope="col">Categoría</th>
-                            </tr>
-                          </thead>
-                          <tbody id="tblProductos">
-                          
-                          </tbody>
-                        </table>
-                        <hr>
-                        <!-- Precio total -->
-                        <p class="text-right"> <span id="total"></span></p>
-                        <button id="vaciar" class="btn btn-danger">Vaciar</button>
-                        <button id="comprar" class="btn btn-primary">Finalizar Compra</button>
-                    </aside>
-                </div>
-            </div>
-              <div class="mt-5 w-25 mx-auto">
-                <a class="btn btn-primary" href="../productos.html" role="button">Volver a Productos</a>
-              </div>
+    <div class="container">
+      <div class="row">
+        <!-- Carrito -->
+        <aside class="col-sm-7">
+          <h2>Carrito</h2>
+          <!-- Elementos del carrito -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Producto</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Categoría</th>
+              </tr>
+            </thead>
+            <tbody id="tblProductos">
 
             </tbody>
           </table>
+          <hr>
           <!-- Precio total -->
+          <p class="text-right"> <span id="total"></span></p>
+          <button id="vaciar" class="btn btn-danger">Vaciar</button>
+          <button id="comprar" class="btn btn-primary">Finalizar Compra</button>
+        </aside>
+      </div>
+    </div>
+    <div class="mt-5 w-25 mx-auto">
+      <a class="btn btn-primary" href="../productos.html" role="button">Volver a Productos</a>
+    </div>
+
+    </tbody>
+    </table>
+    <!-- Precio total -->
 
     <div id="use-ajax"></div>
     <hr>
-</div>
-    <footer class="container-fluid text-center"><!--pie-->
-            <p>
-                Geek and Freak 3D  -  Tandil  -  Argentina
-            </p>    
-    </footer> 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
-    <script src="../js/carrito.js"></script>
-    <script src="../js/loginValidation.js"></script>
+  </div>
+  <footer class="container-fluid text-center">
+    <!--pie-->
+    <p>
+      Geek and Freak 3D - Tandil - Argentina
+    </p>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script src="../js/carrito.js"></script>
+  <script src="../js/loginValidation.js"></script>
 </body>
 
 </html>

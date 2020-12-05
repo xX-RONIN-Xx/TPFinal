@@ -11,7 +11,6 @@ async function validateSignUp(e) {
         headers: {
             'Content-Type': 'application/json'
 
-
         },
         body: JSON.stringify(usuario),
     });
