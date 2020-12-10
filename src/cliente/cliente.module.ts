@@ -13,4 +13,4 @@ import { ClienteService } from './cliente.service';
   controllers: [ClienteController],
   providers: [ClienteService]
 })
-export class ClienteModule {}
+export class ClienteModule { }

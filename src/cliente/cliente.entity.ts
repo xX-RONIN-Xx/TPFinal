@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Carrito } from 'src/carrito/carrito.entity';
+import { Factura } from 'src/factura/factura.entity';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('CLIENTE')
 export class Cliente {
@@ -40,6 +43,16 @@ export class Cliente {
         this.administrador = administrador;
     }
 
+    @OneToMany((type) => Factura, factura => factura.cliente)
+    public facturas: Factura[];
+    
+    @OneToOne(type => Carrito)
+    @JoinColumn({ name: 'id_cliente' })
+    public carrito: Carrito;
+
+
+
+    
     public constructor(usuario?: string, pass?: string, administrador?: boolean) {
         this.usuario = usuario;
         this.pass = pass;

@@ -1,4 +1,4 @@
-export class Carrito{
+/*export class Carrito{
     private _id: string;
     private name: string;
     private description: string;
@@ -61,4 +61,4 @@ export class Carrito{
         this.image = value;
     }
 
-}
+}*/

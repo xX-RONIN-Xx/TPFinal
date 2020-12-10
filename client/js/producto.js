@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     };
 
-    //*********borrar producto */
+    //borrar producto
     async function btnBorrarClick() {
         let pos = this.getAttribute("pos");
         let response = await fetch(`productos/${pos}`, {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         mostrarTabla();
     }
-    //*******comprar producto */
+    //comprar producto
     function btnComprar() {
         let idDelBoton = this.id;
         console.log(idDelBoton);
@@ -231,9 +231,9 @@ document.addEventListener("DOMContentLoaded", function () {
         fnAgregar();
     });
 
-    /* ***************************** */
+
     //editar******************
-    /* *********************** */
+
     function btnEdit() {
         let idBtnedit = this.id;
         let urlId = url + '/' + idBtnedit;

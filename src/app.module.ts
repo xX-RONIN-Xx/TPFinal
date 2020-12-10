@@ -5,10 +5,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { LoginController } from './login/login.controller';
 import { LoginService } from './login/login.service';
-import { ProductoController } from './producto/producto.controller';
-import { ProductoService } from './producto/producto.service';
-import { CarritoController } from './carrito/carrito.controller';
-import { CarritoService } from './carrito/carrito.service';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { FacturaModule } from './factura/factura.module';
@@ -26,16 +22,16 @@ import { PedidoPersonalizadoModule } from './pedido-personalizado/pedido-persona
       rootPath: join(__dirname, '..', 'client'),
       }),
     ClienteModule,
+    ProductoModule,
     FacturaModule,
-    DetalleFacturaModule,
+    
     CategoriaModule,
     CarritoModule,
-    ProductoModule,
     ImagenProductoModule,
     PedidoPersonalizadoModule,
-
+  
   ],
-  controllers: [AppController, CarritoController, ProductoController, LoginController],
-  providers: [AppService, CarritoService, ProductoService, LoginService],
+  controllers: [AppController, LoginController],
+  providers: [AppService ,  LoginService],
 })
 export class AppModule { }
