@@ -2,13 +2,17 @@ import { Controller, Param } from '@nestjs/common';
 import { Post, Delete, Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
+import { ClienteService } from 'src/cliente/cliente.service';
 import { CarritoDTO } from './carrito.dto';
 import { Carrito } from './carrito.entity';
 import { CarritoService } from './carrito.service';
 
 @Controller('carrito')
 export class CarritoController {
-    constructor(private carritoService: CarritoService) { }
+    constructor(
+        private carritoService: CarritoService,
+        private clienteService: ClienteService
+        ) { }
    /* @Get()
     public getCarrito(): Carrito[] {
         return this.carritoService.getCarrito();

@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Carrito } from 'src/carrito/carrito.entity';
+import { Categoria } from 'src/categoria/categoria.entity';
+import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('PRODUCTO')
 export class Producto {
@@ -72,6 +75,22 @@ export class Producto {
         this.pedido_personalizado_id_pedido = pedido_personalizado_id_pedido;
     }
 
+    @OneToMany((type) => Carrito, carrito => carrito.producto)
+    public carritos: Carrito[];
+
+   /* @OneToMany((type) => DetalleFactura, detalleFactura => detalleFactura.producto)
+    public detalles: DetalleFactura[];*/
+
+
+    @ManyToOne(type => Categoria, categoria => categoria.productos)
+    @JoinColumn({ name: 'id_producto' })
+    public categoria: Categoria; 
+
+
+    @OneToMany((type) => ImagenProducto, imagen => imagen.producto)
+    public imagenes: Carrito[];
+
+
     public constructor(nombre?: string, descripcion?: string, precio?: number, stock?:number, categoria_id_categoria?: number, pedido_personalizado_id_pedido?: number) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -88,5 +107,6 @@ export class Producto {
     public setId(id_producto: number) {
         this.id_producto = id_producto;
     }
+
 
 } 

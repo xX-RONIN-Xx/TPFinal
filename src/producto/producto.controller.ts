@@ -2,7 +2,6 @@ import { Controller, Param } from '@nestjs/common';
 import { Delete, Post, Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
-import { from } from 'rxjs';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
 import { ProductoService } from './producto.service';
@@ -10,7 +9,9 @@ import { ProductoService } from './producto.service';
 
 @Controller('producto')
 export class ProductoController {
-    constructor(private readonly productoService: ProductoService) { }
+    constructor(
+        private readonly productoService: ProductoService,
+        ) { }
    /* @Get()
     public getProductos(): Producto[] {
         return this.productoService.getProductos();
