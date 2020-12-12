@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as fs from 'fs';
 import { Repository } from 'typeorm';
 import { Producto } from './producto.entity';
-
+/*
 
 @Injectable()
 export class ProductoService {
@@ -21,7 +21,7 @@ export class ProductoService {
 
 
 
-/*
+
     public getProducto(index: any): Producto {
         this.loadProductos();
         let array = this.listaProductos;
@@ -87,7 +87,7 @@ export class ProductoService {
         fs.writeFileSync('resources/productos.csv', cadena);
         return true;
 
-    }*/
+    }
 
 
     public async getAll(): Promise<Producto[]>{
@@ -106,3 +106,4 @@ export class ProductoService {
     }
 
 }
+*/

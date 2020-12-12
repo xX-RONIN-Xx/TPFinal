@@ -1,11 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { CarritoService } from 'src/carrito/carrito.service';
+import { FacturaService } from 'src/factura/factura.service';
 import { ClienteDTO } from './cliente.dto';
 import { Cliente } from './cliente.entity';
 import { ClienteService } from './cliente.service';
 
 @Controller('cliente')
 export class ClienteController {
-    public constructor(private readonly clienteService: ClienteService) { }
+    public constructor(
+        private readonly clienteService: ClienteService,
+        ) { }
 
     @Get("get-all")
     public getAllclientes(): Promise<Cliente[]>{

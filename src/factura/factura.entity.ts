@@ -1,5 +1,5 @@
 import { Cliente } from 'src/cliente/cliente.entity';
-import { DetalleFactura } from 'src/detalle-factura/detalle-entity';
+import { DetalleFactura } from 'src/detalle-factura/detalle-factura.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('FACTURA')
@@ -24,11 +24,14 @@ export class Factura {
     @JoinColumn({ name: 'id_factura' })
     public cliente: Cliente; 
 
-
+    /*@OneToOne(type => DetalleFactura)
+    @JoinColumn({ name: 'id_factura' })
+    public detalleFactura: DetalleFactura;*/
     
 
-    public constructor(fecha?: string) {
+    public constructor(fecha?: string, ) {
         this.fecha = fecha;
+        //this.id_cliente = id_cliente;
     }
 
     public getId(): number {
@@ -39,4 +42,20 @@ export class Factura {
         this.id_factura = id_factura;
     }
 
+    public getCliente(): Cliente {
+        return this.cliente;
+    }
+
+    public setCliente(cliente: Cliente): void {
+        this.cliente = cliente;
+    }
+
+   /* public getDetalleFactura(): DetalleFactura {
+        return this.detalleFactura;
+    }
+
+    public setDetalleFactura(detalleFactura: DetalleFactura): void {
+        this.detalleFactura = detalleFactura;
+    }
+*/
 } 

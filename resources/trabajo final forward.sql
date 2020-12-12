@@ -1,6 +1,6 @@
 -- MySQL Workbench Forward Engineering
 
-SET GLOBAL FOREIGN_KEY_CHECKS=0;
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -32,8 +32,10 @@ values
 (3,'rocio',1234,true),
 (4,'carlos',12345,false),
 (5,'jose',1234,false),
-(6,'pepito',123,false);
-
+(6,'pepito',123,false),
+(7,'rober',1234,false),
+(8,'martin',12345,false),
+(9,'sol',1234,false);
 
 
 
@@ -129,7 +131,7 @@ values
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`carrito` (
   `id_carrito` INT NOT NULL,
-  `cantidad` VARCHAR(45) NULL,
+  `cantidad` INT NULL,
   `cliente_id_cliente` INT NOT NULL,
   `producto_id_producto` INT NOT NULL,
   `estado` VARCHAR(45) NOT NULL,
@@ -149,6 +151,16 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`carrito` (
 ENGINE = InnoDB;
 
 
+insert into carrito
+values
+(1,2,1,3,'pendiente'),
+(2,1,2,11,'pendiente'),
+(3,3,3,3,'pendiente'),
+(4,1,4,9,'pendiente'),
+(5,1,5,4,'pendiente'),
+(6,5,6,6,'pendiente');
+
+
 -- -----------------------------------------------------
 -- Table `trabajo_final_v1`.`factura`
 -- -----------------------------------------------------
@@ -165,13 +177,26 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`factura` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into factura
+values
+(1,'2020-1-23',2),
+(2,'2020-1-23',6),
+(3,'2020-1-23',9),
+(4,'2020-1-23',4),
+(5,'2020-1-23',2),
+(6,'2020-1-23',2),
+(7,'2020-1-23',9),
+(8,'2020-1-23',7),
+(9,'2020-1-23',6);
+
+
 
 -- -----------------------------------------------------
 -- Table `trabajo_final_v1`.`detalle_factura`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`detalle_factura` (
   `id_detalle_factura` INT NOT NULL,
-  `cantdad` INT NULL,
+  `lala` INT NOT NULL,
   `producto_id_producto` INT NOT NULL,
   `factura_id_factura` INT NOT NULL,
   PRIMARY KEY (`id_detalle_factura`),
@@ -188,6 +213,20 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`detalle_factura` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+insert into detalle_factura
+values
+(1,1,12,1),
+(2,3,10,2),
+(3,2,1,3),
+(4,7,2,4),
+(5,1,6,5),
+(6,10,9,6),
+(7,4,1,7),
+(8,2,11,8),
+(9,1,4,9);
+
+
 
 
 -- -----------------------------------------------------

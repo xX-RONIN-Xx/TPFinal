@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Producto } from 'src/producto/producto.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('CATEGORIA')
 export class Categoria {
@@ -17,6 +18,11 @@ export class Categoria {
         this.nombre = nombre;
     }
 
+    @OneToMany((type) => Producto, producto => producto.categoria)
+    public productos: Producto[];
+
+
+    
     public constructor(nombre?: string) {
         this.nombre = nombre;
     }
@@ -28,5 +34,7 @@ export class Categoria {
     public setId(id_categoria: number) {
         this.id_categoria = id_categoria;
     }
+
+
 
 } 

@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as fs from 'fs';
+import { Cliente } from 'src/cliente/cliente.entity';
 import { Repository } from 'typeorm';
 import { CarritoDTO } from './carrito.dto';
 import { Carrito } from './carrito.entity';
@@ -12,7 +13,7 @@ import { Carrito } from './carrito.entity';
 export class CarritoService {
     constructor(
         @InjectRepository(Carrito)
-        private readonly carritoRepository: Repository<Carrito>
+        private readonly carritoRepository: Repository<Carrito>,
     ) { }
     /*
 

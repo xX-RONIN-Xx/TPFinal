@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DetalleFactura } from 'src/detalle-factura/detalle-entity';
+import { Cliente } from 'src/cliente/cliente.entity';
 import { Repository } from 'typeorm';
 import { FacturaDTO } from './factura.dto';
 import { Factura } from './factura.entity';
@@ -11,6 +11,10 @@ export class FacturaService {
     constructor(
         @InjectRepository(Factura) 
         private readonly facturaRepository: Repository<Factura>,
+
+        @InjectRepository(Cliente) 
+        private readonly clienteRepository: Repository<Cliente>,
+
     ){}
 
 
@@ -18,7 +22,7 @@ export class FacturaService {
     //TYPEORM GET
     public async getAll(): Promise<Factura[]>{
         console.log("Get All facturas");
-        try {
+        /*try {
             //Get all
             const result: Factura[] = await this.facturaRepository.find();
             return result
@@ -28,6 +32,22 @@ export class FacturaService {
                 status: HttpStatus.NOT_FOUND,
                 error: "there is an error in the request, " + error,
               }, HttpStatus.NOT_FOUND);
+        }*/
+
+        try {
+                
+            const result= await this.facturaRepository.find({
+                relations: ["cliente",
+                            /*"detalleFactura"*/
+            ]
+            });
+            return result
+            
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+            }, HttpStatus.NOT_FOUND);
         }
     }
 

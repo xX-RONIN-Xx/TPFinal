@@ -10,12 +10,13 @@ export class ProductoService {
     constructor(
         @InjectRepository(Producto) 
         private readonly productoRepository: Repository<Producto>
+
     ){}
 
     //TYPEORM GET
     public async getAll(): Promise<Producto[]>{
         console.log("Get All productos");
-        try {
+      /*  try {
             //Get all
             const result: Producto[] = await this.productoRepository.find();
             return result
@@ -25,6 +26,23 @@ export class ProductoService {
                 status: HttpStatus.NOT_FOUND,
                 error: "there is an error in the request, " + error,
               }, HttpStatus.NOT_FOUND);
+        }*/
+
+        try {
+                
+            const result= await this.productoRepository.find({
+                relations: ["categoria",
+                "imagenes",
+                "carritos"
+            ]
+            });
+            return result
+            
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+            }, HttpStatus.NOT_FOUND);
         }
     }
 

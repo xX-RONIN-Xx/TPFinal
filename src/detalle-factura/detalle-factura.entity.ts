@@ -1,3 +1,4 @@
+
 import { Factura } from 'src/factura/factura.entity';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -7,29 +8,24 @@ export class DetalleFactura {
     @PrimaryGeneratedColumn()
     private id_detalle_factura: number;
 
-
     @Column()
-    private cantdad: number;
+    private lala: number;
 
     public getCantidad(): number {
-        return this.cantdad;
+        return this.lala;
     }
 
-    public setCantidad(cantdad: number): void {
-        this.cantdad = cantdad;
+    public setCantidad(lala: number): void {
+        this.lala = lala;
     }
 
 
+    /*@OneToOne(type => Factura)
+    @JoinColumn({ name: 'id_factura' })
+    public factura: Factura;*/
     
-    @OneToOne(type => Factura)
-    @JoinColumn({ name: 'id_detalle_factura' })
-    public carrito: Factura;
-
-
-
-    
-    public constructor(cantdad?: number) {
-        this.cantdad = cantdad;
+    public constructor(lala?: number, id_factura?: number) {
+        this.lala = lala;
     }
 
     public getId(): number {

@@ -1,12 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { DetalleFacturaService } from 'src/detalle-factura/detalle-factura.service';
+import { ClienteService } from 'src/cliente/cliente.service';
+
 import { FacturaDTO } from './factura.dto';
 import { Factura } from './factura.entity';
 import { FacturaService } from './factura.service';
 
 @Controller('factura')
 export class FacturaController {
-    public constructor(private readonly facturaService: FacturaService
+    public constructor(
+        private readonly facturaService: FacturaService,
+        private readonly clienteService: ClienteService,
         ) { }
 
     @Get("get-all")

@@ -1,5 +1,6 @@
 import { Cliente } from 'src/cliente/cliente.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Producto } from 'src/producto/producto.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('CARRITO')
 export class Carrito {
@@ -32,13 +33,18 @@ export class Carrito {
 
 
     @OneToOne(type => Cliente)
-    @JoinColumn({ name: 'id_cliente' })
+    @JoinColumn({ name: 'cliente_id_cliente' })
     public cliente: Cliente;
 
+
+    @ManyToOne(type => Producto, producto => producto.carritos)
+    @JoinColumn({ name: 'id_carrito' })
+    public producto: Producto; 
     
-    public constructor(cantidad?: string, estado?: string) {
+    public constructor(cantidad?: string, estado?: string, cliente?: Cliente) {
         this.cantidad = cantidad;
         this.estado = estado;
+        this.cliente = cliente;
     }
 
     public getId(): number {
@@ -49,4 +55,12 @@ export class Carrito {
         this.id_carrito = id_carrito;
     }
 
+    
+    public getCliente(): Cliente {
+        return this.cliente;
+    }
+
+    public setCliente(cliente: Cliente) {
+        this.cliente = cliente;
+    }
 } 
