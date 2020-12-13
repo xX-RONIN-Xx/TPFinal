@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Categoria } from 'src/categoria/categoria.entity';
+import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
 
-@Entity('PRODUCTO')
+@Entity('producto')
 export class Producto {
 
     @PrimaryGeneratedColumn()
@@ -8,6 +10,7 @@ export class Producto {
 
     @Column()
     private nombre: string;
+    imagenes: any;
 
     public getNombre(): string {
         return this.nombre;
@@ -52,6 +55,14 @@ export class Producto {
 
     @Column()
     private categoria_id_categoria: number;
+
+    @ManyToOne(()=>Categoria, categoria => categoria.productos)
+    @JoinColumn({name: 'categoria_id_categoria'})
+    public categoria: Categoria;
+
+    @OneToOne((type) => ImagenProducto, imagen_producto => imagen_producto.producto)
+    public imagen_producto: ImagenProducto[];
+
 
     public getCategoria(): number {
         return this.categoria_id_categoria;

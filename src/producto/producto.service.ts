@@ -1,5 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
+import { Categoria } from 'src/categoria/categoria.entity';
+import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
 import { Repository } from 'typeorm';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
@@ -9,7 +11,11 @@ export class ProductoService {
 
     constructor(
         @InjectRepository(Producto) 
-        private readonly productoRepository: Repository<Producto>
+        private readonly productoRepository: Repository<Producto>,
+        @InjectRepository(ImagenProducto)
+        private readonly imagenProductoRepository: Repository<ImagenProducto>,
+        @InjectRepository(Categoria)
+        private readonly categoriaRepository: Repository<Categoria>
     ){}
 
     //TYPEORM GET
@@ -17,7 +23,10 @@ export class ProductoService {
         console.log("Get All productos");
         try {
             //Get all
-            const result: Producto[] = await this.productoRepository.find();
+            const result: Producto[] = await this.productoRepository.find({
+                relations: ["categoria", "imagen_producto"]
+            });
+            
             return result
 
         } catch (error) {
@@ -28,11 +37,12 @@ export class ProductoService {
         }
     }
 
+    
     //TYPEORM GET by id
     public async getById(id: number): Promise<Producto>{
         console.log("Getting producto id: " + id);
         try {
-            const producto: Producto = await this.productoRepository.findOne(id);
+            const producto: Producto = await this.productoRepository.findOne(id , { relations: ["categoria", "imagen_producto"] });
             if(producto){
                 return producto;
             }else{
@@ -48,7 +58,7 @@ export class ProductoService {
     }
 
     //Add producto
-    public async addProducto(newProducto: ProductoDTO):Promise<Producto>{
+    public async addProduct(newProducto: ProductoDTO):Promise<Producto>{
         try {
             const productoCreada: Producto = await this.productoRepository.save(
                 new Producto(
