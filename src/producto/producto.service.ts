@@ -12,10 +12,10 @@ export class ProductoService {
     constructor(
         @InjectRepository(Producto) 
         private readonly productoRepository: Repository<Producto>,
-        @InjectRepository(ImagenProducto)
+        /*@InjectRepository(ImagenProducto)
         private readonly imagenProductoRepository: Repository<ImagenProducto>,
         @InjectRepository(Categoria)
-        private readonly categoriaRepository: Repository<Categoria>
+        private readonly categoriaRepository: Repository<Categoria>*/
     ){}
 
     //TYPEORM GET

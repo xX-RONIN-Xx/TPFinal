@@ -17,7 +17,7 @@ export class CategoriaController {
         return this.categoriaService.getById(id);
     }
 
-    @Post("new-categoria")
+  /*  @Post("new-categoria")
     createArticle(@Body() categoriaDto: CategoriaDTO): Promise<Categoria> {
         return this.categoriaService.addCategoria(categoriaDto);
     }
@@ -30,6 +30,6 @@ export class CategoriaController {
     @Delete(":id")
     public deleteCategoria(@Param('id') id: number){
         return this.categoriaService.deleteCategoria(id);
-    }
+    }*/
 
 }
