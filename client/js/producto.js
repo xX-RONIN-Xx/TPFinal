@@ -147,8 +147,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    let urlCarritoPost = "http://localhost:3000/carrito/new-carrito";
     async function auxComprar(jsonData) {
-        let respuesta = await fetch(urlCarrito, {
+        let respuesta = await fetch(urlCarritoPost, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -166,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //funcion que carga productos al carrito
     async function load() {
         try {
-            let response = await fetch(urlCarrito);
+            let response = await fetch(urlCarritoPost);
             if (response.ok) {
                 let t = await response.json();
                 carrito = [...carrito, ...t];

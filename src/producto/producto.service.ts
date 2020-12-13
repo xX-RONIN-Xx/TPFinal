@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
-import { Categoria } from 'src/categoria/categoria.entity';
 import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
+import { Categoria } from 'src/categoria/categoria.entity';
 import { Repository } from 'typeorm';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
@@ -12,10 +12,8 @@ export class ProductoService {
     constructor(
         @InjectRepository(Producto) 
         private readonly productoRepository: Repository<Producto>,
-        @InjectRepository(ImagenProducto)
-        private readonly imagenProductoRepository: Repository<ImagenProducto>,
-        @InjectRepository(Categoria)
-        private readonly categoriaRepository: Repository<Categoria>
+        //@InjectRepository(ImagenProducto)
+        //private readonly imagenProductoRepository: Repository<ImagenProducto>
     ){}
 
     //TYPEORM GET
@@ -42,7 +40,7 @@ export class ProductoService {
     public async getById(id: number): Promise<Producto>{
         console.log("Getting producto id: " + id);
         try {
-            const producto: Producto = await this.productoRepository.findOne(id , { relations: ["categoria", "imagen_producto"] });
+            const producto: Producto = await this.productoRepository.findOne(id);
             if(producto){
                 return producto;
             }else{
