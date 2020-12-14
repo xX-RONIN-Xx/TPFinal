@@ -133,10 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarTabla();
     }
     //comprar producto
+    let urlID = "http://localhost:3000/producto";
     function btnComprar() {
         let idDelBoton = this.id;
         console.log(idDelBoton);
-        let urlId = urlComprar + '/' + idDelBoton;
+        let urlId = urlID + '/' + idDelBoton;
         let datos;
         fetch(urlId)
             .then(r => {
@@ -199,23 +200,24 @@ document.addEventListener("DOMContentLoaded", function () {
     //funcion que agrega productos nuevos
   
     let fnAgregar = () => {
+        let urlPost= "http://localhost:3000/producto/new-producto"
         let name = document.querySelector("#inputName").value;
         let description = document.querySelector("#inputDescription").value;
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let image = document.querySelector("#inputImage").value;
-        let id = ID();
+        let pers = document.querySelector("#inputPers").value;
+        //let id = 11;
+        
         let registry = {
-            "id_producto": id,
             "nombre": name,
             "descripcion": description,
-            "precio": price,
-            "stock": stock,
-            "categoria.nombre": category,
-            "imagen_producto.descripcion": image
+            "precio": parseInt(price),
+            "stock": parseInt(stock),
+            "categoria_id_categoria": parseint(category),
+            "pedido_personalizado_id_pedido": null
         }
-        fetch(url, {
+        fetch(urlPost, {
             method: "POST",
             mode: 'cors',
             headers: {
@@ -242,12 +244,48 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    let fnAgregarImg = () => {
+        let urlPost= "http://localhost:3000/imagen-producto/new-imagen"
+       
+        let direccion = document.querySelector("#inputImage").value;
+        let id = ID();
+        let registry = {
+            "direccion": direccion,
+            "producto_id_producto": id_producto
+        }
+        fetch(urlPost, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registry),
+        }).then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            return r.json()
+        })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
+        //fnBorrarInputs();
+    }
+
+    document.querySelector("#btnAgregar").addEventListener('click', function () {
+        fnAgregar();
+    });
+
+
     //editar******************
 
     function btnEdit() {
         let idBtnedit = this.id;
-        console.log(idBtnedit)
-        let urlId = urlCarrito + '/' + idBtnedit;
+        let urlEd = "http://localhost:3000/producto"
+        let urlId = urlEd + '/' + idBtnedit;
         let datos;
         fetch(urlId)
             .then(r => {
@@ -258,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(jsonData => {
                 datos = auxLlenarinputs(jsonData);
+                console.log(datos);
                 document.querySelector("#inputName").focus();
                 document.querySelector("#btnAceptar").addEventListener('click', function () {
                     aceptChanges(urlId);
@@ -274,8 +313,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputDescription").value = datos.descripcion;
         document.querySelector("#inputPrice").value = datos.precio;
         document.querySelector("#inputStock").value = datos.stock
-        document.querySelector("#inputCategory").value = datos.categoria.nombre;
-        document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
+        document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
+        document.querySelector("#inputPers").value=datos.pedido_personalizado_id_pedido;
+        //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
     //funcion que guarda los cambios de un producto editado
     async function aceptChanges(urlE) {
@@ -284,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let image = document.querySelector("#inputImage").value;
+        let pers = document.querySelector("#inputPers").value;
         let id = document.querySelector("#inputId").value;
         let registry = {
             "id_producto": id,
@@ -292,8 +332,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": price,
             "stock": stock,
-            "categoria": category,
-            "imagen_producto": image
+            "categoria_id_categoria": category,
+            "pedido_personalizado_id_pedido": pers
+            //"imagen_producto": image
         }
         let response = await fetch(urlE, {
             method: "PUT",

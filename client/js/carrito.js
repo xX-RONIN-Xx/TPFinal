@@ -5,14 +5,14 @@ function mostrarTablaProductos() {
     for (let i = 0; i < carrito.length; i++) {
         console.log(carrito.length)
         car = carrito[i];
-        if (car.image != undefined && car.name != undefined && car.description != undefined && car.price != null && car.category != undefined) {
+        if (car.imagen_producto.direccion != undefined && car.nombre != undefined && car.descripcion != undefined && car.precio != null && car.categoria.nombre != undefined) {
             html += 
                 `<tr>
-                    <td><img src="${car.image}" class="img-tabla"></td>
-                    <td>${car.name}</td>
-                    <td>${car.description}</td>
-                    <td>${car.price}</td>
-                    <td>${car.category}</td>
+                    <td><img src="${car.imagen_producto.direccion}" class="img-tabla"></td>
+                    <td>${car.nombre}</td>
+                    <td>${car.descripcion}</td>
+                    <td>${car.precio}</td>
+                    <td>${car.categoria.nombre}</td>
                     <td><button type="submit" class="btn btn-danger" pos="${i}">Borrar</button></td>
                 </tr>`;
         }
@@ -64,12 +64,12 @@ function sumar() {
     console.log("Funcion Sumar");
     let total = 0;
     for (let i = 0; i < carrito.length; i++) {
-        total += carrito[i].price;
+        total += carrito[i].precio;
     }
-    let max = carrito[0].price;
+    let max = carrito[0].precio;
     for (let car of carrito) {
-        if (max < car.price)
-            max = car.price;
+        if (max < car.precio)
+            max = car.precio;
     }
     document.querySelector("#total").innerHTML =
         "<p>Total: $" + total + "</p>"
@@ -88,7 +88,7 @@ async function load() {
     h1.innerHTML = 'Loading';
     container.appendChild(h1);
     try {
-        let response = await fetch('http://localhost:3000/carrito');
+        let response = await fetch('http://localhost:3000/carrito/get-all');
         if (response.ok) {
             let t = await response.json();
             console.log(t);

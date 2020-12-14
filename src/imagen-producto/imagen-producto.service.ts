@@ -9,7 +9,7 @@ export class ImagenProductoService {
 
     constructor(
         @InjectRepository(ImagenProducto) 
-        private readonly productoRepository: Repository<ImagenProducto>
+        private readonly imagenProductoRepository: Repository<ImagenProducto>
     ){}
 
     //TYPEORM GET
@@ -17,7 +17,7 @@ export class ImagenProductoService {
         console.log("Get All productos");
         try {
             //Get all
-            const result: ImagenProducto[] = await this.productoRepository.find();
+            const result: ImagenProducto[] = await this.imagenProductoRepository.find();
             return result
 
         } catch (error) {
@@ -32,7 +32,7 @@ export class ImagenProductoService {
     public async getById(id: number): Promise<ImagenProducto>{
         console.log("Getting producto id: " + id);
         try {
-            const producto: ImagenProducto = await this.productoRepository.findOne(id);
+            const producto: ImagenProducto = await this.imagenProductoRepository.findOne(id);
             if(producto){
                 return producto;
             }else{
@@ -48,19 +48,20 @@ export class ImagenProductoService {
     }
 
     //Add producto
-    public async addImagen(newProducto: ImagenProductoDTO):Promise<ImagenProducto>{
+    public async addImagen(newImagen: ImagenProductoDTO):Promise<ImagenProducto>{
         try {
-            const productoCreada: ImagenProducto = await this.productoRepository.save(
+            const imagenCreada: ImagenProducto = await this.imagenProductoRepository.save(
                 new ImagenProducto(
-                    newProducto.direccion,
+                    newImagen.direccion,
+                    newImagen.producto_id_producto
 
                     )
             );
 
-            if(productoCreada.getId()){
-                return productoCreada;
+            if(imagenCreada.getId()){
+                return imagenCreada;
             }else{
-                throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_FOUND);
+                throw new HttpException('No se pudo crear la imagen', HttpStatus.NOT_FOUND);
             }
         } catch (error) {
             console.log(error);
@@ -81,7 +82,7 @@ export class ImagenProductoService {
 
                 
 
-                const productoUpdated: ImagenProducto = await this.productoRepository.save(producto);
+                const productoUpdated: ImagenProducto = await this.imagenProductoRepository.save(producto);
 
                 if (productoUpdated) {
                     return productoUpdated;
@@ -104,7 +105,7 @@ export class ImagenProductoService {
         try {
             let imagenProducto: ImagenProducto = await this.getById(id);
             if (imagenProducto.getId()) {
-                let deleteResult = await this.productoRepository.delete(id);
+                let deleteResult = await this.imagenProductoRepository.delete(id);
                 if (deleteResult.affected) {
 
 
