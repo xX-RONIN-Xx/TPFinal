@@ -214,9 +214,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
-            "categoria_id_categoria": parseint(category),
+            "categoria_id_categoria": parseInt(category),
             "pedido_personalizado_id_pedido": null
         }
+        console.log(registry)
         fetch(urlPost, {
             method: "POST",
             mode: 'cors',
