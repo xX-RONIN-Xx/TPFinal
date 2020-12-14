@@ -73,7 +73,9 @@ export class ProductoService {
                     newProducto.nombre,
                     newProducto.descripcion,
                     newProducto.precio,
-                    newProducto.stock
+                    newProducto.stock,
+                    newProducto.categoria_id_categoria,
+                    newProducto.pedido_personalizado_id_pedido,
                     )
             );
 
@@ -101,7 +103,8 @@ export class ProductoService {
                 producto.setDescripcion(newProductoParams.descripcion);
                 producto.setPrecio(newProductoParams.precio);
                 producto.setStock(newProductoParams.stock);
-                
+                producto.setStock(newProductoParams.categoria_id_categoria);
+                producto.setStock(newProductoParams.pedido_personalizado_id_pedido);
 
                 const productoUpdated: Producto = await this.productoRepository.save(producto);
 

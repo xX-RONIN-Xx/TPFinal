@@ -37,8 +37,9 @@ export class FacturaService {
         try {
                 
             const result= await this.facturaRepository.find({
-                relations: ["cliente",
-                            /*"detalleFactura"*/
+                relations: [
+                           "detalleFactura",
+                           //"cliente"
             ]
             });
             return result
@@ -76,6 +77,7 @@ export class FacturaService {
             const facturaCreada: Factura = await this.facturaRepository.save(
                 new Factura(
                     newFactura.fecha,
+                    newFactura.cliente_id_cliente,
                     )
             );
 
@@ -100,6 +102,8 @@ export class FacturaService {
 
             if(factura.getId()){
                 factura.setFecha(newFacturaParams.fecha);
+                factura.setCliente(newFacturaParams.cliente_id_cliente);
+
 
                 const facturaUpdated: Factura = await this.facturaRepository.save(factura);
 

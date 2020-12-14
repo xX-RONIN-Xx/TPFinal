@@ -53,6 +53,7 @@ export class ImagenProductoService {
             const productoCreada: ImagenProducto = await this.productoRepository.save(
                 new ImagenProducto(
                     newProducto.direccion,
+                    newProducto.producto_id_producto
 
                     )
             );
@@ -78,7 +79,7 @@ export class ImagenProductoService {
 
             if(producto.getId()){
                 producto.setDireccion(newProductoParams.direccion);
-
+                producto.setProducto(newProductoParams.producto_id_producto);
                 
 
                 const productoUpdated: ImagenProducto = await this.productoRepository.save(producto);
