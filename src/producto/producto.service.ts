@@ -40,8 +40,10 @@ export class ProductoService {
     public async getById(id: number): Promise<Producto>{
         console.log("Getting producto id: " + id);
         try {
-            const producto: Producto = await this.productoRepository.findOne(id);
-            if(producto.getId){
+            const producto: Producto = await this.productoRepository.findOne(id/*, {
+               // relations: ["categoria", "imagen_producto"]
+            }*/);
+            if(producto){
                 return producto;
             }else{
                 throw new HttpException('No se pudo encontrar el producto', HttpStatus.NOT_FOUND);

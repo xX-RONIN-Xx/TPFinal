@@ -123,8 +123,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //borrar producto
     async function btnBorrarClick() {
-        let pos = this.getAttribute("pos");
-        let response = await fetch(`http://localhost:3000/producto/`+pos, {
+        //let pos = this.getAttribute("pos");
+        let idBorrar = this.id;
+        let urlBorrar = "http://localhost:3000/producto";
+        let urlDelete= urlBorrar + '/' + idBtnedit;
+        let response = await fetch(urlDelete, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -273,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(function (e) {
                 console.log(e);
             })
-        //fnBorrarInputs();
+        fnBorrarInputs();
     }
 
     document.querySelector("#btnAgregar").addEventListener('click', function () {
@@ -335,7 +338,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "stock": stock,
             "categoria_id_categoria": category,
             "pedido_personalizado_id_pedido": pers
-            //"imagen_producto": image
         }
         let response = await fetch(urlE, {
             method: "PUT",
