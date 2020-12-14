@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Categoria } from 'src/categoria/categoria.entity';
 import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
+import { Carrito } from 'src/carrito/carrito.entity';
 
 @Entity('producto')
 export class Producto {
@@ -11,6 +12,7 @@ export class Producto {
     @Column()
     private nombre: string;
     imagenes: any;
+    carritos: any;
 
     public getNombre(): string {
         return this.nombre;
@@ -62,6 +64,9 @@ export class Producto {
 
     @OneToOne((type) => ImagenProducto, imagen_producto => imagen_producto.producto)
     public imagen_producto: ImagenProducto[];
+
+    @OneToMany(()=>Carrito, carrito => carrito.producto)
+    public carrito: Carrito[];
 
 
     public getCategoria(): number {

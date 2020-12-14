@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
 import * as fs from 'fs';
 import { Repository } from 'typeorm';
 import { CarritoDTO } from './carrito.dto';

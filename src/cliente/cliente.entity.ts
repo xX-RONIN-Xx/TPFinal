@@ -46,9 +46,12 @@ export class Cliente {
     @OneToMany((type) => Factura, factura => factura.cliente)
     public facturas: Factura[];
     
-    @OneToOne(type => Carrito)
+    /*@OneToOne(type => Carrito)
     @JoinColumn({ name: 'id_cliente' })
-    public carrito: Carrito;
+    public carrito: Carrito;*/
+
+    @OneToOne((type) => Carrito, carrito => carrito.cliente)
+    public carrito: Carrito[];
 
 
 
