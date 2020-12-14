@@ -17,17 +17,22 @@ export class DetalleFacturaService {
     //TYPEORM GET
     public async getAll(): Promise<DetalleFactura[]> {
         console.log("Get All detalleFacturas");
-         try {
-             //Get all
-             const result: DetalleFactura[] = await this.detalleFacturaRepository.find();
-             return result
- 
-         } catch (error) {
-             throw new HttpException({
-                 status: HttpStatus.NOT_FOUND,
-                 error: "there is an error in the request, " + error,
-               }, HttpStatus.NOT_FOUND);
-         }
+        try {
+                
+            const result= await this.detalleFacturaRepository.find({
+                relations: [
+                           "factura",
+                           //"cliente"
+            ]
+            });
+            return result
+            
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+            }, HttpStatus.NOT_FOUND);
+        }
 
 
     }
@@ -56,7 +61,11 @@ export class DetalleFacturaService {
         try {
             const detalleFacturaCreada: DetalleFactura = await this.detalleFacturaRepository.save(
                 new DetalleFactura(
-                    newDetalleFactura.lala,
+                    newDetalleFactura.cantidad,
+                    newDetalleFactura.total,
+                    newDetalleFactura.producto_id_producto,
+                    newDetalleFactura.factura_id_factura,
+
                 )
             );
 
@@ -80,7 +89,10 @@ export class DetalleFacturaService {
             let detalleFactura: DetalleFactura = await this.getById(id);
 
             if (detalleFactura.getId()) {
-                detalleFactura.setCantidad(newDetalleFacturaParams.lala);
+                detalleFactura.setCantidad(newDetalleFacturaParams.cantidad);
+                detalleFactura.setTotal(newDetalleFacturaParams.total);
+                detalleFactura.setProducto(newDetalleFacturaParams.producto_id_producto);
+                detalleFactura.setFactura(newDetalleFacturaParams.factura_id_factura);
 
                 const detalleFacturaUpdated: DetalleFactura = await this.detalleFacturaRepository.save(detalleFactura);
 

@@ -1,6 +1,6 @@
 -- MySQL Workbench Forward Engineering
 
-
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`producto` (
   `descripcion` VARCHAR(255) NULL,
   `precio` INT NULL,
   `stock` INT NULL,
-  `categoria_id_categoria` INT default 0 NOT NULL,
+  `categoria_id_categoria` INT default 0 NULL,
   `pedido_personalizado_id_pedido` INT NULL,
   PRIMARY KEY (`id_producto`),
   INDEX `fk_producto_categoria1_idx` (`categoria_id_categoria` ASC) VISIBLE,
@@ -130,7 +130,7 @@ values
 -- Table `trabajo_final_v1`.`carrito`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`carrito` (
-  `id_carrito` INT NOT NULL,
+  `id_carrito` INT NOT NULL auto_increment,
   `cantidad` INT NULL,
   `cliente_id_cliente` INT NOT NULL,
   `producto_id_producto` INT NOT NULL,
@@ -165,9 +165,9 @@ values
 -- Table `trabajo_final_v1`.`factura`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`factura` (
-  `id_factura` INT NOT NULL,
+  `id_factura` INT NOT NULL auto_increment,
   `fecha` DATE NULL,
-  `cliente_id_cliente` INT NOT NULL,
+  `cliente_id_cliente` INT NOT NULL, 
   PRIMARY KEY (`id_factura`),
   INDEX `fk_factura_cliente1_idx` (`cliente_id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_factura_cliente1`
@@ -195,9 +195,10 @@ values
 -- Table `trabajo_final_v1`.`detalle_factura`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`detalle_factura` (
-  `id_detalle_factura` INT NOT NULL,
-  `lala` INT NOT NULL,
-  `producto_id_producto` INT NOT NULL,
+  `id_detalle_factura` INT NOT NULL auto_increment,
+  `cantidad` INT NOT NULL,
+  `total` int not null,
+  `producto_id_producto` INT NOT NULL default 0,
   `factura_id_factura` INT NOT NULL,
   PRIMARY KEY (`id_detalle_factura`),
   INDEX `fk_detalle_factura_producto1_idx` (`producto_id_producto` ASC) VISIBLE,
@@ -206,25 +207,25 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`detalle_factura` (
     FOREIGN KEY (`producto_id_producto`)
     REFERENCES `trabajo_final_v1`.`producto` (`id_producto`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE cascade,
   CONSTRAINT `fk_detalle_factura_factura1`
     FOREIGN KEY (`factura_id_factura`)
     REFERENCES `trabajo_final_v1`.`factura` (`id_factura`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE cascade)
 ENGINE = InnoDB;
 
 insert into detalle_factura
 values
-(1,1,12,1),
-(2,3,10,2),
-(3,2,1,3),
-(4,7,2,4),
-(5,1,6,5),
-(6,10,9,6),
-(7,4,1,7),
-(8,2,11,8),
-(9,1,4,9);
+(1,1,1810,12,1),
+(2,3,900,10,2),
+(3,2,150,1,3),
+(4,7,300,2,4),
+(5,1,400,6,5),
+(6,10,600,9,6),
+(7,4,1500,1,7),
+(8,2,2000,11,8),
+(9,1,1700,4,9);
 
 
 
@@ -233,7 +234,7 @@ values
 -- Table `trabajo_final_v1`.`imagen_producto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`imagen_producto` (
-  `id_imagen` INT NOT NULL,
+  `id_imagen` INT NOT NULL auto_increment,
   `direccion` VARCHAR(255) NULL,
   `producto_id_producto` INT NOT NULL,
   PRIMARY KEY (`id_imagen`),

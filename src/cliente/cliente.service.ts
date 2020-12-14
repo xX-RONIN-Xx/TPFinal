@@ -33,7 +33,7 @@ export class ClienteService {
         try {
 
             const result = await this.clienteRepository.find({
-                relations: ["facturas",
+                relations: [
                 "carrito"
             ]
             });

@@ -5,31 +5,31 @@ import { DetalleFacturaService } from './detalle-factura.service';
 
 @Controller('detalle-factura')
 export class DetalleFacturaController {
-    public constructor(private readonly categoriaService: DetalleFacturaService) { }
+    public constructor(private readonly detalleFacturaService: DetalleFacturaService) { }
 
     @Get("get-all")
     public getAllDetalleFacturas(): Promise<DetalleFactura[]>{
-        return this.categoriaService.getAll();
+        return this.detalleFacturaService.getAll();
     }
 
     @Get(":id")
     public getById(@Param('id') id: number): Promise<DetalleFactura>{
-        return this.categoriaService.getById(id);
+        return this.detalleFacturaService.getById(id);
     }
 
-    @Post("new-categoria")
-    createArticle(@Body() categoriaDto: DetalleFacturaDTO): Promise<DetalleFactura> {
-        return this.categoriaService.addDetalleFactura(categoriaDto);
+    @Post("new-detalle")
+    createArticle(@Body() detalleFacturaDto: DetalleFacturaDTO): Promise<DetalleFactura> {
+        return this.detalleFacturaService.addDetalleFactura(detalleFacturaDto);
     }
 
     @Put(":id")
-    public updateDetalleFactura(@Body() categoriaDto: DetalleFacturaDTO, @Param('id') id: number): Promise<DetalleFactura>{
-        return this.categoriaService.updateDetalleFactura(categoriaDto,id);
+    public updateDetalleFactura(@Body() detalleFacturaDto: DetalleFacturaDTO, @Param('id') id: number): Promise<DetalleFactura>{
+        return this.detalleFacturaService.updateDetalleFactura(detalleFacturaDto,id);
     }
 
     @Delete(":id")
     public deleteDetalleFactura(@Param('id') id: number){
-        return this.categoriaService.deleteDetalleFactura(id);
+        return this.detalleFacturaService.deleteDetalleFactura(id);
     }
 
 }

@@ -21,17 +21,21 @@ export class Factura {
     }
 
     @ManyToOne(type => Cliente, cliente => cliente.facturas)
-    @JoinColumn({ name: 'id_factura' })
+    @JoinColumn({ name: 'id_factura'})
     public cliente: Cliente; 
 
-    /*@OneToOne(type => DetalleFactura)
+    @OneToOne(type => DetalleFactura)
     @JoinColumn({ name: 'id_factura' })
-    public detalleFactura: DetalleFactura;*/
+    public detalleFactura: DetalleFactura;
     
 
-    public constructor(fecha?: string, ) {
+    @Column()
+    private cliente_id_cliente: number;
+
+
+    public constructor(fecha?: string, cliente_id_cliente?: number) {
         this.fecha = fecha;
-        //this.id_cliente = id_cliente;
+        this.cliente_id_cliente = cliente_id_cliente;
     }
 
     public getId(): number {
@@ -42,12 +46,12 @@ export class Factura {
         this.id_factura = id_factura;
     }
 
-    public getCliente(): Cliente {
-        return this.cliente;
+    public getCliente(): number {
+        return this.cliente_id_cliente;
     }
 
-    public setCliente(cliente: Cliente): void {
-        this.cliente = cliente;
+    public setCliente(cliente: number): void {
+        this.cliente_id_cliente = cliente;
     }
 
    /* public getDetalleFactura(): DetalleFactura {

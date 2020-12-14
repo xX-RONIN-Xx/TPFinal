@@ -18,14 +18,26 @@ export class ImagenProducto {
         this.direccion = direccion;
     }
 
+    @Column()
+    private producto_id_producto: number;
+
+    public getProducto(): number {
+        return this.producto_id_producto;
+    }
+
+    public setProducto(producto_id_producto: number): void {
+        this.producto_id_producto = producto_id_producto;
+    }
+
 
     @ManyToOne(type => Producto, producto => producto.imagenes)
     @JoinColumn({ name: 'id_imagen' })
     public producto: Producto; 
 
     
-    public constructor(direccion?: string) {
+    public constructor(direccion?: string, producto_id_producto?: number) {
         this.direccion = direccion;
+        this.producto_id_producto = producto_id_producto;
     }
 
     public getId(): number {

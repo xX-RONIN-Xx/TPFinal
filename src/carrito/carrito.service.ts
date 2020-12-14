@@ -135,6 +135,8 @@ export class CarritoService {
                 new Carrito(
                     newCarrito.cantidad,
                     newCarrito.estado,
+                    newCarrito.cliente_id_cliente,
+                    newCarrito.producto_id_producto
                 )
             );
 
@@ -160,6 +162,9 @@ export class CarritoService {
             if (carrito.getId()) {
                 carrito.setCantidad(newCarritoParams.cantidad);
                 carrito.setEstado(newCarritoParams.estado);
+                carrito.setCliente(newCarritoParams.cliente_id_cliente);
+                carrito.setProducto(newCarritoParams.producto_id_producto);
+
 
                 const carritoUpdated: Carrito = await this.carritoRepository.save(carrito);
 

@@ -15,7 +15,7 @@ import { ClienteService } from './cliente.service';
     TypeOrmModule.forFeature([
       Cliente,
       Factura,
-      Carrito
+      Carrito,
     ])
   ],
   controllers: [ClienteController,FacturaController,CarritoController],
