@@ -97,7 +97,9 @@ export class CarritoService {
         console.log("Get All carritos");
         try {
             //Get all
-            const result: Carrito[] = await this.carritoRepository.find();
+            const result: Carrito[] = await this.carritoRepository.find({
+                relations: ["producto"]
+            });
             return result
 
         } catch (error) {
@@ -130,15 +132,17 @@ export class CarritoService {
     //Add carrito
     public async addCarrito(newCarrito: CarritoDTO): Promise<Carrito> {
         try {
-            const carritoCreada: Carrito = await this.carritoRepository.save(
+            const carritoCreado: Carrito = await this.carritoRepository.save(
                 new Carrito(
                     newCarrito.cantidad,
-                    newCarrito.estado,
+                    newCarrito.cliente_id_cliente,
+                    newCarrito.producto_id_producto,
+                    newCarrito.estado
                 )
             );
 
-            if (carritoCreada.getId()) {
-                return carritoCreada;
+            if (carritoCreado.getId()) {
+                return carritoCreado;
             } else {
                 throw new HttpException('No se pudo crear el carrito', HttpStatus.NOT_FOUND);
             }

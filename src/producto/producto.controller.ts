@@ -27,8 +27,8 @@ export class ProductoController {
     }
 
     @Post("new-producto")
-    createArticle(@Body() productoDto: ProductoDTO): Promise<Producto> {
-        return this.productoService.addProduct(productoDto);
+    addProduct(@Body() producto: ProductoDTO): Promise<Producto> {
+        return this.productoService.addProduct(producto);
     }
 
     @Put(":id")

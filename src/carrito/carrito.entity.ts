@@ -21,6 +21,30 @@ export class Carrito {
     }
 
     @Column()
+    private cliente_id_cliente: number;
+
+    public getCliente():number{
+        return this.cliente_id_cliente;
+    }
+
+    public setCliente(cliente_id_cliente:number):void{
+        this.cliente_id_cliente=cliente_id_cliente;
+    }
+
+    @Column()
+    private producto_id_producto:number;
+
+    public getProd():number{
+        return this.producto_id_producto;
+    }
+
+    public setProd(producto_id_producto:number):void{
+        this.producto_id_producto=producto_id_producto;
+    }
+
+    
+
+    @Column()
     private estado: string;
 
     public getEstado(): string {
@@ -32,12 +56,12 @@ export class Carrito {
     }
 
 
-    /*@OneToOne(type => Cliente)
-    @JoinColumn({ name: 'id_cliente' })
-    public cliente: Cliente;*/
+    @OneToOne(type => Cliente)
+    @JoinColumn({ name: 'cliente_id_cliente' })
+    public cliente: Cliente;
 
-    @OneToOne((type) => Cliente, cliente => cliente.carrito)
-    public cliente: Cliente[];
+   /* @OneToOne((type) => Cliente, cliente => cliente.carrito)
+    public cliente: Cliente[];*/
 
 
     @ManyToOne(()=>Producto, producto=> producto.carritos)
@@ -45,8 +69,10 @@ export class Carrito {
     public producto: Producto;
 
     
-    public constructor(cantidad?: string, estado?: string) {
+    public constructor(cantidad?: string, cliente_id_cliente?: number, producto_id_producto?:number, estado?: string) {
         this.cantidad = cantidad;
+        this.cliente_id_cliente= cliente_id_cliente;
+        this.producto_id_producto=producto_id_producto;
         this.estado = estado;
     }
 

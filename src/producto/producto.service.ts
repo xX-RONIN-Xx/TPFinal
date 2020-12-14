@@ -58,17 +58,20 @@ export class ProductoService {
     //Add producto
     public async addProduct(newProducto: ProductoDTO):Promise<Producto>{
         try {
-            const productoCreada: Producto = await this.productoRepository.save(
+            const productoCreado: Producto = await this.productoRepository.save(
                 new Producto(
                     newProducto.nombre,
                     newProducto.descripcion,
                     newProducto.precio,
-                    newProducto.stock
+                    newProducto.stock,
+                    newProducto.categoria_id_categoria,
+                    newProducto.pedido_personalizado_id_pedido
+
                     )
             );
 
-            if(productoCreada.getId()){
-                return productoCreada;
+            if(productoCreado.getId()){
+                return productoCreado;
             }else{
                 throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_FOUND);
             }

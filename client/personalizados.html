@@ -12,6 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style3.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="js/producto.js" ></script>
 </head>
 
 <body>
@@ -189,7 +190,59 @@
                 </form>
             </div>
 
+
         </div>
+
+        <div class="container">
+            <p>Ingresar producto personalizado </p>
+            <form>
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col-xs-6">
+                            <input class="form-control" id="inputId" type="hidden">
+                        </div>
+                        <div class="col-xs-6">
+                            <input class="form-control" id='inputStack' type="hidden">
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="inputName">Nombre</label>
+                            <input class="form-control" id="inputName" type="text"
+                                placeholder="Ingrese el nombre del producto">
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="inputPrecio">Precio</label>
+                            <input class="form-control" id="inputPrice" type="number">
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="inputStock">Stock</label>
+                            <input class="form-control" id="inputStock" type="number">
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="inputCategoria">Categoria</label>
+                            <input class="form-control" id="inputCategory" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-xs-6">
+                            <label for="inputDescription">Descripción</label>
+                            <textarea class="form-control" rows="5" id="inputDescription"></textarea>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="file_img">Codigo de Personalizados</label>
+                            <input name="img" type="number" class="form-control" id="inputPers">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <input type="submit" value="Agregar producto" id="btnAgregar" class="btn btn-primary">
+                </div>
+
+                <div class="col-xs-3">
+                    <input type="submit" value="Aceptar edición" id="btnAceptar" class="btn btn-primary">
+                </div>
+            </form>
         <div class="social">
             <a href="#"><img src="images/favicon/icons8-facebook-48.png" alt="facebook"></a>
             <a href="#"><img src="images/favicon/icons8-instagram-48.png" alt="instagram"></a>
