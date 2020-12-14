@@ -1,5 +1,6 @@
 -- MySQL Workbench Forward Engineering
 
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -40,7 +41,7 @@ values
 -- Table `trabajo_final_v1`.`categoria`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`categoria` (
-  `id_categoria` INT NOT NULL,
+  `id_categoria` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_categoria`))
 ENGINE = InnoDB;
@@ -80,12 +81,12 @@ ENGINE = InnoDB;
 -- Table `trabajo_final_v1`.`producto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`producto` (
-  `id_producto` INT NOT NULL,
+  `id_producto` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NULL,
   `descripcion` VARCHAR(255) NULL,
   `precio` INT NULL,
   `stock` INT NULL,
-  `categoria_id_categoria` INT NOT NULL,
+  `categoria_id_categoria` INT default 0 NOT NULL,
   `pedido_personalizado_id_pedido` INT NULL,
   PRIMARY KEY (`id_producto`),
   INDEX `fk_producto_categoria1_idx` (`categoria_id_categoria` ASC) VISIBLE,
@@ -111,19 +112,16 @@ values
 (4,'Mario Bros','Macetas con motivos de Mario Bros',1800,10,2,null),
 (5,'Ryuk','Figura de Shinigami Ryuk',1800,10,3,null),
 (6,'Saga','Figura de Saga de Sagitario CDZ',1900,10,3,null),
-(7,'Llavero-Foto','Laveros personalizados mediante foto',1,10,4,null);
+(7,'Llavero-Foto','Laveros personalizados mediante foto',1,10,4,null),
+(8,'Cat','Figura de gatito para sostener celulares',1,10,4,null),
+(9,'Fenix','Figura Ikki Fenix CDZ',1800,10,3,null),
+(10,'Diorama Vaf','Diorama de Volver al Futuro',1,10,1,null),
+(11,'Galadriel','FIgura con base Galadriel Señor de los anillos',1,10,1,null),
+(12,'Eva 01','Figura de EVA01 Evangelion',1,10,3,null);
 
 -- La columna 'pedido_personalizado_id_pedido' define si el producto que se está creando es un pedido personalizado,
 -- en caso de serlo, esta columna NO debe ser null (Lo hablamos en clase :p)
 
-/*
-p16,Fenix,Figura Ikki Fenix CDZ,1800,10,anime,/images/tp/fenix.jpg
-p17,Diorama Vaf,Diorama de Volver al Futuro,1800,10,peliculas,/images/tp/diorama-vaf.jpg
-p18,Galadriel,FIgura con base Galadriel Señor de los anillos,1800,10,peliculas,/images/tp/galadriel.jpg
-p19,Eva 01,Figura de EVA01 Evangelion,1800,10,anime,/images/tp/eva01.jpg
-_ID8yu9rip6p,prueba,test,1000,5,anime,corazon.jpg
-_IDj5yi3wrr6,test2,test2,3,14,gamer,pikachu.jpeg
-*/
 
 
 -- -----------------------------------------------------
@@ -207,6 +205,37 @@ CREATE TABLE IF NOT EXISTS `trabajo_final_v1`.`imagen_producto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+insert into imagen_producto
+values
+(1,'/images/tp/heisenberg.jpg',1),
+(2,'/images/tp/toy-story.jpg',2),
+(3,'/images/tp/apoyalibros.jpg',3),
+(4,'/images/tp/mariobros.jpg',4),
+(5,'/images/tp/ryuk.jpg',5),
+(6,'/images/tp/saga.jpg',6),
+(7,'/images/tp/llavero-foto.jpg',7),
+(8,'/images/tp/cat.jpg',8),
+(9,'/images/tp/fenix.jpg',9),
+(10,'/images/tp/diorama-vaf.jpg',10),
+(11,'/images/tp/galadriel.jpg',11),
+(12,'/images/tp/eva01.jpg',12);
+
+/*
+p6,Heisenberg,Figura decorativa de Breaking Bad,1800,10,peliculas,/images/tp/heisenberg.jpg
+p7,toy-story,Figura de woody,1800,10,peliculas,/images/tp/toy-story.jpg
+p10,Apoya libros,Producto decorativo para sostener libros en estanteria,1800,10,gamer,/images/tp/apoyalibros.jpg
+p11,Mario Bros,Macetas con motivos de Mario Bros,1800,10,gamer,/images/tp/mariobros.jpg
+p12,Ryuk,Figura de Shinigami Ryuk,1800,10,anime,/images/tp/ryuk.jpg
+p13,Saga,Figura de Saga de Sagitario CDZ,1900,10,anime,/images/tp/saga.jpg
+p14,Llavero-Foto,Laveros personalizados mediante foto,1800,10,curiosidades,/images/tp/llavero-foto.jpg
+p15,Cat,Figura de gatito para sostener celulares,1800,10,curiosidades,/images/tp/cat.jpg
+p16,Fenix,Figura Ikki Fenix CDZ,1800,10,anime,/images/tp/fenix.jpg
+p17,Diorama Vaf,Diorama de Volver al Futuro,1800,10,peliculas,/images/tp/diorama-vaf.jpg
+p18,Galadriel,FIgura con base Galadriel Señor de los anillos,1800,10,peliculas,/images/tp/galadriel.jpg
+p19,Eva 01,Figura de EVA01 Evangelion,1800,10,anime,/images/tp/eva01.jpg
+*/
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

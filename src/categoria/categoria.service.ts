@@ -96,7 +96,7 @@ export class CategoriaService {
     }
 
     // #### Delete categoria ####
-    public async deleteProduct(id: number){        
+    public async deleteCategoria(id: number){        
         try {
             let categoria: Categoria = await this.getById(id);
             if (categoria.getId()) {

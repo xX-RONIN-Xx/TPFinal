@@ -2,13 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     "use strict";
     //defino las url
-    const url = "http://localhost:3000/productos";
+    const url = "http://localhost:3000/producto/get-all";
+    const urlComprar = "http://localhost:3000/producto";
     const urlCarrito = "http://localhost:3000/carrito";
     let carrito = [];
     //funcion para que la tabla de productos se genere dinamicamente
     let html = "";
     // esta funcion genera dinamicamente la tabla en la pagina de productos
     let mostrarTabla = () => {
+       
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -20,19 +22,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamañoRegistry = jsonData.length - 1;
                 let items;
                 html = `<ul id="tabla">`;
+                let admin=window.sessionStorage.getItem('admin');
                 for (let i = 0; i <= tamañoRegistry; i++) {
                     items = jsonData[i];
                     html +=
                         `<li>
-                            <a><img src="${items.image}" class="img-responsive img" id="${items._id}" alt="Imagen de ${items.name}"></a><br>
-                            Nombre:</span> ${items.name}<br>
-                            Descripción: <span class="spanDescript">${items.description}</span><br>
-                            Precio: $${items.price}<br>
+                            <a><img src="${items.imagen_producto.direccion}" class="img-responsive img" id="${items.id_producto}" alt=""></a><br>
+                            Nombre:</span> ${items.nombre}<br>
+                            Descripción: <span class="spanDescript">${items.descripcion}</span><br>
+                            Precio: $${items.precio}<br>
                             Stock: ${items.stock}<br>
-                            Categoria: ${items.category}<br>                
-                            <span class="badge badge-danger"><input type=button  id="${items._id}" value="Comprar" class="btn btn-warning"></span>
-                                <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items._id}">Editar</button></span></td>
-                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
+                            Categoria: ${items.categoria.nombre}<br>                
+                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+                            if(admin=="true"){
+                                html+=`
+                                <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
+                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
+                            }
+                      html+=`
                         </li>`
                 }
                 html += `</ul>`
@@ -90,15 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 let html = "";
                 for (let i = 0; i <= tamJD; i++) {
                     items = jsonData[i];
-                    if (items._id == id) {
+                    if (items.id_producto == id) {
                         html = 
                         `<div class="card">
-                            <img src="${items.image}" style="width:100%">
-                            <h2>${items.name}</h2>
-                            <p id="price" class="price">$${items.price}</p>
-                            <p id="description">${items.description}</p>
-                            <p id="category">${items.category}</p>
-                            <p id="Comprar"><button id="${items._id}" class="btn btn-primary btnComprarDet" >Comprar</button></p>
+                            <img src="${items.imagen_producto.direccion}" style="width:100%">
+                            <h2>${items.nombre}</h2>
+                            <p id="price" class="price">$${items.precio}</p>
+                            <p id="description">${items.descripcion}</p>
+                            <p id="category">${items.categoria.nombre}</p>
+                            <p id="Comprar"><button id="${items.id_producto}" class="btn btn-primary btnComprarDet" >Comprar</button></p>
                         </div>
                         <div class="mt-5 w-25 mx-auto">
                             <a class="btn btn-primary" href="../productos.html" role="button">Volver a Productos</a>
@@ -114,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     };
 
-    //*********borrar producto */
+    //borrar producto
     async function btnBorrarClick() {
         let pos = this.getAttribute("pos");
-        let response = await fetch(`productos/${pos}`, {
+        let response = await fetch(`http://localhost:3000/producto/`+pos, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -125,11 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         mostrarTabla();
     }
-    //*******comprar producto */
+    //comprar producto
+    let urlID = "http://localhost:3000/producto";
     function btnComprar() {
         let idDelBoton = this.id;
         console.log(idDelBoton);
-        let urlId = url + '/' + idDelBoton;
+        let urlId = urlID + '/' + idDelBoton;
         let datos;
         fetch(urlId)
             .then(r => {
@@ -147,8 +155,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    let urlCarritoPost = "http://localhost:3000/carrito/new-carrito";
     async function auxComprar(jsonData) {
-        let respuesta = await fetch(urlCarrito, {
+        console.log(jsonData)
+        let respuesta = await fetch(urlCarritoPost, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -166,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //funcion que carga productos al carrito
     async function load() {
         try {
-            let response = await fetch(urlCarrito);
+            let response = await fetch(urlCarritoPost);
             if (response.ok) {
                 let t = await response.json();
                 carrito = [...carrito, ...t];
@@ -188,24 +198,30 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputImage").value = "";
     }
     //funcion que agrega productos nuevos
+  
     let fnAgregar = () => {
+        let urlPost= "http://localhost:3000/producto/new-producto"
         let name = document.querySelector("#inputName").value;
         let description = document.querySelector("#inputDescription").value;
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let image = document.querySelector("#inputImage").value;
-        let id = ID();
+        let pers = document.querySelector("#inputPers").value;
+        //let id = 11;
+        
         let registry = {
-            "_id": id,
-            "name": name,
-            "description": description,
-            "price": price,
-            "stock": stock,
-            "category": category,
-            "image": image
+            "nombre": name,
+            "descripcion": description,
+            "precio": parseInt(price),
+            "stock": parseInt(stock),
+<<<<<<< HEAD
+            "categoria_id_categoria":parseInt(category),
+=======
+            "categoria_id_categoria": parseint(category),
+>>>>>>> cf0099b4cda876a9cd1fe582d8ae55b9e68e885d
+            "pedido_personalizado_id_pedido": null
         }
-        fetch(url, {
+        fetch(urlPost, {
             method: "POST",
             mode: 'cors',
             headers: {
@@ -231,12 +247,49 @@ document.addEventListener("DOMContentLoaded", function () {
         fnAgregar();
     });
 
-    /* ***************************** */
+
+    let fnAgregarImg = () => {
+        let urlPost= "http://localhost:3000/imagen-producto/new-imagen"
+       
+        let direccion = document.querySelector("#inputImage").value;
+        let id = ID();
+        let registry = {
+            "direccion": direccion,
+            "producto_id_producto": id_producto
+        }
+        fetch(urlPost, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registry),
+        }).then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            return r.json()
+        })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
+        //fnBorrarInputs();
+    }
+
+    document.querySelector("#btnAgregar").addEventListener('click', function () {
+        fnAgregar();
+    });
+
+
     //editar******************
-    /* *********************** */
+
     function btnEdit() {
         let idBtnedit = this.id;
-        let urlId = url + '/' + idBtnedit;
+        let urlEd = "http://localhost:3000/producto"
+        let urlId = urlEd + '/' + idBtnedit;
         let datos;
         fetch(urlId)
             .then(r => {
@@ -247,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(jsonData => {
                 datos = auxLlenarinputs(jsonData);
+                console.log(datos);
                 document.querySelector("#inputName").focus();
                 document.querySelector("#btnAceptar").addEventListener('click', function () {
                     aceptChanges(urlId);
@@ -258,13 +312,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //funcion que llena los inputs con los datos del producto a editar 
     function auxLlenarinputs(datos) {
-        document.querySelector("#inputId").value = datos._id;
-        document.querySelector("#inputName").value = datos.name;
-        document.querySelector("#inputDescription").value = datos.description;
-        document.querySelector("#inputPrice").value = datos.price;
+        document.querySelector("#inputId").value = datos.id_producto;
+        document.querySelector("#inputName").value = datos.nombre;
+        document.querySelector("#inputDescription").value = datos.descripcion;
+        document.querySelector("#inputPrice").value = datos.precio;
         document.querySelector("#inputStock").value = datos.stock
-        document.querySelector("#inputCategory").value = datos.category;
-        document.querySelector("#inputImage").value = datos.image;
+        document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
+        document.querySelector("#inputPers").value=datos.pedido_personalizado_id_pedido;
+        //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
     //funcion que guarda los cambios de un producto editado
     async function aceptChanges(urlE) {
@@ -273,16 +328,17 @@ document.addEventListener("DOMContentLoaded", function () {
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let image = document.querySelector("#inputImage").value;
+        let pers = document.querySelector("#inputPers").value;
         let id = document.querySelector("#inputId").value;
         let registry = {
-            "_id": id,
-            "name": name,
-            "description": description,
-            "price": price,
+            "id_producto": id,
+            "nombre": name,
+            "descripcion": description,
+            "precio": price,
             "stock": stock,
-            "category": category,
-            "image": image
+            "categoria_id_categoria": category,
+            "pedido_personalizado_id_pedido": pers
+            //"imagen_producto": image
         }
         let response = await fetch(urlE, {
             method: "PUT",
@@ -297,6 +353,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //   filtrado  productos por categoria *****************************************************
     let fnFiltrar = (categoria) => {
         document.querySelector("#listaHorizontal").innerHTML = "";
+        let prodFiltrados=[];
+    
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -305,29 +363,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 return r.json()
             })
             .then(jsonData => {
-                let prodFiltrados = jsonData.filter(Data => Data.category == categoria);
+                console.log(jsonData);
+                for(let i=0; i<jsonData.length;i++){
+                    if(jsonData[i].categoria.nombre==categoria){
+                        prodFiltrados.push(jsonData[i]);
+                    }
+                }
                 if (categoria == "todos") {
                     prodFiltrados = jsonData;
                 }
                 let tamanio = prodFiltrados.length;
                 html = `<ul id="tabla">`;
                 let items;
+                let admin=window.sessionStorage.getItem('admin');
+                console.log(admin)
                 for (let i = 0; i < tamanio; i++) {
                     items = prodFiltrados[i];
                     html +=
                         `<li>
-                    <a><img src="${items.image}" class="img-responsive img" id="${items._id}" alt="Imagen de ${items.name}"></a><br>
-                    Nombre:</span> ${items.name}<br>
-                    Descripción: <span class="spanDescript">${items.description}</span><br>
-                    Precio: $${items.price}<br>
+                    <a><img src="${items.imagen_producto.direccion}" class="img-responsive img" id="${items.id_producto}" alt="Imagen de"></a><br>
+                    Nombre:</span> ${items.nombre}<br>
+                    Descripción: <span class="spanDescript">${items.descripcion}</span><br>
+                    Precio: $${items.precio}<br>
                     Stock: ${items.stock}<br>
-                    Categoria: ${items.category}<br>                
-                    <span class="badge badge-danger"><input type=button  id="${items._id}" value="Comprar" class="btn btn-warning"></span>
-                    <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items._id}">Editar</button></span></td>
-                    <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items._id}">Borrar</button></span></td>
+                    Categoria: ${items.categoria.nombre}<br>                
+                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+                    if(admin=="true"){
+                        html+=`
+                        <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
+                        <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
+                    }
+              html+=`
                 </li>`
-                }
-                html += `</ul>`
+        }
+        html += `</ul>`
                 document.querySelector("#listaHorizontal").innerHTML = html;
                 let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
                 botonesBorrar.forEach(e => {

@@ -1,4 +1,4 @@
-export class Producto {
+/*export class Producto {
     private _id: string;
     private name: string;
     private description: string;
@@ -59,4 +59,4 @@ export class Producto {
     }
 
 
-}
+}*/

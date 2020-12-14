@@ -1,97 +1,145 @@
-import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
-import { Producto } from './producto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
+import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
+import { Categoria } from 'src/categoria/categoria.entity';
+import { Repository } from 'typeorm';
+import { ProductoDTO } from './producto.dto';
+import { Producto } from './producto.entity';
 
 @Injectable()
 export class ProductoService {
-    /*updateProducto(arg0: number, prod: any): boolean {
-        throw new Error('Method not implemented.');
-    }*/
-    private listaProductos: Producto[];
 
-    private loadProductos(): void {
-        let archivo = fs.readFileSync('resources/productos.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-        this.listaProductos = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let producto = new Producto(elementos[i][0], elementos[i][1], elementos[i][2],
-                parseInt(elementos[i][3]), parseInt(elementos[i][4]), elementos[i][5], elementos[i][6]);
-            this.listaProductos.push(producto);
+    constructor(
+        @InjectRepository(Producto) 
+        private readonly productoRepository: Repository<Producto>,
+        //@InjectRepository(ImagenProducto)
+        //private readonly imagenProductoRepository: Repository<ImagenProducto>
+    ){}
+
+    //TYPEORM GET
+    public async getAll(): Promise<Producto[]>{
+        console.log("Get All productos");
+        try {
+            //Get all
+            const result: Producto[] = await this.productoRepository.find({
+                relations: ["categoria", "imagen_producto"]
+            });
+            
+            return result
+
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
         }
     }
 
-    public getProductos(): Producto[] {
-        this.loadProductos();
-        //console.log(this.listaProductos);
-        return this.listaProductos;
-    }
-
-    public getProducto(index: any): Producto {
-        this.loadProductos();
-        let array = this.listaProductos;
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].getID() == index) {
-                return array[i];
+    
+    //TYPEORM GET by id
+    public async getById(id: number): Promise<Producto>{
+        console.log("Getting producto id: " + id);
+        try {
+<<<<<<< HEAD
+            const producto: Producto = await this.productoRepository.findOne(id, {
+                relations: ["categoria", "imagen_producto"]
+            });
+            if(producto){
+=======
+            const producto: Producto = await this.productoRepository.findOne(id);
+            if(producto.getId){
+>>>>>>> cf0099b4cda876a9cd1fe582d8ae55b9e68e885d
+                return producto;
+            }else{
+                throw new HttpException('No se pudo encontrar el producto', HttpStatus.NOT_FOUND);
             }
+        } catch (error) {
+            console.log(error);
+            throw new HttpException({
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
         }
     }
 
-    public create(prod: any): string {
+    //Add producto
+    public async addProduct(newProducto: ProductoDTO):Promise<Producto>{
+        try {
+            const productoCreado: Producto = await this.productoRepository.save(
+                new Producto(
+                    newProducto.nombre,
+                    newProducto.descripcion,
+                    newProducto.precio,
+                    newProducto.stock,
+                    newProducto.categoria_id_categoria,
+                    newProducto.pedido_personalizado_id_pedido
 
-        const producto = new Producto(prod._id, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
+                    )
+            );
 
-        if (producto.getID() && producto.getname() && producto.getDescription() && producto.getPrice() && producto.getStock() && producto.getCategory() && producto.getImage()) {
-            fs.appendFileSync('resources/productos.csv',
-                `\n${producto.getID()},${producto.getname()},${producto.getDescription()},${producto.getPrice()},${producto.getStock()},${producto.getCategory()},${producto.getImage()}`);
-
-            return "ok";
-        } else {
-            return "parametros incorrectos";
-        }
-    }
-
-    public deleteProducto(position: number): boolean {
-
-        let removed = this.listaProductos.splice(position, 1);
-        let archivos = this.listaProductos;
-        let archivo = "";
-        for (let index = 0; index < archivos.length; index++) {
-            archivo += (`${archivos[index].getID()},${archivos[index].getname()},${archivos[index].getDescription()},${archivos[index].getStock()},${archivos[index].getPrice()},${archivos[index].getCategory()},${archivos[index].getImage()}\n`);
-        }
-        let cadena = archivo.substr(0, archivo.length - 1)
-        fs.writeFileSync('resources/productos.csv', cadena);
-        return removed.length == 1;
-    }
-
-    /* public updateProduct(@Param('id') id: string, @Body() prod: any): boolean {
-         const producto = new Producto(prod._id, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
-         let archivos = this.listaProductos;
- 
-         for (let i = 0; i < archivos.length; i++) {
-             if (archivos[i].getID() == prod._id) {
-                 console.log(archivos[i])
-                 archivos[i] == prod;
-             } fs.writeFileSync('resources/productos.csv', archivos[i]);
-         }
-         return true;
-     }*/
-    public updateProducto(prod: any, position: string): boolean {
-        const producto = new Producto(position, prod.name, prod.description, prod.price, prod.stock, prod.category, prod.image);
-        let archivos = this.listaProductos;
-        let STRarchivo = "";
-        for (let i = 0; i < archivos.length; i++) {
-            if (archivos[i].getID() == prod._id) {
-                archivos[i] = producto;
+            if(productoCreado.getId()){
+                return productoCreado;
+            }else{
+                throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_FOUND);
             }
-        }
-        for (let index = 0; index < archivos.length; index++) {
-            STRarchivo += (`${archivos[index].getID()},${archivos[index].getname()},${archivos[index].getDescription()},${archivos[index].getPrice()},${archivos[index].getStock()},${archivos[index].getCategory()},${archivos[index].getImage()}\n`);
-        }
-        let cadena = STRarchivo.substr(0, STRarchivo.length - 1)
-        fs.writeFileSync('resources/productos.csv', cadena);
-        return true;
-
+        } catch (error) {
+            console.log(error);
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
+        }        
     }
 
+    //#### Update producto ####
+    public async updateProducto(newProductoParams: ProductoDTO, id: number): Promise<Producto>{
+        try {
+            let producto: Producto = await this.getById(id);
+
+            if(producto.getId()){
+                producto.setNombre(newProductoParams.nombre);
+                producto.setDescripcion(newProductoParams.descripcion);
+                producto.setPrecio(newProductoParams.precio);
+                producto.setStock(newProductoParams.stock);
+                
+
+                const productoUpdated: Producto = await this.productoRepository.save(producto);
+
+                if (productoUpdated) {
+                    return productoUpdated;
+                }else {
+                    throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_MODIFIED);    
+                }                
+            }else{
+                throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_FOUND);
+            }
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
+        }        
+    }
+
+    // #### Delete producto ####
+    public async deleteProducto(id: number){        
+        console.log('entro al borrar del service')
+        try {
+            let producto: Producto = await this.getById(id);
+            console.log(producto);
+            if (producto.getId()) {
+                let deleteResult = await this.productoRepository.delete(id);
+                if (deleteResult.affected) {
+
+                    console.log('Se borro correctamente')
+                }
+                return deleteResult;
+            }
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
+        }
+    }
 }

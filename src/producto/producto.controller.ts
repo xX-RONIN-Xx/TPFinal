@@ -3,43 +3,44 @@ import { Delete, Post, Put } from '@nestjs/common/decorators/http/request-mappin
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import { from } from 'rxjs';
-import { Producto } from './producto';
+import { ProductoDTO } from './producto.dto';
+import { Producto } from './producto.entity';
 import { ProductoService } from './producto.service';
+import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
 
 
-@Controller('productos')
+@Controller('producto')
 export class ProductoController {
-    constructor(private productoService: ProductoService) { }
-    @Get()
-    public getProductos(): Producto[] {
-        return this.productoService.getProductos();
+    constructor(private readonly productoService: ProductoService) { }
+
+    @Get("get-all")
+    public getAll(): Promise<Producto[]>{
+
+        let productos=this.productoService.getAll();
+        console.log(productos);
+        return productos;
     }
 
-    /*@Get(':index')
-    public getProducto(@Param('index') index): Producto {
-        return this.productoService.getProducto(parseInt(index));
-    }*/
-    @Get(':index')
-    public getProducto(@Param('index') index): Producto {
-        return this.productoService.getProducto(index);
+    @Get(":id")
+    public getById(@Param('id') id: number): Promise<Producto>{
+        let producto=this.productoService.getById(id);
+        console.log(producto);
+        return producto;
     }
 
-    @Post()
-    create(@Body() prod: any): string {
-        return this.productoService.create(prod);
+    @Post("new-producto")
+    addProduct(@Body() producto: ProductoDTO): Promise<Producto> {
+        return this.productoService.addProduct(producto);
     }
 
-    @Delete(':index')
-    public deleteProducto(@Param('index') index): boolean {
-        return this.productoService.deleteProducto(parseInt(index));
+    @Put(":id")
+    public updateProducto(@Body() productoDto: ProductoDTO, @Param('id') id: number): Promise<Producto>{
+        return this.productoService.updateProducto(productoDto,id);
     }
 
-    /*@Put(':index')
-    public updateProducto(@Body() prod: any): boolean {
-        return this.productoService.updateProduct(prod);
-    }*/
-    @Put(':index')
-    public updateProducto(@Body() prod: any, @Param('index') index): boolean {
-        return this.productoService.updateProducto(prod, index);
+    @Delete(":id")
+    public deleteProducto(@Param('id') id){
+        console.log('entro al controller')
+        return this.productoService.deleteProducto(id);
     }
 }
