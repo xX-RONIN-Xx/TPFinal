@@ -3,12 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
     //defino las url
     const url = "http://localhost:3000/producto/get-all";
-    const urlCarrito = "http://localhost:3000/carrito/get-all";
+    const urlComprar = "http://localhost:3000/producto";
+    const urlCarrito = "http://localhost:3000/carrito";
     let carrito = [];
     //funcion para que la tabla de productos se genere dinamicamente
     let html = "";
     // esta funcion genera dinamicamente la tabla en la pagina de productos
     let mostrarTabla = () => {
+       
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamañoRegistry = jsonData.length - 1;
                 let items;
                 html = `<ul id="tabla">`;
+                let admin=window.sessionStorage.getItem('admin');
                 for (let i = 0; i <= tamañoRegistry; i++) {
                     items = jsonData[i];
                     html +=
@@ -30,9 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             Precio: $${items.precio}<br>
                             Stock: ${items.stock}<br>
                             Categoria: ${items.categoria.nombre}<br>                
-                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>
+                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+                            if(admin=="true"){
+                                html+=`
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
-                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>
+                                <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
+                            }
+                      html+=`
                         </li>`
                 }
                 html += `</ul>`
@@ -117,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //borrar producto
     async function btnBorrarClick() {
         let pos = this.getAttribute("pos");
-        let response = await fetch(`productos/${pos}`, {
+        let response = await fetch(`http://localhost:3000/producto/`+pos, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -150,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let urlCarritoPost = "http://localhost:3000/carrito/new-carrito";
     async function auxComprar(jsonData) {
+        console.log(jsonData)
         let respuesta = await fetch(urlCarritoPost, {
             method: 'POST',
             mode: 'cors',
@@ -206,7 +214,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
+<<<<<<< HEAD
             "categoria_id_categoria":parseInt(category),
+=======
+            "categoria_id_categoria": parseint(category),
+>>>>>>> cf0099b4cda876a9cd1fe582d8ae55b9e68e885d
             "pedido_personalizado_id_pedido": null
         }
         fetch(urlPost, {
@@ -342,6 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let fnFiltrar = (categoria) => {
         document.querySelector("#listaHorizontal").innerHTML = "";
         let prodFiltrados=[];
+    
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -362,6 +375,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamanio = prodFiltrados.length;
                 html = `<ul id="tabla">`;
                 let items;
+                let admin=window.sessionStorage.getItem('admin');
+                console.log(admin)
                 for (let i = 0; i < tamanio; i++) {
                     items = prodFiltrados[i];
                     html +=
@@ -372,12 +387,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     Precio: $${items.precio}<br>
                     Stock: ${items.stock}<br>
                     Categoria: ${items.categoria.nombre}<br>                
-                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>
-                    <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
-                    <td class="ocultar"><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>
+                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+                    if(admin=="true"){
+                        html+=`
+                        <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
+                        <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
+                    }
+              html+=`
                 </li>`
-                }
-                html += `</ul>`
+        }
+        html += `</ul>`
                 document.querySelector("#listaHorizontal").innerHTML = html;
                 let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
                 botonesBorrar.forEach(e => {

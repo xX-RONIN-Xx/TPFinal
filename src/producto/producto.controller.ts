@@ -23,7 +23,9 @@ export class ProductoController {
 
     @Get(":id")
     public getById(@Param('id') id: number): Promise<Producto>{
-        return this.productoService.getById(id);
+        let producto=this.productoService.getById(id);
+        console.log(producto);
+        return producto;
     }
 
     @Post("new-producto")
@@ -37,7 +39,8 @@ export class ProductoController {
     }
 
     @Delete(":id")
-    public deleteProducto(@Param('id') id: number){
+    public deleteProducto(@Param('id') id){
+        console.log('entro al controller')
         return this.productoService.deleteProducto(id);
     }
 }
