@@ -205,9 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "nombre": name,
             "descripcion": description,
             "precio": parseInt(price),
-            "stock": stock,
-            "categoria_id_categoria": category,
-            "pedido_personalizado_id_pedido": pers
+            "stock": parseInt(stock),
+            "categoria_id_categoria":parseInt(category),
+            "pedido_personalizado_id_pedido": null
         }
         fetch(urlPost, {
             method: "POST",

@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style3.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <script src="js/producto.js" ></script>
+    <!--<script src="js/producto.js" ></script>-->
 </head>
 
 <body>
@@ -31,13 +31,13 @@
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                             href="productos.html">Productos <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="catFilter" id="todos"><a href="productos.html">Todos</a></li>
-                            <li class="catFilter" id="anime"><a href="productos.html">Anime</a></li>
-                            <li class="catFilter"><a href="productos.html">Comics</a></li>
-                            <li class="catFilter"><a href="productos.html">Peliculas</a></li>
-                            <li class="catFilter"><a href="productos.html">Gamer</a></li>
-                            <li class="catFilter"><a href="productos.html">Curiosidades</a></li>
-                            <li class="catFilter"><a href="productos.html">Insumos</a></li>
+                            <li class="catFilter" id="todos"><a href="productos/todos">Todos</a></li>
+                            <li class="catFilter" id="anime"><a href="productos/anime">Anime</a></li>
+                            <li class="catFilter" id="comic"><a href="productos/comic">Comics</a></li>
+                            <li class="catFilter" id="peliculas"><a href="productos/peliculas">Peliculas</a></li>
+                            <li class="catFilter" id="gamer"><a href="productos/gamer">Gamer</a></li>
+                            <li class="catFilter" id=curiosidades><a href="productos/curiosidades">Curiosidades</a></li>
+                            <li class="catFilter" id="insumos"><a href="productos/insumos">Insumos</a></li>
                         </ul>
                     </li>
                     <li><a href="personalizados.html">Personlizados</a></li>
@@ -199,48 +199,48 @@
                 <div class="container">
                     <div class="form-group row">
                         <div class="col-xs-6">
-                            <input class="form-control" id="inputId" type="hidden">
+                            <input class="form-control" id="Id" type="hidden">
                         </div>
                         <div class="col-xs-6">
-                            <input class="form-control" id='inputStack' type="hidden">
+                            <input class="form-control" id='Stack' type="hidden">
                         </div>
                         <div class="col-xs-6">
                             <label for="inputName">Nombre</label>
-                            <input class="form-control" id="inputName" type="text"
+                            <input class="form-control" id="Name" type="text"
                                 placeholder="Ingrese el nombre del producto">
                         </div>
                         <div class="col-xs-6">
                             <label for="inputPrecio">Precio</label>
-                            <input class="form-control" id="inputPrice" type="number">
+                            <input class="form-control" id="Price" type="number">
                         </div>
                         <div class="col-xs-6">
                             <label for="inputStock">Stock</label>
-                            <input class="form-control" id="inputStock" type="number">
+                            <input class="form-control" id="Stock" type="number">
                         </div>
                         <div class="col-xs-6">
                             <label for="inputCategoria">Categoria</label>
-                            <input class="form-control" id="inputCategory" type="text">
+                            <input class="form-control" id="Category" type="text">
                         </div>
                     </div>
                     <div class="form-group row">
 
                         <div class="col-xs-6">
                             <label for="inputDescription">Descripción</label>
-                            <textarea class="form-control" rows="5" id="inputDescription"></textarea>
+                            <textarea class="form-control" rows="5" id="Description"></textarea>
                         </div>
                         <div class="col-xs-6">
                             <label for="file_img">Codigo de Personalizados</label>
-                            <input name="img" type="number" class="form-control" id="inputPers">
+                            <input name="img" type="number" class="form-control" id="Pers">
                         </div>
 
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <input type="submit" value="Agregar producto" id="btnAgregar" class="btn btn-primary">
+                    <input type="submit" value="Agregar producto" id="btnAgregarPers" class="btn btn-primary">
                 </div>
 
                 <div class="col-xs-3">
-                    <input type="submit" value="Aceptar edición" id="btnAceptar" class="btn btn-primary">
+                    <input type="submit" value="Aceptar edición" id="btnAceptarPers" class="btn btn-primary">
                 </div>
             </form>
         <div class="social">
