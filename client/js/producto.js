@@ -220,10 +220,52 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
+<<<<<<< HEAD
             "categoria_id_categoria":parseInt(category),
             "pedido_personalizado_id_pedido": null,
             "direccion": img
             
+=======
+            "categoria_id_categoria": parseInt(category),
+            "pedido_personalizado_id_pedido": null
+        }
+        console.log(registry)
+        fetch(urlPost, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registry),
+        }).then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            return r.json()
+        })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
+        fnBorrarInputs();
+    }
+
+    document.querySelector("#btnAgregar").addEventListener('click', function () {
+        fnAgregar();
+    });
+
+
+    let fnAgregarImg = () => {
+        let urlPost= "http://localhost:3000/imagen-producto/new-imagen"
+       
+        let direccion = document.querySelector("#inputImage").value;
+        let id = ID();
+        let registry = {
+            "direccion": direccion,
+            "producto_id_producto": id_producto
+>>>>>>> 493245b1f3bdded9fa2f22cacb7f421f481679a3
         }
         console.log(registry);
         let rta= await
