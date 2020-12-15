@@ -9,10 +9,10 @@ export class Producto {
     @PrimaryGeneratedColumn()
     private id_producto: number;
 
+    carritos: any;
+
     @Column()
     private nombre: string;
-    imagenes: any;
-    carritos: any;
 
     public getNombre(): string {
         return this.nombre;
@@ -55,8 +55,8 @@ export class Producto {
         this.stock = stock;
     }
 
-    @Column()
-    private categoria_id_categoria: number;
+   // @Column()
+    //private categoria_id_categoria: number;
 
     @ManyToOne(()=>Categoria, categoria => categoria.productos)
     @JoinColumn({name: 'categoria_id_categoria'})
@@ -70,12 +70,12 @@ export class Producto {
 
 
     public getCategoria(): number {
-        return this.categoria_id_categoria;
+        return this.categoria.getId();
     }
 
-    public setCategoria(categoria_id_categoria:number): void {
+    /*public setCategoria(categoria_id_categoria:number): void {
         this.categoria_id_categoria = categoria_id_categoria;
-    }
+    }*/
 
     @Column()
     private pedido_personalizado_id_pedido: number;
@@ -88,12 +88,12 @@ export class Producto {
         this.pedido_personalizado_id_pedido = pedido_personalizado_id_pedido;
     }
 
-    public constructor(nombre?: string, descripcion?: string, precio?: number, stock?:number, categoria_id_categoria?: number, pedido_personalizado_id_pedido?: number) {
+    public constructor(nombre?: string, descripcion?: string, precio?: number, stock?:number,categoria?:Categoria, pedido_personalizado_id_pedido?: number) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
-        this.categoria_id_categoria = categoria_id_categoria;
+        this.categoria= categoria;
         this.pedido_personalizado_id_pedido = pedido_personalizado_id_pedido;
     }
 

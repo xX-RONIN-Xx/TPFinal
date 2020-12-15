@@ -14,11 +14,9 @@ import { CarritoService } from './carrito.service';
     imports: [
         TypeOrmModule.forFeature([
           Carrito,
-          Producto,
-          Cliente
         ])
       ],
-      controllers: [CarritoController, ProductoController, ClienteController],
-      providers: [CarritoService, ProductoService, ClienteService]
+      controllers: [CarritoController /*, ProductoController, ClienteController*/],
+      providers: [CarritoService /*, ProductoService, ClienteService*/]
     })
 export class CarritoModule {}
