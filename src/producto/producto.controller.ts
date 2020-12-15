@@ -7,6 +7,7 @@ import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
 import { ProductoService } from './producto.service';
 import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
+import { ImagenProductoDTO } from 'src/imagen-producto/imagen-producto.dto';
 
 
 @Controller('producto')
@@ -30,6 +31,7 @@ export class ProductoController {
 
     @Post("new-producto")
     addProduct(@Body() producto: ProductoDTO): Promise<Producto> {
+        console.log(JSON.stringify(ProductoDTO));
         return this.productoService.addProduct(producto);
     }
 

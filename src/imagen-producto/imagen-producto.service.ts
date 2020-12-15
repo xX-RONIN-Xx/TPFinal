@@ -47,7 +47,7 @@ export class ImagenProductoService {
         }
     }
 
-    //Add producto
+    //Add Imagen
     public async addImagen(newImagen: ImagenProductoDTO):Promise<ImagenProducto>{
         try {
             const imagenCreada: ImagenProducto = await this.imagenProductoRepository.save(

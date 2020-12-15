@@ -125,9 +125,10 @@ document.addEventListener("DOMContentLoaded", function () {
     async function btnBorrarClick() {
         //let pos = this.getAttribute("pos");
         let idBorrar = this.id;
+        console.log(idBorrar);
         let urlBorrar = "http://localhost:3000/producto";
-        let urlDelete= urlBorrar + '/' + idBtnedit;
-        let response = await fetch(urlDelete, {
+        let urlDelete= urlBorrar + '/' + idBorrar;
+        let response = await fetch(urlDelete,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -202,24 +203,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //funcion que agrega productos nuevos
   
-    let fnAgregar = () => {
+    async function fnAgregar(){
         let urlPost= "http://localhost:3000/producto/new-producto"
         let name = document.querySelector("#inputName").value;
         let description = document.querySelector("#inputDescription").value;
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
+        let img= document.querySelector("#inputImage").value;
         let pers = document.querySelector("#inputPers").value;
         //let id = 11;
         
         let registry = {
+
             "nombre": name,
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
             "categoria_id_categoria":parseInt(category),
-            "pedido_personalizado_id_pedido": null
+            "pedido_personalizado_id_pedido": null,
+            "direccion": img
+            
         }
+        console.log(registry);
+        let rta= await
+    
         fetch(urlPost, {
             method: "POST",
             mode: 'cors',
@@ -235,6 +243,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(data => {
                 console.log(data)
+                let id = data.id_producto;
+                //fnAgregarImg(id);
             })
             .catch(function (e) {
                 console.log(e);
@@ -242,19 +252,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fnBorrarInputs();
     }
 
-    document.querySelector("#btnAgregar").addEventListener('click', function () {
-        fnAgregar();
-    });
+    document.querySelector("#btnAgregar").addEventListener('click',fnAgregar);
 
 
-    let fnAgregarImg = () => {
+    let fnAgregarImg = (id) => {
         let urlPost= "http://localhost:3000/imagen-producto/new-imagen"
        
         let direccion = document.querySelector("#inputImage").value;
-        let id = ID();
         let registry = {
             "direccion": direccion,
-            "producto_id_producto": id_producto
+            "producto_id_producto": id
         }
         fetch(urlPost, {
             method: "POST",
@@ -278,9 +285,6 @@ document.addEventListener("DOMContentLoaded", function () {
         fnBorrarInputs();
     }
 
-    document.querySelector("#btnAgregar").addEventListener('click', function () {
-        fnAgregar();
-    });
 
 
     //editar******************
