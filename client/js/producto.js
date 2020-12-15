@@ -255,38 +255,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#btnAgregar").addEventListener('click',fnAgregar);
 
 
-    let fnAgregarImg = (id) => {
-        let urlPost= "http://localhost:3000/imagen-producto/new-imagen"
-       
-        let direccion = document.querySelector("#inputImage").value;
-        let registry = {
-            "direccion": direccion,
-            "producto_id_producto": id
-        }
-        fetch(urlPost, {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(registry),
-        }).then(r => {
-            if (!r.ok) {
-                console.log("Error!")
-            }
-            return r.json()
-        })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(function (e) {
-                console.log(e);
-            })
-        fnBorrarInputs();
-    }
-
-
-
     //editar******************
 
     function btnEdit() {
