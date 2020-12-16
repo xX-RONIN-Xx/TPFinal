@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let html = "";
     // esta funcion genera dinamicamente la tabla en la pagina de productos
     let mostrarTabla = () => {
-       
+
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamañoRegistry = jsonData.length - 1;
                 let items;
                 html = `<ul id="tabla">`;
-                let admin=window.sessionStorage.getItem('admin');
+                let admin = window.sessionStorage.getItem('admin');
                 for (let i = 0; i <= tamañoRegistry; i++) {
                     items = jsonData[i];
                     html +=
@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             Stock: ${items.stock}<br>
                             Categoria: ${items.categoria.nombre}<br>                
                             <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
-                            if(admin=="true"){
-                                html+=`
+                    if (admin == "true") {
+                        html += `
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
                                 <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
-                            }
-                      html+=`
+                    }
+                    html += `
                         </li>`
                 }
                 html += `</ul>`
@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (let i = 0; i <= tamJD; i++) {
                     items = jsonData[i];
                     if (items.id_producto == id) {
-                        html = 
-                        `<div class="card">
+                        html =
+                            `<div class="card">
                             <img src="${items.imagen_producto.direccion}" style="width:100%">
                             <h2>${items.nombre}</h2>
                             <p id="price" class="price">$${items.precio}</p>
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let img= document.querySelector("#inputImage").value;
         let pers = document.querySelector("#inputPers").value;
         //let id = 11;
-        
+
         let registry = {
 
             "nombre": name,
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputPrice").value = datos.precio;
         document.querySelector("#inputStock").value = datos.stock
         document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
-        document.querySelector("#inputPers").value=datos.pedido_personalizado_id_pedido;
+        document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
         //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
     //funcion que guarda los cambios de un producto editado
@@ -323,8 +323,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //   filtrado  productos por categoria *****************************************************
     let fnFiltrar = (categoria) => {
         document.querySelector("#listaHorizontal").innerHTML = "";
-        let prodFiltrados=[];
-    
+        let prodFiltrados = [];
+
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -334,8 +334,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(jsonData => {
                 console.log(jsonData);
-                for(let i=0; i<jsonData.length;i++){
-                    if(jsonData[i].categoria.nombre==categoria){
+                for (let i = 0; i < jsonData.length; i++) {
+                    if (jsonData[i].categoria.nombre == categoria) {
                         prodFiltrados.push(jsonData[i]);
                     }
                 }
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamanio = prodFiltrados.length;
                 html = `<ul id="tabla">`;
                 let items;
-                let admin=window.sessionStorage.getItem('admin');
+                let admin = window.sessionStorage.getItem('admin');
                 console.log(admin)
                 for (let i = 0; i < tamanio; i++) {
                     items = prodFiltrados[i];
@@ -358,15 +358,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     Stock: ${items.stock}<br>
                     Categoria: ${items.categoria.nombre}<br>                
                     <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
-                    if(admin=="true"){
-                        html+=`
+                    if (admin == "true") {
+                        html += `
                         <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
                         <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
                     }
-              html+=`
+                    html += `
                 </li>`
-        }
-        html += `</ul>`
+                }
+                html += `</ul>`
                 document.querySelector("#listaHorizontal").innerHTML = html;
                 let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
                 botonesBorrar.forEach(e => {
