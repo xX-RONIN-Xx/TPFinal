@@ -15,6 +15,7 @@ async function validateLogin(e) {
     if (await respuesta.json()) {
         window.sessionStorage.setItem('userLogged', true);
         window.sessionStorage.setItem('user', usuario);
+        window.sessionStorage.setItem('cliente', usuario.user);
 
         if (usuario.user == 'lucas' || usuario.user == 'mauricio' || usuario.user == 'rocio') {
             window.sessionStorage.setItem('admin', true);

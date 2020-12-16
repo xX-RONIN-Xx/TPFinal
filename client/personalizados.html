@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,7 +57,7 @@
         <div class="container">
 
             <div class="col-6 col-md-12">
-                <h2>Información Importante sobre tu pedido</h2>
+                <h3>Información Importante sobre tu pedido</h3>
                 <div class="info">
                     <p>
                         Para que podamos tomar tu pedido personalizado, debes rellenar el siguiente cuestionario. A
@@ -80,7 +79,7 @@
             </div>
 
             <div class="pedidos">
-                <h2>Detalles del pedido</h2>
+                <h3>Detalles del pedido</h3>
                 <form>
                     <div class="row">
                         <!--fila 1-->
@@ -95,17 +94,8 @@
 
                         <div class="col-6 col-md-4">
                             <div class="form-group">
-                                <h4>Colores: </h4>
-                                <label><input type="checkbox" name="amarillo" id="amarillo"> amarillo</label>
-                                <label><input type="checkbox" name="azul" id="azul"> azul</label>
-                                <label><input type="checkbox" name="blanco" id="blanco"> blanco</label>
-                                <label><input type="checkbox" name="celeste" id="celeste"> celeste</label>
-                                <label><input type="checkbox" name="marrón" id="marrón"> marrón</label>
-                                <label><input type="checkbox" name="naranja" id="naranja"> naranja</label>
-                                <label><input type="checkbox" name="negro" id="negro"> negro</label>
-                                <label><input type="checkbox" name="rojo" id="rojo"> rojo</label>
-                                <label><input type="checkbox" name="rosa" id="rosa"> rosa</label>
-                                <label><input type="checkbox" name="verde" id="verde"> verde</label>
+                                <h4>Color de filamento que desea </h4>
+                                <input type="text" name="" id="color">
                             </div>
                         </div>
 
@@ -126,9 +116,7 @@
                         <div class="col-6 col-md-3">
                             <div class='form-group'>
                                 <h4>Altura de capa: </h4>
-                                <label class="radio-inline"><input type="radio" name="optradio" checked> 0.1mm</label>
-                                <label class="radio-inline"><input type="radio" name="optradio"> 0.2mm</label>
-                                <label class="radio-inline"><input type="radio" name="optradio"> 0.3mm</label>
+                                <input type="text" id="alt" name="optradio" >
                             </div>
                         </div>
 
@@ -159,8 +147,8 @@
             </div>
 
             <div>
-                <h2>Ingrese sus datos de contacto</h2>
-                <form action="/action_page.php" class="datos">
+                <h3>Ingrese sus datos de contacto</h3>
+                <!--<form action="/action_page.php" class="datos">-->
                     <div class="col-6 col-md-5">
                         <div class="form-group">
                             <input type="name" class="form-control" placeholder="Nombre y Apellido" id="name">
@@ -185,17 +173,69 @@
                         </div>
                     </div>
                     <div class="col-6 col-md-1">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary" id="btnPers">Enviar</button>
                     </div>
-                </form>
+                <!--</form>-->
             </div>
 
 
         </div>
 
+        <hr>
+
+        <div id="adminPers">
+
+            <a class="btn btn-primary" href="adminPers.html">Ir a pedidos ingresados</a>
+
+        </div>
+
+       <!-- <div class="container">
+            <h3>Pedidos Ingresados</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID Pedido</th>
+                    <th scope="col">Dimensión X</th>
+                    <th scope="col">Dimensión Y</th>
+                    <th scope="col">Dimensión Z</th>
+                    <th scope="col">Colores</th>
+                    <th scope="col">Tipo Filamento</th>
+                    <th scope="col">Altura de Capa</th>
+                    <th scope="col">Temperatura</th>
+                    <th scope="col">Relleno</th>
+                    <th scope="col">Comentarrios</th>
+                    <th scope="col">Código Cliente</th>
+                  </tr>
+                </thead>
+                <tbody id="tblPersonalizados">
+    
+                </tbody>
+              </table>
+              <hr>
+
+        </div>
+
+        <h3>Productos Personalizados</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID Producto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">ID Pedido</th>
+              </tr>
+            </thead>
+            <tbody id="tblProductos">
+
+            </tbody>
+          </table>
+          <hr>
+
         <div class="container">
-            <p>Ingresar producto personalizado </p>
-          <!--  <form>
+            <h3>Ingresar producto personalizado </h3>
+            <form>
                 <div class="container">
                     <div class="form-group row">
                         <div class="col-xs-6">
@@ -270,6 +310,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
+    <script src="./js/personalizados.js"></script>
 </body>
 
 </html>
