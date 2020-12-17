@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let html = "";
     // esta funcion genera dinamicamente la tabla en la pagina de productos
     let mostrarTabla = () => {
-       
+
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamañoRegistry = jsonData.length - 1;
                 let items;
                 html = `<ul id="tabla">`;
-                let admin=window.sessionStorage.getItem('admin');
+                let admin = window.sessionStorage.getItem('admin');
                 for (let i = 0; i <= tamañoRegistry; i++) {
                     items = jsonData[i];
                     html +=
@@ -33,13 +33,25 @@ document.addEventListener("DOMContentLoaded", function () {
                             Precio: $${items.precio}<br>
                             Stock: ${items.stock}<br>
                             Categoria: ${items.categoria.nombre}<br>                
-                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
-                            if(admin=="true"){
-                                html+=`
+                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
+                            <select class="custom-select inputGroupSelect01" data-val="${items.id_producto}">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select></span>`
+                    if (admin == "true") {
+                        html += `
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
                                 <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
-                            }
-                      html+=`
+                    }
+                    html += `
                         </li>`
                 }
                 html += `</ul>`
@@ -98,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (let i = 0; i <= tamJD; i++) {
                     items = jsonData[i];
                     if (items.id_producto == id) {
-                        html = 
-                        `<div class="card">
+                        html =
+                            `<div class="card">
                             <img src="${items.imagen_producto.direccion}" style="width:100%">
                             <h2>${items.nombre}</h2>
                             <p id="price" class="price">$${items.precio}</p>
@@ -127,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let idBorrar = this.id;
         console.log(idBorrar);
         let urlBorrar = "http://localhost:3000/producto";
-        let urlDelete= urlBorrar + '/' + idBorrar;
-        let response = await fetch(urlDelete,{
+        let urlDelete = urlBorrar + '/' + idBorrar;
+        let response = await fetch(urlDelete, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -137,13 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarTabla();
     }
     //comprar producto
-    let urlID = "http://localhost:3000/producto";
-    function btnComprar() {
-        let idDelBoton = this.id;
-        console.log(idDelBoton);
-        let urlId = urlID + '/' + idDelBoton;
-        let datos;
-        fetch(urlId)
+    let clienteId;
+    /*function getUserId() {
+        fetch("http://localhost:3000/cliente/get-all")
             .then(r => {
                 if (!r.ok) {
                     console.log("Error!")
@@ -151,14 +159,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 return r.json()
             })
             .then(jsonData => {
-                datos = auxComprar(jsonData);
-                load();
+                let clienteConectado = window.sessionStorage.getItem('cliente');
+                jsonData.forEach(element => {
+                    if (element.usuario == clienteConectado) {
+                        clienteId = element.id_cliente;
+                    }
+                })
             })
             .catch(function (e) {
-                console.log(e);
-            });
-    }
+                console.log(e)
+            })
+    }*/
 
+    function btnComprar() {
+        //getUserId();
+        let idDelBoton = this.id;
+        let cant = 0;
+        let selects = document.querySelectorAll(".inputGroupSelect01");
+        selects.forEach(element => {
+            if (element.dataset.val == idDelBoton) {
+                cant = element.options[element.selectedIndex].value;
+            }
+        });
+        //
+        fetch("http://localhost:3000/cliente/get-all")
+            .then(r => {
+                if (!r.ok) {
+                    console.log("Error!")
+                }
+                return r.json()
+            })
+            .then(jsonData => {
+                let clienteConectado = window.sessionStorage.getItem('cliente');
+                jsonData.forEach(element => {
+                    if (element.usuario == clienteConectado) {
+                        clienteId = element.id_cliente;
+                    }
+                })
+            })
+            //
+            .then(a => {
+
+                console.log("cantidad: " + cant, "clienteid: " + clienteId, "idProducto: " + idDelBoton)
+                let jsonData = {
+                    "cantidad": parseInt(cant),
+                    "cliente_id_cliente": parseInt(clienteId),
+                    "producto_id_producto": parseInt(idDelBoton),
+                    "estado": "pendiente"
+                }
+                auxComprar(jsonData);
+                load();
+            })
+    }
     let urlCarritoPost = "http://localhost:3000/carrito/new-carrito";
     async function auxComprar(jsonData) {
         console.log(jsonData)
@@ -180,16 +232,14 @@ document.addEventListener("DOMContentLoaded", function () {
     //funcion que carga productos al carrito
     async function load() {
         try {
-            let response = await fetch(urlCarritoPost);
+            let response = await fetch('http://localhost:3000/carrito/get-all');
             if (response.ok) {
                 let t = await response.json();
                 carrito = [...carrito, ...t];
             }
-            else
-                container.innerHTML = "<h1>Error - Failed URL!</h1>";
         }
         catch (response) {
-            container.innerHTML = "<h1>Connection error</h1>";
+
         };
     };
     //funcion que borra los input luego de usarlos para agregar productos o editar
@@ -202,57 +252,57 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputImage").value = "";
     }
     //funcion que agrega productos nuevos
-  
-    async function fnAgregar(){
-        let urlPost= "http://localhost:3000/producto/new-producto"
+
+    async function fnAgregar() {
+        let urlPost = "http://localhost:3000/producto/new-producto"
         let name = document.querySelector("#inputName").value;
         let description = document.querySelector("#inputDescription").value;
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let img= document.querySelector("#inputImage").value;
+        let img = document.querySelector("#inputImage").value;
         let pers = document.querySelector("#inputPers").value;
         //let id = 11;
-        
+
         let registry = {
 
             "nombre": name,
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
-            "categoria_id_categoria":parseInt(category),
+            "categoria_id_categoria": parseInt(category),
             "pedido_personalizado_id_pedido": null,
             "direccion": img
-            
+
         }
         console.log(registry);
-        let rta= await
-    
-        fetch(urlPost, {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(registry),
-        }).then(r => {
-            if (!r.ok) {
-                console.log("Error!")
-            }
-            return r.json()
-        })
-            .then(data => {
-                console.log(data)
-                let id = data.id_producto;
-                //fnAgregarImg(id);
+        let rta = await
+
+            fetch(urlPost, {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registry),
+            }).then(r => {
+                if (!r.ok) {
+                    console.log("Error!")
+                }
+                return r.json()
             })
-            .catch(function (e) {
-                console.log(e);
-            })
+                .then(data => {
+                    console.log(data)
+                    let id = data.id_producto;
+                    //fnAgregarImg(id);
+                })
+                .catch(function (e) {
+                    console.log(e);
+                })
         fnBorrarInputs();
     }
 
-    document.querySelector("#btnAgregar").addEventListener('click',fnAgregar);
+    document.querySelector("#btnAgregar").addEventListener('click', fnAgregar);
 
 
     //editar******************
@@ -289,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputPrice").value = datos.precio;
         document.querySelector("#inputStock").value = datos.stock
         document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
-        document.querySelector("#inputPers").value=datos.pedido_personalizado_id_pedido;
+        document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
         //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
     //funcion que guarda los cambios de un producto editado
@@ -323,8 +373,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //   filtrado  productos por categoria *****************************************************
     let fnFiltrar = (categoria) => {
         document.querySelector("#listaHorizontal").innerHTML = "";
-        let prodFiltrados=[];
-    
+        let prodFiltrados = [];
+
         fetch(url)
             .then(r => {
                 if (!r.ok) {
@@ -334,8 +384,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(jsonData => {
                 console.log(jsonData);
-                for(let i=0; i<jsonData.length;i++){
-                    if(jsonData[i].categoria.nombre==categoria){
+                for (let i = 0; i < jsonData.length; i++) {
+                    if (jsonData[i].categoria.nombre == categoria) {
                         prodFiltrados.push(jsonData[i]);
                     }
                 }
@@ -345,7 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let tamanio = prodFiltrados.length;
                 html = `<ul id="tabla">`;
                 let items;
-                let admin=window.sessionStorage.getItem('admin');
+                let admin = window.sessionStorage.getItem('admin');
                 console.log(admin)
                 for (let i = 0; i < tamanio; i++) {
                     items = prodFiltrados[i];
@@ -357,16 +407,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     Precio: $${items.precio}<br>
                     Stock: ${items.stock}<br>
                     Categoria: ${items.categoria.nombre}<br>                
-                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
-                    if(admin=="true"){
-                        html+=`
+                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select></span>`
+                    if (admin == "true") {
+                        html += `
                         <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
                         <td><span class="badge badge-danger"><button class="btn btn-danger btn-delete-producto" pos="${i}" id="${items.id_producto}">Borrar</button></span></td>`
                     }
-              html+=`
+                    html += `
                 </li>`
-        }
-        html += `</ul>`
+                }
+                html += `</ul>`
                 document.querySelector("#listaHorizontal").innerHTML = html;
                 let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
                 botonesBorrar.forEach(e => {
