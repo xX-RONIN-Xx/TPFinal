@@ -1,5 +1,5 @@
 export class CarritoDTO {
-    readonly cantidad: string;
+    readonly cantidad: number;
     readonly cliente_id_cliente: number;
     readonly producto_id_producto: number;
     readonly estado: string;

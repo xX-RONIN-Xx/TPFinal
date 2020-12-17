@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style3.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="./js/loginValidation.js"></script>
     <!--<script src="js/producto.js" ></script>-->
 </head>
 
@@ -141,6 +142,9 @@
                                 <textarea class="form-control" rows="5" id="comment"></textarea>
                             </div>
                         </div>
+                        <div class="col-6 col-md-1">
+                            <button type="button" class="btn btn-primary" id="btnPers">Enviar</button>
+                        </div>
                     </div>
 
                 </form>
@@ -173,7 +177,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-md-1">
-                        <button type="submit" class="btn btn-primary" id="btnPers">Enviar</button>
+                        <button type="submit" class="btn btn-primary" id="btnContacto">Enviar</button>
                     </div>
                 <!--</form>-->
             </div>
@@ -189,100 +193,6 @@
 
         </div>
 
-       <!-- <div class="container">
-            <h3>Pedidos Ingresados</h3>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">ID Pedido</th>
-                    <th scope="col">Dimensión X</th>
-                    <th scope="col">Dimensión Y</th>
-                    <th scope="col">Dimensión Z</th>
-                    <th scope="col">Colores</th>
-                    <th scope="col">Tipo Filamento</th>
-                    <th scope="col">Altura de Capa</th>
-                    <th scope="col">Temperatura</th>
-                    <th scope="col">Relleno</th>
-                    <th scope="col">Comentarrios</th>
-                    <th scope="col">Código Cliente</th>
-                  </tr>
-                </thead>
-                <tbody id="tblPersonalizados">
-    
-                </tbody>
-              </table>
-              <hr>
-
-        </div>
-
-        <h3>Productos Personalizados</h3>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">ID Producto</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Categoría</th>
-                <th scope="col">ID Pedido</th>
-              </tr>
-            </thead>
-            <tbody id="tblProductos">
-
-            </tbody>
-          </table>
-          <hr>
-
-        <div class="container">
-            <h3>Ingresar producto personalizado </h3>
-            <form>
-                <div class="container">
-                    <div class="form-group row">
-                        <div class="col-xs-6">
-                            <input class="form-control" id="Id" type="hidden">
-                        </div>
-                        <div class="col-xs-6">
-                            <input class="form-control" id='Stack' type="hidden">
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="inputName">Nombre</label>
-                            <input class="form-control" id="Name" type="text"
-                                placeholder="Ingrese el nombre del producto">
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="inputPrecio">Precio</label>
-                            <input class="form-control" id="Price" type="number">
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="inputStock">Stock</label>
-                            <input class="form-control" id="Stock" type="number">
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="inputCategoria">Categoria</label>
-                            <input class="form-control" id="Category" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-xs-6">
-                            <label for="inputDescription">Descripción</label>
-                            <textarea class="form-control" rows="5" id="Description"></textarea>
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="file_img">Codigo de Personalizados</label>
-                            <input name="img" type="number" class="form-control" id="Pers">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <input type="submit" value="Agregar producto" id="btnAgregarPers" class="btn btn-primary">
-                </div>
-
-                <div class="col-xs-3">
-                    <input type="submit" value="Aceptar edición" id="btnAceptarPers" class="btn btn-primary">
-                </div>
-            </form>-->
         <div class="social">
             <a href="#"><img src="images/favicon/icons8-facebook-48.png" alt="facebook"></a>
             <a href="#"><img src="images/favicon/icons8-instagram-48.png" alt="instagram"></a>
@@ -300,7 +210,7 @@
         </p>
 
     </footer>
-    <script src="./js/loginValidation.js"></script>
+   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -310,6 +220,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
+    <!--<script src="./js/loginValidation.js"></script>-->
     <script src="./js/personalizados.js"></script>
 </body>
 

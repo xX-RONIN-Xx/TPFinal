@@ -1,3 +1,4 @@
+import { Cliente } from 'src/cliente/cliente.entity';
 import { Producto } from 'src/producto/producto.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { threadId } from 'worker_threads';
@@ -10,6 +11,8 @@ export class PedidoPersonalizado {
 
     @Column()
     private dimesion_x: number;
+    producto: any;
+    cliente: any;
 
     public getX(): number {
         return this.dimesion_x;
@@ -61,6 +64,10 @@ export class PedidoPersonalizado {
 
     @Column()
     private cliente_id_cliente: number;
+
+    @ManyToOne(()=>Cliente, cliente => cliente.pedido_personalizado)
+    @JoinColumn({name: 'cliente_id_cliente'})
+    public pedido_personalzado: Cliente;
 
     
 
@@ -143,6 +150,9 @@ export class PedidoPersonalizado {
     public setCliente(cliente_id_cliente: number) {
         this.cliente_id_cliente = cliente_id_cliente;
     }
+
+    @OneToOne((type) => PedidoPersonalizado, pedido_personalizado => pedido_personalizado.producto)
+    public pedido_personalizado: PedidoPersonalizado[];
 
 
 } 

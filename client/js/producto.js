@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let idBorrar = this.id;
         console.log(idBorrar);
         let urlBorrar = "http://localhost:3000/producto";
-        let urlDelete= urlBorrar + '/' + idBorrar;
-        let response = await fetch(urlDelete,{
+        let urlDelete = urlBorrar + '/' + idBorrar;
+        let response = await fetch(urlDelete, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -202,15 +202,15 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputImage").value = "";
     }
     //funcion que agrega productos nuevos
-  
-    async function fnAgregar(){
-        let urlPost= "http://localhost:3000/producto/new-producto"
+
+    async function fnAgregar() {
+        let urlPost = "http://localhost:3000/producto/new-producto"
         let name = document.querySelector("#inputName").value;
         let description = document.querySelector("#inputDescription").value;
         let price = document.querySelector("#inputPrice").value;
         let stock = document.querySelector("#inputStock").value;
         let category = document.querySelector("#inputCategory").value;
-        let img= document.querySelector("#inputImage").value;
+        let img = document.querySelector("#inputImage").value;
         let pers = document.querySelector("#inputPers").value;
         //let id = 11;
 
@@ -220,39 +220,39 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
-            "categoria_id_categoria":parseInt(category),
+            "categoria_id_categoria": parseInt(category),
             "pedido_personalizado_id_pedido": null,
             "direccion": img
-            
+
         }
         console.log(registry);
-        let rta= await
-    
-        fetch(urlPost, {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(registry),
-        }).then(r => {
-            if (!r.ok) {
-                console.log("Error!")
-            }
-            return r.json()
-        })
-            .then(data => {
-                console.log(data)
-                let id = data.id_producto;
-                //fnAgregarImg(id);
+        let rta = await
+
+            fetch(urlPost, {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registry),
+            }).then(r => {
+                if (!r.ok) {
+                    console.log("Error!")
+                }
+                return r.json()
             })
-            .catch(function (e) {
-                console.log(e);
-            })
+                .then(data => {
+                    console.log(data)
+                    let id = data.id_producto;
+                    //fnAgregarImg(id);
+                })
+                .catch(function (e) {
+                    console.log(e);
+                })
         fnBorrarInputs();
     }
 
-    document.querySelector("#btnAgregar").addEventListener('click',fnAgregar);
+    document.querySelector("#btnAgregar").addEventListener('click', fnAgregar);
 
 
     //editar******************

@@ -10,13 +10,13 @@ export class Carrito {
 
 
     @Column()
-    private cantidad: string;
+    private cantidad: number;
 
-    public getCantidad(): string {
+    public getCantidad(): number {
         return this.cantidad;
     }
 
-    public setCantidad(cantidad: string): void {
+    public setCantidad(cantidad: number): void {
         this.cantidad = cantidad;
     }
 
@@ -69,7 +69,7 @@ export class Carrito {
     public producto: Producto;
 
     
-    public constructor(cantidad?: string, cliente_id_cliente?: number, producto_id_producto?:number, estado?: string) {
+    public constructor(cantidad?: number, cliente_id_cliente?: number, producto_id_producto?:number, estado?: string) {
         this.cantidad = cantidad;
         this.cliente_id_cliente= cliente_id_cliente;
         this.producto_id_producto=producto_id_producto;
