@@ -1,36 +1,87 @@
 let carrito = [];
 
-//Muestra la tabla de carrito que puede ver el administrador.
-
-function mostrarTablaCarrito() {
-    let html = "";
-    for (let i = 0; i < carrito.length; i++) {
-        console.log(carrito.length)
-        car = carrito[i];
-        html +=
-            `<tr>>
-                    <td>${car.id_carrito}</td>
-                    <td>${car.cantidad}</td>
-                    <td>${car.cliente_id_cliente}</td>
-                    <td>${car.producto_id_producto}</td>
-                    <td><button type="submit" class="btn btn-danger btn-delete" id="${car.id_carrito}" pos="${i}">Borrar</button></td>
-                    <td><button type="submit" class="btn btn-primary btn-edit" id="${car.id_carrito}" pos="${i}">Editar</button></td>
-                </tr>`;
-    }
-    document.querySelector("#tblCarrito").innerHTML = html;
-    let botonesBorrar = document.querySelectorAll(".btn-delete");
-    botonesBorrar.forEach(e => {
-        e.addEventListener("click", btnBorrar);
-    });
-    let botonesEdit = document.querySelectorAll(".btn-edit");
-    botonesEdit.forEach(e => {
-        e.addEventListener("click", btnEdit);
-    });
+function getFilteredByKey(array,value) {
+    let filtrado=[];
+   array.forEach(element => {
+      if( element.cliente_id_cliente==value){
+        filtrado.push(element)
+      }
+   });
+   return filtrado;
 }
 
-//Borra un carrito.
+function mostrarTablaProductos() {
 
-async function btnBorrar() {
+    //////////////////////////////////////////////////
+    let clienteId;
+    let carritoCliente = [];
+    fetch("http://localhost:3000/cliente/get-all")
+        .then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            return r.json()
+        })
+        .then(jsonData => {
+            let clienteConectado = window.sessionStorage.getItem('cliente');
+            jsonData.forEach(element => {
+                if (element.usuario == clienteConectado) {
+                    clienteId = element.id_cliente;
+                    console.log("Hola", clienteId);
+                }
+            })
+        })
+        .then(a => {
+            carritoCliente = getFilteredByKey(carrito, clienteId);
+            /////////////////////////////////////////////////
+            let html = "";
+            for (let i = 0; i < carritoCliente.length; i++) {
+               
+                console.log(carritoCliente)
+                console.log(carritoCliente.length)
+                car = carritoCliente[i];
+                html +=
+                    `<tr>
+                    <td>${car.producto.nombre}</td>
+                    <td>${car.producto.descripcion}</td>
+                    <td>${car.cantidad}</td>
+                    <td>${car.producto.precio}</td>
+         
+                    <td><button type="submit" class="btn btn-danger btn-delete" id="${car.id_carrito}">Borrar</button></td>
+                </tr>`;
+            }
+
+            document.querySelector("#tblCarrito").innerHTML = html;
+
+            let botonesBorrar = document.querySelectorAll(".btn-delete");
+            botonesBorrar.forEach(e => {
+                e.addEventListener("click", btnBorrarClick);
+            });
+
+            sumar(carritoCliente);
+        })
+}
+
+//vaciar carrito
+let btnVaciar = document.querySelector("#vaciar");
+btnVaciar.addEventListener("click", vaciar);
+
+let btnComprar = document.querySelector("#comprar");
+btnComprar.addEventListener("click", vaciar);
+
+
+async function vaciar() {
+    let response = await fetch('http://localhost:3000/carrito', {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    console.log("borrando elemento pos ");
+    window.location.href = '../html/carrito.html';
+}
+
+async function btnBorrarClick() {
     let idBtn = this.id;
     console.log("hola", idBtn);
     let urlB = "http://localhost:3000/carrito";
@@ -42,13 +93,39 @@ async function btnBorrar() {
             "Content-Type": "application/json"
         }
     });
-    mostrarTablaCarrito();
+    window.location.href = 'http://localhost:3000/html/carrito.html';
+}
+
+function sumar(carrito) {
+    document.querySelector("#total").innerHTML ="";
+    console.log("Funcion Sumar");
+    if (carrito.length >= 1) {
+        let total = 0;
+        for (let i = 0; i < carrito.length; i++) {
+            total += carrito[i].producto.precio*carrito[i].cantidad;
+        }
+       /* let max = carrito[0].producto.precio;
+        for (let car of carrito) {
+            if (max < car.producto.precio)
+                max = car.producto.precio;
+        }*/
+        document.querySelector("#total").innerHTML =
+            "<p>Total: $" + total + "</p>"
+    }
+}
+
+
+let obj = {
+    "functions": { "sumar": sumar }
 }
 
 
 
-
 async function load() {
+    let container = document.querySelector("#use-ajax");
+    let h1 = document.createElement('h1');
+    h1.innerHTML = 'Loading';
+    container.appendChild(h1);
     try {
         let response = await fetch('http://localhost:3000/carrito/get-all');
         if (response.ok) {
@@ -64,72 +141,8 @@ async function load() {
         console.log(response);
         container.innerHTML = "<h1>Connection error</h1>";
     };
-    mostrarTablaCarrito();
+    h1.parentNode.removeChild(h1);
+    mostrarTablaProductos();
 }
-
-
 load();
-
-//Edita un carrito
-
-function btnEdit() {
-    let idBtnedit = this.id;
-    let urlEd = "http://localhost:3000/carrito"
-    let urlId = urlEd + '/' + idBtnedit;
-    let datos;
-    fetch(urlId)
-        .then(r => {
-            if (!r.ok) {
-                console.log("Error!")
-            }
-            return r.json()
-        })
-        .then(jsonData => {
-            datos = auxLlenarinputs(jsonData);
-            console.log(datos);
-            document.querySelector("#inputCantidad").focus();
-            document.querySelector("#btnAceptarEdicion").addEventListener('click', function () {
-                aceptChanges(urlId);
-            });
-        })
-        .catch(function (e) {
-            console.log(e);
-        });
-}
-
-//Función que llena los inputs con los datos del carrito a editar.
-
-function auxLlenarinputs(datos) {
-    document.querySelector("#inputIdCar").value = datos.id_carrito;
-    document.querySelector("#inputCantidad").value = datos.cantidad;
-    document.querySelector("#inputCliente").value = datos.cliente_id_cliente;
-    document.querySelector("#inputProducto").value = datos.producto_id_producto;
-    document.querySelector("#inputEstado").value = datos.estado;
-}
-
-//Funcion que guarda los cambios de un carrito editado.
-
-async function aceptChanges(urlE) {
-    let id = document.querySelector("#inputIdCar").value;
-    let cantidad = document.querySelector("#inputCantidad").value;
-    let cliente = document.querySelector("#inputCliente").value;
-    let producto = document.querySelector("#inputProducto").value;
-    let estado = document.querySelector("#inputEstado").value;
-
-    let registry = {
-        "id_carrito": id,
-        "cantidad": cantidad,
-        "cliente_id_cliente": cliente,
-        "producto_id_producto": producto,
-        "estado": estado
-    }
-    let response = await fetch(urlE, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(registry)
-    })
-}
-
 

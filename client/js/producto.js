@@ -1,5 +1,7 @@
+
 document.addEventListener("DOMContentLoaded", function () {
 
+    // CommonJS
     "use strict";
     //defino las url
     const url = "http://localhost:3000/producto/get-all";
@@ -33,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             Precio: $${items.precio}<br>
                             Stock: ${items.stock}<br>
                             Categoria: ${items.categoria.nombre}<br>                
-<<<<<<< HEAD
                             <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
                             <select class="custom-select inputGroupSelect01" data-val="${items.id_producto}">
                                 <option value="1" selected>1</option>
@@ -47,9 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select></span>`
-=======
-                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
->>>>>>> copiaIntegracion
                     if (admin == "true") {
                         html += `
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
@@ -215,7 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 load();
             })
     }
+
     let urlCarritoPost = "http://localhost:3000/carrito/new-carrito";
+
     async function auxComprar(jsonData) {
         console.log(jsonData)
         let respuesta = await fetch(urlCarritoPost, {
@@ -228,7 +228,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         if (respuesta.ok) {
             carrito.push(jsonData);
+            console.log(jsonData);
+            ///////////////////
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Producto agregado al carrito exitosamente'
+              })
+            ///////////////////
             console.log('ok');
+
         } else {
             console.log('hubo un error');
         }
@@ -411,7 +431,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     Precio: $${items.precio}<br>
                     Stock: ${items.stock}<br>
                     Categoria: ${items.categoria.nombre}<br>                
-<<<<<<< HEAD
                     <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
                     <select class="custom-select" id="inputGroupSelect01">
                         <option value="1" selected>1</option>
@@ -425,9 +444,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select></span>`
-=======
-                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
->>>>>>> copiaIntegracion
                     if (admin == "true") {
                         html += `
                         <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>

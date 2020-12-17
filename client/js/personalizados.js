@@ -81,7 +81,7 @@ document.querySelector("#btnPers").addEventListener('click', fnAgregarPedido);
 let clienteConectado = window.sessionStorage.getItem('cliente');
 console.log(clienteConectado);
 let clientes=[];
-async function loadclientes() {
+/*async function loadclientes() {
         let response = await fetch('http://localhost:3000/cliente/get-all');
         let clienteId;
         if (response.ok) {
@@ -101,5 +101,5 @@ async function loadclientes() {
         }
     }
 
-    loadclientes();
+    loadclientes();*/
 

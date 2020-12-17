@@ -50,7 +50,7 @@ async function btnBorrarClick() {
             "Content-Type": "application/json"
         }
     });
-    load();
+    window.location.href = 'http://localhost:3000/adminPers.html';
 }
 
 //Trae todos los pedidos personalziados.
@@ -174,7 +174,7 @@ async function btnBorrar() {
             "Content-Type": "application/json"
         }
     });
-    mostrarTablaProductosPers();
+    window.location.href='http://localhost:3000/adminPers.html';
 }
 
 //Lista los productos personalizados(Los que tienen ID distinto de null).

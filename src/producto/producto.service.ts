@@ -6,6 +6,7 @@ import { Equal, Not, Repository } from 'typeorm';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
 import { ImagenProductoDTO } from 'src/imagen-producto/imagen-producto.dto';
+import {IsNull} from 'typeorm';
 
 @Injectable()
 export class ProductoService {
@@ -25,8 +26,8 @@ export class ProductoService {
         try {
             //Get all
             const result: Producto[] = await this.productoRepository.find({
-                relations: ["categoria", "imagen_producto"]
-                //where: { pedido_personalizado_id_pedido: Equal("null") }
+                relations: ["categoria", "imagen_producto"],
+                where: { pedido_personalizado_id_pedido:IsNull() }
             });
             
             return result
