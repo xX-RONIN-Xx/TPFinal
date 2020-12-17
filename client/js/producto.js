@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Precio: $${items.precio}<br>
                             Stock: ${items.stock}<br>
                             Categoria: ${items.categoria.nombre}<br>                
+<<<<<<< HEAD
                             <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
                             <select class="custom-select inputGroupSelect01" data-val="${items.id_producto}">
                                 <option value="1" selected>1</option>
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select></span>`
+=======
+                            <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+>>>>>>> copiaIntegracion
                     if (admin == "true") {
                         html += `
                                 <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>
@@ -407,6 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Precio: $${items.precio}<br>
                     Stock: ${items.stock}<br>
                     Categoria: ${items.categoria.nombre}<br>                
+<<<<<<< HEAD
                     <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning">
                     <select class="custom-select" id="inputGroupSelect01">
                         <option value="1" selected>1</option>
@@ -420,6 +425,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select></span>`
+=======
+                    <span class="badge badge-danger"><input type=button  id="${items.id_producto}" value="Comprar" class="btn btn-warning"></span>`
+>>>>>>> copiaIntegracion
                     if (admin == "true") {
                         html += `
                         <td><span class="badge badge-danger"><button class="btn btn-primary btn-edit-product" pos="${i}" id="${items.id_producto}">Editar</button></span></td>

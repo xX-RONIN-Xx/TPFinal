@@ -28,6 +28,7 @@ export class ImagenProductoService {
         }
     }
 
+
     //TYPEORM GET by id
     public async getById(id: number): Promise<ImagenProducto>{
         console.log("Getting producto id: " + id);

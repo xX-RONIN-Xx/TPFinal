@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
 import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
 import { Categoria } from 'src/categoria/categoria.entity';
-import { Repository } from 'typeorm';
+import { Equal, Not, Repository } from 'typeorm';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
 import { ImagenProductoDTO } from 'src/imagen-producto/imagen-producto.dto';
@@ -26,6 +26,26 @@ export class ProductoService {
             //Get all
             const result: Producto[] = await this.productoRepository.find({
                 relations: ["categoria", "imagen_producto"]
+                //where: { pedido_personalizado_id_pedido: Equal("null") }
+            });
+            
+            return result
+
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+              }, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public async getAllPers(): Promise<Producto[]>{
+        console.log("Get All productos");
+        try {
+            //Get all
+            const result: Producto[] = await this.productoRepository.find({
+                relations: ["categoria", "imagen_producto"], 
+                where: { pedido_personalizado_id_pedido: Not("null") }
             });
             
             return result

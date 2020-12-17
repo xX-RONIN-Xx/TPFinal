@@ -9,27 +9,7 @@ import { CarritoService } from './carrito.service';
 @Controller('carrito')
 export class CarritoController {
     constructor(private carritoService: CarritoService) { }
-   /* @Get()
-    public getCarrito(): Carrito[] {
-        return this.carritoService.getCarrito();
-    }
 
-    @Post()
-    create(@Body() car: any): string {
-        console.log("carritooo" + car)
-        return this.carritoService.create(car);
-    }
-
-    @Delete(':index')
-    public delete1deCarrito(@Param('index') index): boolean {
-        return this.carritoService.delete1deCarrito(parseInt(index));
-    }
-
-    @Delete()
-    public deleteAll() {
-        return this.carritoService.deleteAll();
-    }
-*/
     @Get("get-all")
     public getAllcarritos(): Promise<Carrito[]>{
         return this.carritoService.getAll();

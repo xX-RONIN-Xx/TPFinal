@@ -2,6 +2,9 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGene
 import { Categoria } from 'src/categoria/categoria.entity';
 import { ImagenProducto } from 'src/imagen-producto/imagen.producto.entity';
 import { Carrito } from 'src/carrito/carrito.entity';
+import { PedidoPersonalizado } from 'src/pedido-personalizado/pedido-personalizado.entity';
+import { PedidoPersonalizadoController } from 'src/pedido-personalizado/pedido-personalizado.controller';
+import { ProductoController } from './producto.controller';
 
 @Entity('producto')
 export class Producto {
@@ -73,9 +76,10 @@ export class Producto {
         return this.categoria.getId();
     }
 
-    /*public setCategoria(categoria_id_categoria:number): void {
-        this.categoria_id_categoria = categoria_id_categoria;
-    }*/
+    @OneToOne(()=>PedidoPersonalizado, pedido_personalizado => pedido_personalizado.producto)
+    @JoinColumn({name: 'pedido_personalizado_id_pedido'})
+    public pedido_personalizado: PedidoPersonalizado;
+
 
     @Column()
     private pedido_personalizado_id_pedido: number;

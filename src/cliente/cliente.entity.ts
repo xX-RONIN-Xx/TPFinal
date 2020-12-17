@@ -1,6 +1,7 @@
 
 import { Carrito } from 'src/carrito/carrito.entity';
 import { Factura } from 'src/factura/factura.entity';
+import { PedidoPersonalizado } from 'src/pedido-personalizado/pedido-personalizado.entity';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('CLIENTE')
@@ -46,12 +47,14 @@ export class Cliente {
     @OneToMany((type) => Factura, factura => factura.cliente)
     public facturas: Factura[];
     
-   /* @OneToOne(type => Carrito)
+    @OneToMany((type) => PedidoPersonalizado, pedido_personalizado => pedido_personalizado.cliente)
+    public pedido_personalizado: PedidoPersonalizado[];
+    
+    /*@OneToOne(type => Carrito)
     @JoinColumn({ name: 'cliente_id_cliente' })
     public carrito: Carrito;*/
-
-   // @OneToOne((type) => Carrito, carrito => carrito.cliente)
-    //public carrito: Carrito[];
+   @OneToOne((type) => Carrito, carrito => carrito.cliente)
+    public carrito: Carrito[];
 
 
 

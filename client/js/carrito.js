@@ -1,92 +1,54 @@
 let carrito = [];
 
-function mostrarTablaProductos() {
+//Muestra la tabla de carrito que puede ver el administrador.
+
+function mostrarTablaCarrito() {
     let html = "";
     for (let i = 0; i < carrito.length; i++) {
         console.log(carrito.length)
         car = carrito[i];
-        if (car.imagen_producto.direccion != undefined && car.nombre != undefined && car.descripcion != undefined && car.precio != null && car.categoria.nombre != undefined) {
-            html += 
-                `<tr>
-                    <td><img src="${car.imagen_producto.direccion}" class="img-tabla"></td>
-                    <td>${car.nombre}</td>
-                    <td>${car.descripcion}</td>
-                    <td>${car.precio}</td>
-                    <td>${car.categoria.nombre}</td>
-                    <td><button type="submit" class="btn btn-danger" pos="${i}">Borrar</button></td>
+        html +=
+            `<tr>>
+                    <td>${car.id_carrito}</td>
+                    <td>${car.cantidad}</td>
+                    <td>${car.cliente_id_cliente}</td>
+                    <td>${car.producto_id_producto}</td>
+                    <td><button type="submit" class="btn btn-danger btn-delete" id="${car.id_carrito}" pos="${i}">Borrar</button></td>
+                    <td><button type="submit" class="btn btn-primary btn-edit" id="${car.id_carrito}" pos="${i}">Editar</button></td>
                 </tr>`;
-        }
     }
-    document.querySelector("#tblProductos").innerHTML = html;
-    addButtonBehavior(".btn-danger", btnBorrarClick);
-    sumar();
-}
-
-function addButtonBehavior(btnClass, fn) {
-    let botones = document.querySelectorAll(btnClass);
-    botones.forEach(boton => {
-        boton.addEventListener("click", fn);
+    document.querySelector("#tblCarrito").innerHTML = html;
+    let botonesBorrar = document.querySelectorAll(".btn-delete");
+    botonesBorrar.forEach(e => {
+        e.addEventListener("click", btnBorrar);
+    });
+    let botonesEdit = document.querySelectorAll(".btn-edit");
+    botonesEdit.forEach(e => {
+        e.addEventListener("click", btnEdit);
     });
 }
 
-//vaciar carrito
-let btnVaciar = document.querySelector("#vaciar");
-btnVaciar.addEventListener("click", vaciar);
+//Borra un carrito.
 
-let btnComprar = document.querySelector("#comprar");
-btnComprar.addEventListener("click", vaciar);
+async function btnBorrar() {
+    let idBtn = this.id;
+    console.log("hola", idBtn);
+    let urlB = "http://localhost:3000/carrito";
+    let urlDel = urlB + '/' + idBtn;
 
-
-async function vaciar() {
-    let response = await fetch('http://localhost:3000/carrito', {
+    let response = await fetch(urlDel, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         }
     });
-    console.log("borrando elemento pos ");
-    window.location.href = '../html/carrito.html';
+    mostrarTablaCarrito();
 }
 
-async function btnBorrarClick() {
-    let pos = this.getAttribute("pos");
-    let response = await fetch(`/carrito/${pos}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    console.log("borrando elemento pos " + pos);
-    window.location.href = 'carrito.html';
-}
-
-function sumar() {
-    console.log("Funcion Sumar");
-    let total = 0;
-    for (let i = 0; i < carrito.length; i++) {
-        total += carrito[i].precio;
-    }
-    let max = carrito[0].precio;
-    for (let car of carrito) {
-        if (max < car.precio)
-            max = car.precio;
-    }
-    document.querySelector("#total").innerHTML =
-        "<p>Total: $" + total + "</p>"
-}
-
-
-let obj = {
-    "functions": { "sumar": sumar }
-}
 
 
 
 async function load() {
-    let container = document.querySelector("#use-ajax");
-    let h1 = document.createElement('h1');
-    h1.innerHTML = 'Loading';
-    container.appendChild(h1);
     try {
         let response = await fetch('http://localhost:3000/carrito/get-all');
         if (response.ok) {
@@ -102,23 +64,72 @@ async function load() {
         console.log(response);
         container.innerHTML = "<h1>Connection error</h1>";
     };
-    h1.parentNode.removeChild(h1);
-    mostrarTablaProductos();
-}
-
-async function llamarBack(verbo, path, body = null) {
-    let request = {
-        method: verbo,
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
-    if (body) {
-        request.body = JSON.stringify(body);
-    }
-    return response = await fetch(path, request);
+    mostrarTablaCarrito();
 }
 
 
 load();
+
+//Edita un carrito
+
+function btnEdit() {
+    let idBtnedit = this.id;
+    let urlEd = "http://localhost:3000/carrito"
+    let urlId = urlEd + '/' + idBtnedit;
+    let datos;
+    fetch(urlId)
+        .then(r => {
+            if (!r.ok) {
+                console.log("Error!")
+            }
+            return r.json()
+        })
+        .then(jsonData => {
+            datos = auxLlenarinputs(jsonData);
+            console.log(datos);
+            document.querySelector("#inputCantidad").focus();
+            document.querySelector("#btnAceptarEdicion").addEventListener('click', function () {
+                aceptChanges(urlId);
+            });
+        })
+        .catch(function (e) {
+            console.log(e);
+        });
+}
+
+//Función que llena los inputs con los datos del carrito a editar.
+
+function auxLlenarinputs(datos) {
+    document.querySelector("#inputIdCar").value = datos.id_carrito;
+    document.querySelector("#inputCantidad").value = datos.cantidad;
+    document.querySelector("#inputCliente").value = datos.cliente_id_cliente;
+    document.querySelector("#inputProducto").value = datos.producto_id_producto;
+    document.querySelector("#inputEstado").value = datos.estado;
+}
+
+//Funcion que guarda los cambios de un carrito editado.
+
+async function aceptChanges(urlE) {
+    let id = document.querySelector("#inputIdCar").value;
+    let cantidad = document.querySelector("#inputCantidad").value;
+    let cliente = document.querySelector("#inputCliente").value;
+    let producto = document.querySelector("#inputProducto").value;
+    let estado = document.querySelector("#inputEstado").value;
+
+    let registry = {
+        "id_carrito": id,
+        "cantidad": cantidad,
+        "cliente_id_cliente": cliente,
+        "producto_id_producto": producto,
+        "estado": estado
+    }
+    let response = await fetch(urlE, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(registry)
+    })
+}
+
 

@@ -22,6 +22,14 @@ export class ProductoController {
         return productos;
     }
 
+    @Get("get-allPers")
+    public getAllPers(): Promise<Producto[]>{
+
+        let productos=this.productoService.getAllPers();
+        console.log(productos);
+        return productos;
+    }
+
     @Get(":id")
     public getById(@Param('id') id: number): Promise<Producto>{
         let producto=this.productoService.getById(id);
