@@ -5,6 +5,7 @@ import { Categoria } from 'src/categoria/categoria.entity';
 import { Equal, Not, Repository } from 'typeorm';
 import { ProductoDTO } from './producto.dto';
 import { Producto } from './producto.entity';
+import { IsNull } from 'typeorm';
 import { ImagenProductoDTO } from 'src/imagen-producto/imagen-producto.dto';
 
 @Injectable()
@@ -25,12 +26,12 @@ export class ProductoService {
         try {
             //Get all
             const result: Producto[] = await this.productoRepository.find({
-                relations: ["categoria", "imagen_producto"]
-                //where: { pedido_personalizado_id_pedido: Equal("null") }
+                relations: ["categoria", "imagen_producto"],
+                where: { pedido_personalizado_id_pedido: IsNull() }
             });
-            
+            console.log(result);
             return result
-
+           
         } catch (error) {
             throw new HttpException({
                 status: HttpStatus.NOT_FOUND,

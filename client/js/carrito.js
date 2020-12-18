@@ -24,7 +24,7 @@ function mostrarTablaCarrito() {
     });
     let botonesEdit = document.querySelectorAll(".btn-edit");
     botonesEdit.forEach(e => {
-        e.addEventListener("click", btnEdit);
+        e.addEventListener("click", btnEditar);
     });
 }
 
@@ -72,7 +72,7 @@ load();
 
 //Edita un carrito
 
-function btnEdit() {
+function btnEditar() {
     let idBtnedit = this.id;
     let urlEd = "http://localhost:3000/carrito"
     let urlId = urlEd + '/' + idBtnedit;
