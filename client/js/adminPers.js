@@ -144,7 +144,7 @@ function mostrarTablaProductosPers() {
                     <td>${pro.categoria_id_categoria}</td>
                     <td>${pro.pedido_personalizado_id_pedido}</td>
                     <td><button type="submit" class="btn btn-danger btn-delete-producto" id="${pro.id_producto}" pos="${i}">Borrar</button></td>
-                    <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar</button></td>
+                    <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar Personalizado</button></td>
                 </tr>`;
     }
     document.querySelector("#tblProductos").innerHTML = html;
@@ -215,11 +215,11 @@ function btnEdit() {
             return r.json()
         })
         .then(jsonData => {
-            datos = auxLlenarinputs(jsonData);
+            json = llenarInputs(jsonData);
             console.log(datos);
             document.querySelector("#inputName").focus();
             document.querySelector("#btnAceptar").addEventListener('click', function () {
-                aceptChanges(urlId);
+                aceptCambios(urlId);
             });
         })
         .catch(function (e) {
@@ -229,20 +229,20 @@ function btnEdit() {
 
 //Función que llena los inputs con los datos del producto a editar.
 
-function auxLlenarinputs(datos) {
-    document.querySelector("#inputId").value = datos.id_producto;
-    document.querySelector("#inputName").value = datos.nombre;
-    document.querySelector("#inputDescription").value = datos.descripcion;
-    document.querySelector("#inputPrice").value = datos.precio;
-    document.querySelector("#inputStock").value = datos.stock
-    document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
-    document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
+function llenarInputs(json) {
+    document.querySelector("#inputId").value = json.id_producto;
+    document.querySelector("#inputName").value = json.nombre;
+    document.querySelector("#inputDescription").value = json.descripcion;
+    document.querySelector("#inputPrice").value = json.precio;
+    document.querySelector("#inputStock").value = json.stock
+    document.querySelector("#inputCategory").value = json.categoria_id_categoria;
+    document.querySelector("#inputPers").value = json.pedido_personalizado_id_pedido;
    
 }
 
 //Funcion que guarda los cambios de un producto editado.
 
-async function aceptChanges(urlE) {
+async function aceptCambios(urlE) {
     let name = document.querySelector("#inputName").value;
     let description = document.querySelector("#inputDescription").value;
     let price = document.querySelector("#inputPrice").value;
