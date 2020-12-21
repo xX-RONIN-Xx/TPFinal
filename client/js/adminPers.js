@@ -144,8 +144,8 @@ function mostrarTablaProductosPers() {
                     <td>${pro.categoria.nombre}</td>
                     <td>${pro.pedido_personalizado_id_pedido}</td>
                     <td><button type="submit" class="btn btn-danger btn-delete-producto" id="${pro.id_producto}" pos="${i}">Borrar</button></td>
-                    <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar</button></td>
-            </tr>`;
+                    <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar Personalizado</button></td>
+                </tr>`;
     }
     document.querySelector("#tblProductos").innerHTML = html;
     let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
@@ -219,7 +219,7 @@ function btnEdit() {
             auxLlenarinputs(jsonData);
             document.querySelector("#inputName").focus();
             document.querySelector("#btnAceptar").addEventListener('click', function () {
-                aceptChanges(urlId);
+                aceptCambios(urlId);
             });
         })
         .catch(function (e) {
@@ -243,7 +243,7 @@ function auxLlenarinputs(datos) {
 
 //Funcion que guarda los cambios de un producto editado.
 
-async function aceptChanges(urlE) {
+async function aceptCambios(urlE) {
     let name = document.querySelector("#inputName").value;
     let description = document.querySelector("#inputDescription").value;
     let price = document.querySelector("#inputPrice").value;

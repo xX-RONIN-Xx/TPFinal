@@ -305,6 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(function (e) {
                     console.log(e);
                 })
+        window.location.href = 'http://localhost:3000/prducto.html';
         fnBorrarInputs();
     }
 
