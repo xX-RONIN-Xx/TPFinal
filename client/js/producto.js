@@ -153,26 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //comprar producto
     let clienteId;
-    /*function getUserId() {
-        fetch("http://localhost:3000/cliente/get-all")
-            .then(r => {
-                if (!r.ok) {
-                    console.log("Error!")
-                }
-                return r.json()
-            })
-            .then(jsonData => {
-                let clienteConectado = window.sessionStorage.getItem('cliente');
-                jsonData.forEach(element => {
-                    if (element.usuario == clienteConectado) {
-                        clienteId = element.id_cliente;
-                    }
-                })
-            })
-            .catch(function (e) {
-                console.log(e)
-            })
-    }*/
+  
 
     function btnComprar() {
         //getUserId();
@@ -362,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputDescription").value = datos.descripcion;
         document.querySelector("#inputPrice").value = datos.precio;
         document.querySelector("#inputStock").value = datos.stock
-        document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
+        document.querySelector("#inputCategory").value = datos.categoria.nombre;
         document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
         //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
@@ -381,7 +362,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": price,
             "stock": stock,
-            "categoria_id_categoria": category,
+            "categoria":{
+                "nombre": category
+            },
             "pedido_personalizado_id_pedido": pers
         }
         let response = await fetch(urlE, {
@@ -392,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify(registry)
         })
         fnBorrarInputs();
+        window.location.href = 'http://localhost:3000/productos';
     }
 
     //   filtrado  productos por categoria *****************************************************
