@@ -1,3 +1,9 @@
+let admin = window.sessionStorage.getItem('admin');
+if (admin == "true") {
+    
+document.querySelector('#adminPerso').innerHTML=
+`<a class="btn btn-primary" href="adminPers.html">Ir a pedidos ingresados</a>`;
+}
 let clienteId;
 function fnAgregarPedido() {
 

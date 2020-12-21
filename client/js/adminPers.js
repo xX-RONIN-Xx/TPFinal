@@ -13,6 +13,7 @@ function mostrarTablaPers() {
         html +=
             `<tr>
                     <td>${per.id_pedido}</td>
+                    <td>${per.cliente_id_cliente}</td>
                     <td>${per.dimesion_x}</td>
                     <td>${per.dimension_y}</td>
                     <td>${per.dimension_z}</td>
@@ -22,7 +23,7 @@ function mostrarTablaPers() {
                     <td>${per.temperatura}</td>
                     <td>${per.relleno}</td>
                     <td>${per.comentarios}</td>
-                    <td>${per.cliente_id_cliente}</td>
+                    
                     <td><button type="submit" class="btn btn-danger" id="${per.id_pedido}" pos="${i}">Borrar</button></td>
                 </tr>`;
     }
@@ -94,10 +95,9 @@ async function fnAgregarProductoPers() {
         "descripcion": description,
         "precio": parseInt(price),
         "stock": parseInt(stock),
-        "categoria_id_categoria": parseInt(category),
+        "categoria":{"nombre":category},
         "pedido_personalizado_id_pedido": parseInt(pers),
         "direccion": img
-
     }
     console.log(registry);
     let rta = await
@@ -141,7 +141,7 @@ function mostrarTablaProductosPers() {
                     <td>${pro.nombre}</td>
                     <td>${pro.descripcion}</td>
                     <td>${pro.precio}</td>
-                    <td>${pro.categoria.nombre}</td>
+                 <!--   <td>${pro.categoria.nombre}</td>-->
                     <td>${pro.pedido_personalizado_id_pedido}</td>
                     <td><button type="submit" class="btn btn-danger btn-delete-producto" id="${pro.id_producto}" pos="${i}">Borrar</button></td>
                     <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar Personalizado</button></td>
@@ -236,7 +236,7 @@ function auxLlenarinputs(datos) {
     document.querySelector("#inputDescription").value = datos.descripcion;
     document.querySelector("#inputPrice").value = datos.precio;
     document.querySelector("#inputStock").value = datos.stock
-    document.querySelector("#inputCategory").value = datos.categoria_id_categoria;
+    document.querySelector("#inputCategory").value = datos.categoria.nombre;
     document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
    
 }
@@ -257,7 +257,9 @@ async function aceptCambios(urlE) {
         "descripcion": description,
         "precio": price,
         "stock": stock,
-        "categoria_id_categoria": category,
+        "categoria":{
+            "nombre": category
+            },
         "pedido_personalizado_id_pedido": pers
     }
     let response = await fetch(urlE, {

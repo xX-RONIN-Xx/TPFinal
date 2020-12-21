@@ -276,7 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "descripcion": description,
             "precio": parseInt(price),
             "stock": parseInt(stock),
-            "categoria_id_categoria": parseInt(category),
+            "categoria":{
+                "nombre": category
+            },
             "pedido_personalizado_id_pedido": null,
             "direccion": img
 
@@ -319,6 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let urlEd = "http://localhost:3000/producto"
         let urlId = urlEd + '/' + idBtnedit;
         let datos;
+        fnBorrarInputs();
         fetch(urlId)
             .then(r => {
                 if (!r.ok) {
@@ -346,7 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#inputStock").value = datos.stock
         document.querySelector("#inputCategory").value = datos.categoria.nombre;
         document.querySelector("#inputPers").value = datos.pedido_personalizado_id_pedido;
-        //document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
+        document.querySelector("#inputImage").value = datos.imagen_producto.direccion;
     }
     //funcion que guarda los cambios de un producto editado
     async function aceptChanges(urlE) {
@@ -357,6 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let category = document.querySelector("#inputCategory").value;
         let pers = document.querySelector("#inputPers").value;
         let id = document.querySelector("#inputId").value;
+        let img= document.querySelector("#inputImage").value;
         let registry = {
             "id_producto": id,
             "nombre": name,
@@ -366,7 +370,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "categoria":{
                 "nombre": category
             },
-            "pedido_personalizado_id_pedido": pers
+            "pedido_personalizado_id_pedido": pers,
+            "imagen_producto": {
+                "direccion":img
+            }
         }
         let response = await fetch(urlE, {
             method: "PUT",
@@ -375,8 +382,10 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify(registry)
         })
+        
         fnBorrarInputs();
-        window.location.href = 'http://localhost:3000/productos';
+       // window.location.href = 'http://localhost:3000/productos.html';
+     
     }
 
     //   filtrado  productos por categoria *****************************************************
