@@ -27,7 +27,7 @@ function mostrarTablaPers() {
                 </tr>`;
     }
     document.querySelector("#tblPersonalizados").innerHTML = html;
-    addButtonBehavior(".btn-danger", btnBorrarClick);
+    addButtonBehavior(".btn-danger", borrarClick);
 }
 
 
@@ -39,7 +39,7 @@ function addButtonBehavior(btnClass, fn) {
 }
 //Borra un pedido personalizado.
 
-async function btnBorrarClick() {
+async function borrarClick() {
     let idBorrar = this.id;
     console.log(idBorrar);
     let urlBorrar = "http://localhost:3000/pedido-personalizado";
@@ -141,16 +141,16 @@ function mostrarTablaProductosPers() {
                     <td>${pro.nombre}</td>
                     <td>${pro.descripcion}</td>
                     <td>${pro.precio}</td>
-                    <td>${pro.categoria_id_categoria}</td>
+                    <td>${pro.categoria.nombre}</td>
                     <td>${pro.pedido_personalizado_id_pedido}</td>
                     <td><button type="submit" class="btn btn-danger btn-delete-producto" id="${pro.id_producto}" pos="${i}">Borrar</button></td>
                     <td><button type="submit" class="btn btn-primary btn-edit-product" id="${pro.id_producto}" pos="${i}">Editar</button></td>
-                </tr>`;
+            </tr>`;
     }
     document.querySelector("#tblProductos").innerHTML = html;
     let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
     botonesBorrar.forEach(e => {
-        e.addEventListener("click", btnBorrar);
+        e.addEventListener("click", borrar);
     });
     let botonesEdit = document.querySelectorAll(".btn-edit-product");
     botonesEdit.forEach(e => {
@@ -163,7 +163,7 @@ function mostrarTablaProductosPers() {
 
 //Borra un producto personalizado.
 
-async function btnBorrar() {
+async function borrar() {
     let idBtn = this.id;
     console.log("hola", idBtn);
     let urlB = "http://localhost:3000/producto";
@@ -215,8 +215,8 @@ function btnEdit() {
             return r.json()
         })
         .then(jsonData => {
-            datos = auxLlenarinputs(jsonData);
-            console.log(datos);
+            console.log(jsonData)
+            auxLlenarinputs(jsonData);
             document.querySelector("#inputName").focus();
             document.querySelector("#btnAceptar").addEventListener('click', function () {
                 aceptChanges(urlId);
@@ -230,6 +230,7 @@ function btnEdit() {
 //Función que llena los inputs con los datos del producto a editar.
 
 function auxLlenarinputs(datos) {
+    console.log(datos+"gjg  ")
     document.querySelector("#inputId").value = datos.id_producto;
     document.querySelector("#inputName").value = datos.nombre;
     document.querySelector("#inputDescription").value = datos.descripcion;

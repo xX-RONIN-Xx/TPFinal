@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return r.json()
             })
             .then(jsonData => {
+                console.log(jsonData)
                 let tamañoRegistry = jsonData.length - 1;
                 let items;
                 html = `<ul id="tabla">`;
@@ -344,8 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return r.json()
             })
             .then(jsonData => {
-                datos = auxLlenarinputs(jsonData);
-                console.log(datos);
+                auxLlenarinputs(jsonData);
                 document.querySelector("#inputName").focus();
                 document.querySelector("#btnAceptar").addEventListener('click', function () {
                     aceptChanges(urlId);

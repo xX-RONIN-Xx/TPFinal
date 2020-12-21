@@ -15,7 +15,7 @@ function mostrarTablaCarrito() {
                     <td>${car.producto_id_producto}</td>
                     <td><button type="submit" class="btn btn-danger btn-delete" id="${car.id_carrito}" pos="${i}">Borrar</button></td>
                     <td><button type="submit" class="btn btn-primary btn-edit" id="${car.id_carrito}" pos="${i}">Editar</button></td>
-                </tr>`;
+            </tr>`;
     }
     document.querySelector("#tblCarrito").innerHTML = html;
     let botonesBorrar = document.querySelectorAll(".btn-delete");
@@ -85,8 +85,7 @@ function btnEditar() {
             return r.json()
         })
         .then(jsonData => {
-            datos = auxLlenarinputs(jsonData);
-            console.log(datos);
+            auxLlenarinputsCP(jsonData);
             document.querySelector("#inputCantidad").focus();
             document.querySelector("#btnAceptarEdicion").addEventListener('click', function () {
                 aceptChanges(urlId);
@@ -99,7 +98,7 @@ function btnEditar() {
 
 //Función que llena los inputs con los datos del carrito a editar.
 
-function auxLlenarinputs(datos) {
+function auxLlenarinputsCP(datos) {
     document.querySelector("#inputIdCar").value = datos.id_carrito;
     document.querySelector("#inputCantidad").value = datos.cantidad;
     document.querySelector("#inputCliente").value = datos.cliente_id_cliente;

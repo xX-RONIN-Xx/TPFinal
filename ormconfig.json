@@ -4,7 +4,7 @@
     "port": 3306,
     "username": "root",
     "password": "admin",
-    "database": "trabajo_final_v1",
+    "database": "trabajo_final_v3",
     "entities": [
     "dist/**/**.entity{.ts,.js}"
     ],
